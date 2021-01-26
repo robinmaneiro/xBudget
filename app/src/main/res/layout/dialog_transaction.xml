@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="10dp">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/name_transaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.88"
+            android:hint="@string/dialog_trans_hint_trans_name"
+            android:maxLength="14" />
+
+        <TextView
+            android:id="@+id/text_currency0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="-8dp"
+            android:layout_weight="0.2"
+            android:text="$"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/amount_transaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name_transaction"
+            android:layout_weight="0.9"
+            android:hint="@string/dialog_trans_hint_amount"
+            android:inputType="numberDecimal"
+            android:maxLength="10" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spinner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout1"
+        android:orientation="horizontal"
+
+        >
+
+        <Spinner
+            android:id="@+id/spinner_dialog_transaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9" />
+
+        <TextView
+            android:id="@+id/text_currency1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="-8dp"
+            android:layout_weight="0.2"
+            android:text="$"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/category_new_allowance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/general_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_layout"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/layout_add_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <EditText
+                android:id="@+id/category_add_transaction"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_weight="0.9"
+                android:hint="@string/dialog_trans_cat_name"
+                android:maxLength="14" />
+
+            <TextView
+                android:id="@+id/text_currency2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="-8dp"
+                android:layout_weight="0.2"
+                android:text="$"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/category_allowance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_weight="0.9"
+                android:hint="@string/dialog_trans_hint_cat_budget"
+                android:inputType="numberDecimal"
+                android:maxLength="10" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/transaction_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/general_layout"
+        android:layout_gravity="center"
+        android:hint="@string/dialog_trans_hint_trans_descript"
+        android:maxLength="74"
+        android:maxLines="2"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/layout_datetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/transaction_description"
+        android:layout_marginBottom="-30dp"
+        android:orientation="horizontal">
+
+        <DatePicker
+            android:id="@+id/trans_datepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30dp"
+            android:layout_marginRight="-30dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+
+        <TimePicker
+            android:id="@+id/trans_timepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30dp"
+            android:layout_marginRight="-30dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:timePickerMode="spinner" />
+
+    </LinearLayout>
+
+</RelativeLayout>

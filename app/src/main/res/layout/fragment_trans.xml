@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout2"
+        app:layout_constraintVertical_bias="0.125">
+
+        <Button
+            android:id="@+id/text_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:paddingHorizontal="10dp"
+            android:layout_marginStart="13dp"
+            android:textColor="@color/text_gray"
+            android:fontFamily="@font/carter_one"
+            android:text="TODOS LOS INGRESOS"
+            android:textSize="15dp"
+            />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/imgview_add_transaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="19dp"
+            android:src="@drawable/ic_baseline_add_24"
+            app:fabSize="mini"
+            app:borderWidth="0dp"
+            android:clickable="true"
+            />
+        <ImageButton
+            android:id="@+id/imgview_transaction_old"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:visibility="gone"
+            android:layout_marginEnd="19dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/separator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@id/layout2"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent" android:layout_height="30dp">
+
+            <TextView
+                android:id="@+id/txt_monthly_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#d9d9d9"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/fragment_trans_txt_totalSpent"/>
+
+            <Button
+                android:id="@+id/btn_general_spent"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/round_red"
+                android:textAlignment="center"
+                android:textSize="9dp"
+                android:layout_marginRight="52dp"
+                android:layout_marginEnd="52dp"
+                android:textColor="@color/text_gray"
+                android:text="100/100"
+                />
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/base_separator_stub"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="1dp"
+            android:background="@android:color/darker_gray"
+
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator_layout"
+        >
+
+        <ScrollView
+            android:id="@+id/scrollViewIncome"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:background="@drawable/backcolor_dataview"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="100dp"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:fillViewport="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.diegodobelo.expandingview.ExpandingList
+                    android:id="@+id/expanding_list_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/no_data_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/expanding_list_main">
+
+            <ImageView
+                android:id="@+id/img_no_data"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="-40dp" />
+
+            <TextView
+                android:id="@+id/txt_no_data"
+                style="@style/text_no_data"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:fontFamily="@font/carter_one"
+                android:hint="prueba" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

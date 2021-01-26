@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backrepeat"
+    >
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:id="@+id/new_textbox"
+        android:background="#001a4d"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:elevation="5.0dp"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="25dp"
+        app:shape_arc_position="bottom">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_top"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:background= "@color/title_orange"
+            android:minHeight="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/carter_one"
+                android:layout_marginBottom="25dp"
+                android:shadowColor="@color/text_gray"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="5.6"
+                android:text="@string/activity_dataview_toolbar"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+
+                android:textColor="@color/dark_blue"
+                android:textSize="35sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.github.florent37.shapeofview.shapes.ArcView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container"
+        android:layout_below="@id/new_textbox"
+        android:layout_above="@id/bottom_navigation"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemTextColor="@color/text_gray"
+            app:itemIconTint="@color/text_gray"
+            app:itemIconSize="20dp"
+            app:menu="@menu/bottom_nav_menu"
+            app:background="@color/cardview_dark_background"/>
+</RelativeLayout>

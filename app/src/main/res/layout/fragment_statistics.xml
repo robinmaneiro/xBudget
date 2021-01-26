@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:id="@+id/scroll_stats_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1">
+
+        <LinearLayout
+            android:id="@+id/layout_linear_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_margin="5dp"
+                android:textSize="20dp"
+                android:textColor="@color/text_gray"
+                android:fontFamily="@font/carter_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/statistics_transactions_title" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:columnCount="3"
+                android:rowCount="4"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:id="@+id/grid_a1"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title_a1"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a1"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b1"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b1"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b1"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c1"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c1"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c1"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_a2"
+
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a2"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a2"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b2"
+
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b2"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b2"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c2"
+
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c2"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c2"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_a3"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a3"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a3"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b3"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b3"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b3"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c3"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c3"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c3"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_a4"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a4"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a4"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b4"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b4"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b4"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c4"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c4"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c4"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+            </GridLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_stats"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/layout_linear_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scroll_stats_1">
+
+                <TextView
+                    android:id="@+id/category_name"
+                    android:layout_margin="5dp"
+                    android:textSize="20dp"
+                    android:textColor="@color/text_gray"
+                    android:fontFamily="@font/carter_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/statistics_category_title" />
+
+                <Spinner
+                    android:id="@+id/spinner_fragment_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/spinner"
+                    android:background="@drawable/backcolor_spinner"
+                    android:text="Select month"
+                    android:spinnerMode="dropdown"
+                    android:fontFamily="@font/carter_one"
+
+                    android:textColor="@android:color/black"
+                    android:textAlignment="textStart"
+                    android:textSize="22dp"
+                    />
+
+
+            </LinearLayout>
+
+            <GridLayout
+                android:id="@+id/layout_grid_categories"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_weight="1"
+                android:columnCount="3"
+                android:rowCount="4">
+
+                <LinearLayout
+                    android:id="@+id/grid_a5"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a5"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a5"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b5"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b5"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b5"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c5"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c5"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c5"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_a6"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a6"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a6"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b6"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b6"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b6"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c6"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c6"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c6"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_a7"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a7"
+
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a7"
+
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b7"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b7"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b7"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c7"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c7"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c7"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_a8"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_a8"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_a8"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_b8"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_b8"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_b8"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/grid_c8"
+                    style="@style/grid_grid"
+                    android:layout_width="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:text="Tile1">
+
+                    <TextView
+                        android:id="@+id/title_c8"
+                        style="@style/grid_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/value_c8"
+                        style="@style/grid_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:text="TESTING VALUES" />
+
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

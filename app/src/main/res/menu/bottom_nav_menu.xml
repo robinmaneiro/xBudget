@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/transactions"
+        android:enabled="true"
+        app:labelVisibilityMode="labeled"
+        android:icon="@drawable/transactions_ic"
+        android:title="@string/bottom_bar_transactions"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/statistics"
+        android:enabled="true"
+        android:icon="@drawable/statistics_ic"
+
+        android:iconTint="@color/white"
+        app:labelVisibilityMode="labeled"
+        android:title="@string/bottom_bar_statistics"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/dataview"
+        android:enabled="true"
+        android:icon="@drawable/dataview_ic"
+        app:labelVisibilityMode="labeled"
+        android:title="@string/bottom_bar_dataview"
+        app:showAsAction="ifRoom" />
+</menu>

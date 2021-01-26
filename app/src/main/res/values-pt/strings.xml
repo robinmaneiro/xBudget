@@ -1,0 +1,134 @@
+<resources>
+    <string name="app_name"> xBudget </string>
+    <string name="action_settings">Configurações</string>
+
+    <string name="transaction_fgmt_incomes_title">Todas as Receitas</string>
+    <string name="transaction_fgmt_expenses_title">"Todas as Despesas "</string>
+
+    <string name="text_incomes_a1">  - TODAS OS RENDIMENTOS HOJE </string>
+    <string name="text_incomes_b1">  % - COMP. DE ONTEM </string>
+    <string name="text_incomes_c1">  % - COMP. MÉDIA DIÁRIA </string>
+    <string name="text_incomes_a2">  - TODOS OS RENDIMENTOS ESTA SEMANA </string>
+    <string name="text_incomes_b2">  % - COMP. SEMANA PASSADA  </string>
+    <string name="text_incomes_c2">  % - COMP MÉDIA SEMANAL </string>
+    <string name="text_incomes_a3">  - TODOS AS RECEITAS ESTE MÊS </string>
+    <string name="text_incomes_b3">  % - COMP. DO MÊS PASSADO </string>
+    <string name="text_incomes_c3">  % - COMP. MÉDIA MENSAL </string>
+    <string name="text_incomes_a4">  - TODOS OS RENDIMENTOS ESTE ANO </string>
+    <string name="text_incomes_b4">  % - COMP LAST YEAR </string>
+    <string name="text_incomes_c4">  % - COMP YEARLY AVERAGE </string>
+
+    <string name="text_incomes_a5">  - CATEGORIA RENDIMENTOS HOJE </string>
+    <string name="text_incomes_b5">  % - COMP. DE ONTEM </string>
+    <string name="text_incomes_c5">  % - COMP. MÉDIA DIÁRIA  </string>
+    <string name="text_incomes_a6">  - CATEGORIA RENDIMENTOS ESTA SEMANA </string>
+    <string name="text_incomes_b6">  % - COMP. SEMANA PASSADA </string>
+    <string name="text_incomes_c6">  % - COMP MÉDIA SEMANAL </string>
+    <string name="text_incomes_a7">  - CATEGORIA RENDIMENTOS ESTE MES </string>
+    <string name="text_incomes_b7">  % - COMP. DO MÊS PASSADO </string>
+    <string name="text_incomes_c7">  % - COMP. MÉDIA MENSAL </string>
+    <string name="text_incomes_a8">  - CATEGORIA RENDIMENTOS ESTE ANO </string>
+    <string name="text_incomes_b8">  % - COMP. DO ANO PASADO </string>
+    <string name="text_incomes_c8">  % - COMP. MÉDIA ANUAL </string>
+
+    <string name="text_expenses_a1">  - TODAS AS DESPESAS HOJE </string>
+    <string name="text_expenses_b1">  % - COMP. DE ONTEM </string>
+    <string name="text_expenses_c1">  % - COMP. MÉDIA DIÁRIA </string>
+    <string name="text_expenses_a2">  - TODAS AS DESPESAS ESTA SEMANA </string>
+    <string name="text_expenses_b2">  % - COMP. SEMANA PASSADA </string>
+    <string name="text_expenses_c2">  % - COMP MÉDIA SEMANAL </string>
+    <string name="text_expenses_a3">  - TODAS AS DESPESAS ESTE MES </string>
+    <string name="text_expenses_b3">  % - COMP. DO MÊS PASSADO </string>
+    <string name="text_expenses_c3">  % - COMP. MÉDIA MENSAL </string>
+    <string name="text_expenses_a4">  - TODAS AS DESPESAS ESTE ANO </string>
+    <string name="text_expenses_b4">  % - COMP. DO ANO PASADO </string>
+    <string name="text_expenses_c4">  % - COMP. MÉDIA ANUAL </string>
+
+    <string name="text_expenses_a5">  - CATEGORIA DESPESAS HOJE </string>
+    <string name="text_expenses_b5">  % - COMP. DE ONTEM </string>
+    <string name="text_expenses_c5">  % - COMP. MÉDIA DIÁRIA  </string>
+    <string name="text_expenses_a6">  - CATEGORIA DESPESAS ESTA SEMANA </string>
+    <string name="text_expenses_b6">  % - COMP. SEMANA PASSADA </string>
+    <string name="text_expenses_c6">  % - COMP MÉDIA SEMANAL </string>
+    <string name="text_expenses_a7">  - CATEGORIA DESPESAS ESTE MES </string>
+    <string name="text_expenses_b7">  % - COMP. DO MÊS PASSADO </string>
+    <string name="text_expenses_c7">  % - COMP. MÉDIA MENSAL </string>
+    <string name="text_expenses_a8">  - CATEGORIA DESPESAS ESTE ANO </string>
+    <string name="text_expenses_b8">  % - COMP. DO ANO PASADO </string>
+    <string name="text_expenses_c8">  % - COMP. MÉDIA ANUAL </string>
+
+    <string name="text_savings_a1">  - SAVINGS THIS MONTH </string>
+    <string name="text_savings_b1">  % - COMP. DO MÊS PASSADO </string>
+    <string name="text_savings_c1">  % - COMP. MÉDIA MENSAL </string>
+    <string name="text_savings_a2" translatable="false"> </string>
+    <string name="text_savings_b2" translatable="false"> </string>
+    <string name="text_savings_c2" translatable="false"> </string>
+    <string name="text_savings_a3" translatable="false"> </string>
+    <string name="text_savings_b3" translatable="false"> </string>
+    <string name="text_savings_c3" translatable="false"> </string>
+    <string name="text_savings_a4" translatable="false"> </string>
+    <string name="text_savings_b4" translatable="false"> </string>
+    <string name="text_savings_c4" translatable="false"> </string>
+    <string name="text_savings_a5" translatable="false"> </string>
+    <string name="text_savings_b5" translatable="false"> </string>
+    <string name="text_savings_c5" translatable="false"> </string>
+    <string name="text_savings_a6" translatable="false"> </string>
+    <string name="text_savings_b6" translatable="false"> </string>
+    <string name="text_savings_c6" translatable="false"> </string>
+    <string name="text_savings_a7" translatable="false"> </string>
+    <string name="text_savings_b7" translatable="false"> </string>
+    <string name="text_savings_c7" translatable="false"> </string>
+    <string name="text_savings_a8" translatable="false"> </string>
+    <string name="text_savings_b8" translatable="false"> </string>
+    <string name="text_savings_c8" translatable="false"> </string>
+
+    <string name="dataview_incomes_no_data"> Nenhuma transacção de rendimentos neste mês </string>
+    <string name="dataview_expenses_no_data">Sem transacções de despesas neste mês</string>
+    <string name="dataview_savings_no_data">Nenhuma poupança no mês seleccionado</string>
+    <string name="dataview_incomes_title">Receitas - Total por Categoria</string>
+    <string name="dataview_expenses_title">Despesas - Total por Categoria</string>
+    <string name="dataview_savings_title">Poupanças - Total por Mês</string>
+    <string name="dataview_incomes_label">Receitas</string>
+    <string name="dataview_expenses_label">Despesas</string>
+    <string name="dataview_savings_label">Poupanças</string>
+    <string name="bottom_bar_transactions">Transacções</string>
+    <string name="bottom_bar_statistics">Estatísticas</string>
+    <string name="bottom_bar_dataview">Gráficos</string>
+    <string name="activity_dataview_toolbar">Gráficos</string>
+    <string name="tab_title_incomes">Receitas</string>
+    <string name="tab_title_expenses">Despesas</string>
+    <string name="tab_title_savings">Poupanças</string>
+    <string name="statistics_transactions_title">Todas as Transacções</string>
+    <string name="statistics_category_title">Categoria:</string>
+    <string name="dialog_trans_hint_trans_name">Nome Transac.</string>
+    <string name="dialog_trans_hint_amount">Montante</string>
+    <string name="dialog_trans_cat_name">Nome Categoria</string>
+    <string name="dialog_trans_hint_cat_budget">Orçamento Cat.</string>
+    <string name="dialog_trans_hint_trans_descript">Descrição desta transacção</string>
+    <string name="dialog_cat_category_name">Nome Categoria:</string>
+    <string name="dialog_cat_category_allowance">Orçamento Categoria:</string>
+    <string name="demo_income_cat_0">Salário</string>
+    <string name="demo_income_cat_1">Declaração Fiscal</string>
+    <string name="demo_income_cat_2">Negócios em Linha</string>
+    <string name="demo_expense_cat_0">Aluguer / Hipoteca</string>
+    <string name="demo_expense_cat_1">Fornecedor Energia</string>
+    <string name="demo_expense_cat_2">Internet</string>
+    <string name="demo_expense_cat_3">Mercearia</string>
+    <string name="demo_expense_cat_4">Transporte</string>
+    <string name="dialog_trans_spinner_new_category">Nova Categoria</string>
+    <string name="dialog_trans_toast_validName">Por favor, insira um nome válido</string>
+    <string name="dialog_trans_toast_validAmount">Por favor, insira um montante válido</string>
+    <string name="dialog_trans_title_newExpenseTrans">Nova Transacção Despesa</string>
+    <string name="dialog_trans_title_newIncomeTrans">Nova Transacção Receita</string>
+    <string name="dialog_trans_title_updateExpenseTrans">Editar Transacção Despesa</string>
+    <string name="dialog_trans_title_updateIncomeTrans">Editar Transacção Receita</string>
+    <string name="dialog_trans_toast_bothFields">Nova categoria - Por favor, preencha ambos os campos</string>
+    <string name="dialog_trans_toast_categoryBudget">Por favor, preencha o orçamento da categoria</string>
+    <string name="dialog_trans_toast_categoryExists">Esta categoria já existe</string>
+    <string name="dialog_trans_hint_cat_expected">Montante Esperado</string>
+    <string name="dialog_transaction_positive_add">Adicionar</string>
+    <string name="dialog_positive_update">Atualizar</string>
+    <string name="dialog_negativeButton">Cancelar</string>
+    <string name="dialog_category_neutral_delete">Eliminar</string>
+    <string name="fragment_trans_txt_totalSpent">Total Gastado / Total Orçamento:</string>
+</resources>
