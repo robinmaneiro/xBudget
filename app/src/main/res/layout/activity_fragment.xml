@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backrepeat"
+
     >
 
     <com.github.florent37.shapeofview.shapes.ArcView
         android:id="@+id/new_textbox"
-        android:background="#001a4d"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
@@ -30,7 +30,7 @@
 
             <TextView
                 android:id="@+id/toolbar_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/carter_one"
@@ -43,7 +43,7 @@
                 android:textAlignment="center"
                 android:textAllCaps="true"
 
-                android:textColor="@color/dark_blue"
+                android:textColor="#000052"
                 android:textSize="35sp" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -52,7 +52,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/fragment_container"
         android:layout_below="@id/new_textbox"
         android:layout_above="@id/bottom_navigation"/>
@@ -67,4 +67,5 @@
             app:itemIconSize="20dp"
             app:menu="@menu/bottom_nav_menu"
             app:background="@color/cardview_dark_background"/>
+
 </RelativeLayout>

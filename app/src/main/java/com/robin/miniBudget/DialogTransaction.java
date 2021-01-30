@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
@@ -36,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.UUID;
 
 public class DialogTransaction extends DialogFragment {
@@ -116,7 +119,7 @@ public class DialogTransaction extends DialogFragment {
          */
 
         mCategoriesList = mListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(getArguments().get(GROUP_ID))});
-        mCategoriesSet = new HashSet();
+        mCategoriesSet = new TreeSet();
         for(Category c: mCategoriesList)mCategoriesSet.add(c.getName());
         List<String> mFilteredCategories=new ArrayList<>(mCategoriesSet);
         mFilteredCategories.add("< "+getString(R.string.dialog_trans_spinner_new_category)+" >");
@@ -245,7 +248,7 @@ public class DialogTransaction extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mListener.deleteTransaction(mTransaction);
-                    ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID),mListener.datePickerToJodaTime(mDatePicker.getYear()+" "+mDatePicker.getMonth()+1));
+                    ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID),mListener.datePickerToJodaTime(mDatePicker.getYear()+" "+(mDatePicker.getMonth()+1)));
                 }
             });
         }
@@ -278,6 +281,7 @@ public class DialogTransaction extends DialogFragment {
             this.dialog = dialog;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onClick(View v) {
 
@@ -355,7 +359,7 @@ public class DialogTransaction extends DialogFragment {
                 } else {
                     mListener.updateTransaction(mTransaction);
                 }
-                ((TransFragment.DemoObjectFragment) getTargetFragment())                        .update((Integer) getArguments().get(GROUP_ID),mListener.datePickerToJodaTime(mDatePicker.getYear()+" "+(mDatePicker.getMonth()+1)));
+                ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID),mListener.datePickerToJodaTime(mDatePicker.getYear()+" "+(mDatePicker.getMonth()+1)));
 
                 TransFragment.spinnerAdapter.clear();
                 TransFragment.spinnerAdapter.addAll(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories,null,null));

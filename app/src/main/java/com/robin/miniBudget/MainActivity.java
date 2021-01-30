@@ -19,17 +19,29 @@ import com.robin.miniBudget.database.DatabaseSchema;
 import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Duration;
+import org.joda.time.DurationFieldType;
 import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.PeriodType;
+import org.joda.time.Period;
+import org.joda.time.Weeks;
+import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class MainActivity extends SingleFragmentActivity implements
@@ -248,25 +260,9 @@ public class MainActivity extends SingleFragmentActivity implements
                 cursor.moveToNext();
             }
         }
-
-        for (DateTime dt : dateTimeSet) dateTimeList.add(formatter.print(dt));
-/*
-        Collections.sort(dateTime, new Comparator<String>() {
-            DateFormat f = new SimpleDateFormat("MMMM YYYY");
-
-            @Override
-            public int compare(String o1, String o2) {
-                try {
-                    return f.parse(o1).compareTo(f.parse(o2));
-                } catch (ParseException e) {
-                    throw new IllegalArgumentException(e);
-                }
-            }
-
-        });
-
- */
-
+        dateTimeSet.add(DateTime.now());         //Add the current month to make sure that even though we delete all categories, the current month is going to be shown in the spinner.
+        for (DateTime dt : dateTimeSet) if(!dateTimeList.contains(formatter.print(dt)))dateTimeList.add(formatter.print(dt)); //Insert String month only when it is not in the list to prevent duplicates
+        
         return dateTimeList;
     }
 
@@ -277,29 +273,14 @@ public class MainActivity extends SingleFragmentActivity implements
         Cursor cursor = mDatabase.rawQuery("SELECT DISTINCT " + TransactionTable.CatCols.DATE + " FROM " + table, null);
         GeneralCursorWrapper gcw = new GeneralCursorWrapper(cursor);
 
+
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 dateTime.add(formatter.print(gcw.getDistinctDate()));
                 cursor.moveToNext();
             }
         }
-
-        /*
-
-        Collections.sort(dateTime, new Comparator<String>() {
-            DateFormat f = new SimpleDateFormat("YYYY");
-
-            @Override
-            public int compare(String o1, String o2) {
-                try {
-                    return f.parse(o1).compareTo(f.parse(o2));
-                } catch (ParseException e) {
-                    throw new IllegalArgumentException(e);
-                }
-            }
-
-        });
-                 */
+        if(!dateTime.contains(formatter.print(DateTime.now())))dateTime.add(formatter.print(DateTime.now())); //If not in the Set, add the current month to make sure that even though we delete all categories, the current month is going to be shown in the spinner.
 
         return dateTime;
     }
@@ -498,55 +479,82 @@ public class MainActivity extends SingleFragmentActivity implements
     }
 
     @Override
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public synchronized String getTransDiffAvg(String tableName, int group_id, int period) {
-        List<Transaction> list = getTransactions(tableName, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(group_id)});
+        List<Transaction> list = getTransactions(tableName, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(group_id)}); //Get All transactions
 
         double currentPeriodAmount = getTransAmount(tableName, group_id, period);
-        Map<String, Double> groupByMonthlyDate;
+        Map<String, Double> groupByDateTreeMap = new TreeMap<>();
+        String firstDate;
+        Integer timePassed;
+
+
+
 
         switch (period) {
 
             case 1:
                 DateTimeFormatter dailyFormatter = DateTimeFormat.forPattern("YYYY-MM-dd");
-                groupByMonthlyDate =
-                        list.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+
+                Map<String,Double> unorderedDailyMap =
+                        list.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()),(Collectors.summingDouble(Transaction::getAmount))));
+
+                groupByDateTreeMap.putAll(unorderedDailyMap); // Convert the HashMap into a TreeMap to order the element by key
+                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getDays();
+
                 break;
 
             case 2:
                 DateTimeFormatter weeklyFormatter = DateTimeFormat.forPattern("YYYY-ww");
-                groupByMonthlyDate =
+                Map<String,Double> unorderedWeeklyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> weeklyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+                groupByDateTreeMap.putAll(unorderedWeeklyMap); // Convert the HashMap into a TreeMap to order the element by key
+
+                for(Map.Entry<String,Double> entryset :groupByDateTreeMap.entrySet()){
+                    Log.d(TAG, "key: "+entryset.getKey()+" value: "+entryset.getValue());
+                }
+                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getWeeks();
+
 
                 break;
 
             case 3:
                 DateTimeFormatter monthlyFormatter = DateTimeFormat.forPattern("YYYY-MM");
-                groupByMonthlyDate =
+                Map<String,Double> unorderedMontlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+                groupByDateTreeMap.putAll(unorderedMontlyMap); // Convert the HashMap into a TreeMap to order the element by key
+                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getMonths();
 
                 break;
 
 
             case 4:
                 DateTimeFormatter yearlyFormatter = DateTimeFormat.forPattern("YYYY");
-                groupByMonthlyDate =
+                Map<String,Double> unorderedYearlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> yearlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+                groupByDateTreeMap.putAll(unorderedYearlyMap); // Convert the HashMap into a TreeMap to order the element by key
+                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getYears();
+
                 break;
 
             default:
                 throw new IllegalStateException("Unexpected value: " + period);
         }
 
-        double averagePeriodAmount = groupByMonthlyDate.values().stream().mapToDouble(Double::doubleValue).average().orElse(0);
-        /*
-        for (Map.Entry entry : groupByMonthlyDate.entrySet()) {
-            Log.d("KEYVALUES", "AVE " + entry.getKey() + " VALUE " + entry.getValue());
-        }
 
 
-        Log.d("AVERAGE", "AVERAGE IS:" + averagePeriodAmount + " WITH GROUP" + group_id + " and period " + period);
-         */
+        Log.d(TAG, "FIRST VALUE IS: " + firstDate);
+        Log.d(TAG, "GET XXX "+ timePassed);
+
+
+
+
+        double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum()/timePassed;
+
 
         double difference = currentPeriodAmount - averagePeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
@@ -685,49 +693,90 @@ public class MainActivity extends SingleFragmentActivity implements
         List<Transaction> transactionList = new ArrayList<>();
 
         for (Category c : categoryList) {
+            Log.d(TAG, "getCatsDiff CATEGORY: "+ c.getName());
+
             for (Transaction t : getTransactions(TransactionTable.mTransactions, "category_id = ?", new String[]{c.getId().toString()})) {
+                Log.d(TAG, "getCatsDiff TRANSACTION: "+ t.getName());
+
                 transactionList.add(t);
             }
         }
         double currentPeriodAmount = getCatsAmount(tableName, name, group_id, period);
 
-        Map<String, Double> groupByMonthlyDate;
+        Map<String, Double> groupByDateTreeMap = new TreeMap<>();
+        String firstDate;
+        Integer timePassed = 0;
+
 
         switch (period) {
+
             case 5:
                 DateTimeFormatter dailyFormatter = DateTimeFormat.forPattern("YYYY-MM-dd");
-                groupByMonthlyDate =
-                        transactionList.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+
+                Map<String,Double> unorderedDailyMap =
+                        transactionList.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()),(Collectors.summingDouble(Transaction::getAmount))));
+
+                groupByDateTreeMap.putAll(unorderedDailyMap); // Convert the HashMap into a TreeMap to order the element by key
+                if(!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
+                }
+
+                for(Map.Entry<String,Double> entryset :groupByDateTreeMap.entrySet()){
+                    Log.d(TAG, "key: "+entryset.getKey()+" value: "+entryset.getValue());
+                }
+
+
                 break;
 
             case 6:
                 DateTimeFormatter weeklyFormatter = DateTimeFormat.forPattern("YYYY-ww");
-                groupByMonthlyDate =
+                Map<String,Double> unorderedWeeklyMap =
                         transactionList.stream().collect(Collectors.groupingBy(transaction -> weeklyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+                groupByDateTreeMap.putAll(unorderedWeeklyMap); // Convert the HashMap into a TreeMap to order the element by key
+
+
+                if(!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getWeeks();
+                }
 
                 break;
 
             case 7:
                 DateTimeFormatter monthlyFormatter = DateTimeFormat.forPattern("YYYY-MM");
-                groupByMonthlyDate =
+                Map<String,Double> unorderedMontlyMap =
                         transactionList.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+                groupByDateTreeMap.putAll(unorderedMontlyMap); // Convert the HashMap into a TreeMap to order the element by key
 
+                if(!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getMonths();
+                }
                 break;
+
 
             case 8:
                 DateTimeFormatter yearlyFormatter = DateTimeFormat.forPattern("YYYY");
-                groupByMonthlyDate =
+                Map<String,Double> unorderedYearlyMap =
                         transactionList.stream().collect(Collectors.groupingBy(transaction -> yearlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+                groupByDateTreeMap.putAll(unorderedYearlyMap); // Convert the HashMap into a TreeMap to order the element by key
+
+                if(!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getYears();
+                }
                 break;
 
             default:
                 throw new IllegalStateException("Unexpected value: " + period);
         }
 
-        double averagePeriodAmount = groupByMonthlyDate.values().stream().mapToDouble(Double::doubleValue).average().orElse(0);
+        double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum()/timePassed;
 
+        Log.d(TAG, "AVERAGEPERIODCATEGORY IS: "+averagePeriodAmount );
         /*
-        for (Map.Entry entry : groupByMonthlyDate.entrySet()) {
+        for (Map.Entry entry : groupByDateTreeSet.entrySet()) {
             Log.d("KEYVALUES", "AVE " + entry.getKey() + " VALUE " + entry.getValue());
         }
 

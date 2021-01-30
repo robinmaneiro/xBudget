@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final String TAG = this.getClass().getSimpleName();
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "budgetbase.db";
-    private Context context;
+    private final Context context;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -32,8 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-
         createTables(db);
         insertDemoGroups(db);
         insertDemoCats(db);
@@ -99,12 +97,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new Category(context.getResources().getString(R.string.demo_expense_cat_4), 150.0, Category.Group.EXPENSES)
         };
 
-        for (Category c : demoIncomeCategories) {
-            Log.d(TAG, "Inserted demo category: " + db.insert(TransactionTable.mCategories, null, getContentValuesCategory(c)));
+        for (Category c : demoIncomeCategories) { //Insert DEMO income categories in the database
+            db.insert(TransactionTable.mCategories, null, getContentValuesCategory(c));
         }
 
-        for (Category c : demoExpenseCategories) {
-            Log.d(TAG, "Inserted demo category: " + db.insert(TransactionTable.mCategories, null, getContentValuesCategory(c)));
+        for (Category c : demoExpenseCategories) { //Insert DEMO expense categories in the database
+            db.insert(TransactionTable.mCategories, null, getContentValuesCategory(c));
         }
     }
 

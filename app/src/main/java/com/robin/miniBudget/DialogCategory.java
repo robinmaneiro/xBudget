@@ -104,7 +104,7 @@ public class DialogCategory extends DialogFragment {
                         // Subsequently we are going to select the spinner in the last month in the list
                         // int lastPosition = TransFragment.mSpinner.getSelectedItemPosition();
 
-                        Toast.makeText(getContext(),"spinner size is: "+finalSpinnerSize,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"spinner size is: "+finalSpinnerSize,Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton(getString(R.string.dialog_negativeButton), new DialogInterface.OnClickListener(){

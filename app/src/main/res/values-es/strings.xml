@@ -133,6 +133,8 @@
     <string name="dialog_negativeButton">Cancelar</string>
     <string name="dialog_category_neutral_delete">Eliminar</string>
     <string name="fragment_trans_txt_totalSpent">Total Gasto / Total Presupuesto:</string>
+    <string name="stats_fragment_insertCategory">Inserte categoría</string>
+    <string name="dataview_total_period">Total periodo:</string>
 
 
 </resources>

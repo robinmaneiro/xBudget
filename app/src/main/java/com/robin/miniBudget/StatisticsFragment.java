@@ -1,6 +1,7 @@
 package com.robin.miniBudget;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -25,16 +27,18 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.robin.miniBudget.database.DatabaseSchema;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class StatisticsFragment extends Fragment {
     private OuterListener mOuterListener;
     private ViewPager2 viewPager;
-     private Spinner pagerSpinner;
+    private Spinner pagerSpinner;
     private StatisticsFragment.DemoCollectionAdapter demoCollectionAdapter;
 
     StatisticsFragment stats;
@@ -106,8 +110,10 @@ public class StatisticsFragment extends Fragment {
         int position;
         Spinner mSpinner;
         Set mCategoriesSet;
-        List <Category> mCategoriesList;
+        List<Category> mCategoriesList;
         ArrayAdapter spinnerAdapter;
+        DecimalFormat mDecimalFormat;
+
 
 
         @Nullable
@@ -117,6 +123,7 @@ public class StatisticsFragment extends Fragment {
             return inflater.inflate(R.layout.fragment_statistics, container, false);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             Bundle args = getArguments();
@@ -124,15 +131,20 @@ public class StatisticsFragment extends Fragment {
             //Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
             //Log.d("position ","position is: "+position);
 
+            mDecimalFormat = new DecimalFormat("#.##");
             sv = view.findViewById(R.id.scroll_stats_1);
 
             mSpinner = view.findViewById(R.id.spinner_fragment_stats);
-            if(position==2)mSpinner.setVisibility(View.GONE);
-            mCategoriesList = mInnerListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(position+1)});
-            mCategoriesSet = new HashSet();
-            for (Category c : mCategoriesList) mCategoriesSet.add(c.getName());
+            if (position == 2) mSpinner.setVisibility(View.GONE);
+            mCategoriesList = mInnerListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(position + 1)});
+            mCategoriesSet = new TreeSet();
 
-            spinnerAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>(mCategoriesSet));
+            mCategoriesList.forEach(c->mCategoriesSet.add(c.getName()));
+
+            if (mCategoriesSet.isEmpty())
+                mCategoriesSet.add(getString(R.string.stats_fragment_insertCategory));
+
+            spinnerAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, new ArrayList<String>(mCategoriesSet));
 
             mSpinner.setAdapter(spinnerAdapter);
 
@@ -143,7 +155,8 @@ public class StatisticsFragment extends Fragment {
                     //Toast.makeText(getContext(), "" + spinnerAdapter.getItem(i), Toast.LENGTH_SHORT).show();
                     //if(position!=2)setValues(view, (String) mSpinner.getSelectedItem(), position);
 
-                    if(flagItemSelected++ > 0 && position!=2) setValuesCategories(view,(String) mSpinner.getSelectedItem(), position);
+                    if (flagItemSelected++ > 0 && position != 2)
+                        setValuesCategories(view, (String) mSpinner.getSelectedItem(), position);
 
                 }
 
@@ -155,11 +168,11 @@ public class StatisticsFragment extends Fragment {
 
             setName(view, position);
             setDrawable(view, position);
-            if(position!=2) {
-                setValuesTransactions(view, (String) mCategoriesSet.toArray()[0], position);
-                setValuesCategories(view,(String) mCategoriesSet.toArray()[0], position);
+            if (position != 2) {
+                setValuesTransactions(view, position);
+                setValuesCategories(view, (String) mCategoriesSet.toArray()[0], position);
             }
-            if(position==2) setValuesSavings(view);
+            if (position == 2) setValuesSavings(view);
 
         }
 
@@ -171,7 +184,7 @@ public class StatisticsFragment extends Fragment {
             for (char c : "abc".toCharArray()) {
                 for (int i = 1; i <= 8; i++) {
                     ((TextView) view.findViewById(getResources().getIdentifier("title_" + String.valueOf(c) + i, "id", getContext().getPackageName()))).
-                            setText(MainActivity.CURRENCY+" "+ getString(getResources().getIdentifier("text_" + group + "_" + String.valueOf(c) + i, "string", getContext().getPackageName())));
+                            setText(MainActivity.CURRENCY + " " + getString(getResources().getIdentifier("text_" + group + "_" + String.valueOf(c) + i, "string", getContext().getPackageName())));
                 }
             }
         }
@@ -200,25 +213,27 @@ public class StatisticsFragment extends Fragment {
                         ((LinearLayout) view.findViewById(getResources().getIdentifier("grid_" + String.valueOf(c) + i, "id", getContext().getPackageName()))).setVisibility(View.INVISIBLE);
                 }
             }
-            if (position != 2) ((TextView) view.findViewById(R.id.category_name)).setVisibility(View.VISIBLE);
+            if (position != 2)
+                ((TextView) view.findViewById(R.id.category_name)).setVisibility(View.VISIBLE);
             else ((TextView) view.findViewById(R.id.category_name)).setVisibility(View.INVISIBLE);
 
         }
 
 
-        synchronized void setValuesTransactions(View view, String category, int position) {
+        synchronized void setValuesTransactions(View view, int position) {
             //Log.d("position", " setValues() was called");
-            //Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
-            if (position!=2) {
+            Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
+            if (position != 2) {
                 for (int i = 1; i <= 4; i++) {
 
                     TextView a1to4 = ((TextView) view.findViewById(getResources().getIdentifier("value_a" + i, "id", getContext().getPackageName())));
                     TextView b1to4 = ((TextView) view.findViewById(getResources().getIdentifier("value_b" + i, "id", getContext().getPackageName())));
                     TextView c1to4 = ((TextView) view.findViewById(getResources().getIdentifier("value_c" + i, "id", getContext().getPackageName())));
 
+                    double getTransAmount = mInnerListener.getTransAmount(DatabaseSchema.TransactionTable.mTransactions, position + 1, i);
                     String getTransDiff = mInnerListener.getTransDiff(DatabaseSchema.TransactionTable.mTransactions, position + 1, i);
                     String getTransDiffAvg = mInnerListener.getTransDiffAvg(DatabaseSchema.TransactionTable.mTransactions, position + 1, i);
-                    a1to4.setText(MainActivity.CURRENCY+mInnerListener.getTransAmount(DatabaseSchema.TransactionTable.mTransactions, position + 1, i));
+                    a1to4.setText(MainActivity.CURRENCY + mDecimalFormat.format(getTransAmount));
 
                     b1to4.setText(getTransDiff);
                     c1to4.setText(getTransDiffAvg);
@@ -246,21 +261,20 @@ public class StatisticsFragment extends Fragment {
             }
         }
 
-       synchronized  void setValuesCategories(View view, String category, int position){
-            for (int i = 5; i <= 8; i++) {
 
+        synchronized void setValuesCategories(View view, String category, int position) {
+            for (int i = 5; i <= 8; i++) {
                 //Log.d("position", "position is :"+position+ " and i value is: "+i+" and Category is: "+category+" getContext().getPackageName() "+ getContext().getPackageName());
 
                 TextView a5to8 = ((TextView) view.findViewById(getResources().getIdentifier("value_a" + i, "id", getContext().getPackageName())));
                 TextView b5to8 = ((TextView) view.findViewById(getResources().getIdentifier("value_b" + i, "id", getContext().getPackageName())));
                 TextView c5to8 = ((TextView) view.findViewById(getResources().getIdentifier("value_c" + i, "id", getContext().getPackageName())));
 
-
                 Double getCatsAmount = mInnerListener.getCatsAmount(DatabaseSchema.TransactionTable.mCategories, category, position + 1, i);
                 String getCatsDiff = mInnerListener.getCatsDiff(DatabaseSchema.TransactionTable.mCategories, category, position + 1, i);
-                String getCatsAvgDiff = mInnerListener.getCatsDiffAvg(DatabaseSchema.TransactionTable.mTransactions, category, position + 1, i);
+                String getCatsAvgDiff = mInnerListener.getCatsDiffAvg(DatabaseSchema.TransactionTable.mCategories, category, position + 1, i);
 
-                a5to8.setText(MainActivity.CURRENCY+getCatsAmount);
+                a5to8.setText(MainActivity.CURRENCY + mDecimalFormat.format(getCatsAmount));
                 b5to8.setText(String.valueOf(getCatsDiff));
                 if (position != 2)
                     c5to8.setText(String.valueOf(getCatsAvgDiff));
@@ -277,29 +291,38 @@ public class StatisticsFragment extends Fragment {
                 }
 
                 if (getCatsAvgDiff.contains("+"))
-                    b5to8.setTextColor(position == 1 || position == 2 ? getResources().getColor(R.color.expenses_cat) : getResources().getColor(R.color.savings_trans));
+                    c5to8.setTextColor(position == 1 || position == 2 ? getResources().getColor(R.color.expenses_cat) : getResources().getColor(R.color.savings_trans));
                 else {
                     if (getCatsAvgDiff.contains("-")) {
-                        b5to8.setTextColor(position == 1 || position == 2 ? getResources().getColor(R.color.savings_trans) : getResources().getColor(R.color.expenses_cat));
+                        c5to8.setTextColor(position == 1 || position == 2 ? getResources().getColor(R.color.savings_trans) : getResources().getColor(R.color.expenses_cat));
                     } else {
                         c5to8.setTextColor(getResources().getColor(R.color.dark_grey));
                     }
                 }
+            }
+        }
 
+        synchronized void setValuesSavings(View view) {
+            GridLayout gridLayoutCategories = view.findViewById(getResources().getIdentifier("layout_grid_categories", "id", getContext().getPackageName()));
+            gridLayoutCategories.setVisibility(View.GONE); // Set visibility to gone, also to 'disable' the scrolling function to this view.
+            //Toast.makeText(getContext(), "setvaluesavings called", Toast.LENGTH_SHORT).show();
+
+            TextView a1 = ((TextView) view.findViewById(getResources().getIdentifier("value_a1", "id", getContext().getPackageName())));
+            TextView b1 = ((TextView) view.findViewById(getResources().getIdentifier("value_b1", "id", getContext().getPackageName())));
+            TextView c1 = ((TextView) view.findViewById(getResources().getIdentifier("value_c1", "id", getContext().getPackageName())));
+
+            a1.setText(MainActivity.CURRENCY + mDecimalFormat.format(mInnerListener.getMonthlySavingsAmount()));
+            b1.setText(mInnerListener.getSavingsDiff());
+            c1.setText(mInnerListener.getSavingsDiffAvg());
+
+            if (mInnerListener.getMonthlySavingsAmount() > 0.0)
+                a1.setTextColor(getResources().getColor(R.color.savings_trans));
+            else if (mInnerListener.getMonthlySavingsAmount() < 0.0) {
+                a1.setTextColor(getResources().getColor(R.color.expenses_cat));
+            } else {
+                a1.setTextColor(getResources().getColor(R.color.dark_grey));
             }
 
-        }
-        synchronized void setValuesSavings(View view){
-            GridLayout gl = view.findViewById(getResources().getIdentifier("layout_grid_categories", "id", getContext().getPackageName()));
-            gl.setVisibility(View.GONE);
-            //Toast.makeText(getContext(), "setvaluesavings called", Toast.LENGTH_SHORT).show();
-                TextView a1 = ((TextView) view.findViewById(getResources().getIdentifier("value_a1", "id", getContext().getPackageName())));
-                TextView b1 = ((TextView) view.findViewById(getResources().getIdentifier("value_b1", "id", getContext().getPackageName())));
-                TextView c1 = ((TextView) view.findViewById(getResources().getIdentifier("value_c1", "id", getContext().getPackageName())));
-
-                a1.setText(MainActivity.CURRENCY+mInnerListener.getMonthlySavingsAmount());
-                b1.setText(mInnerListener.getSavingsDiff());
-                c1.setText(mInnerListener.getSavingsDiffAvg());
 
             if (mInnerListener.getSavingsDiff().contains("+"))
                 b1.setTextColor(getResources().getColor(R.color.savings_trans));
@@ -320,14 +343,6 @@ public class StatisticsFragment extends Fragment {
                     c1.setTextColor(getResources().getColor(R.color.dark_grey));
                 }
             }
-        }
-
-        void resetSpinner(int position){
-            mCategoriesList = mInnerListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(++position)});
-            Set mCategoriesSet = new HashSet();
-            for (Category c : mCategoriesList) mCategoriesSet.add(c.getName());
-            spinnerAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, mCategoriesSet.toArray());
-            mSpinner.setAdapter(spinnerAdapter);
         }
 
         @Override

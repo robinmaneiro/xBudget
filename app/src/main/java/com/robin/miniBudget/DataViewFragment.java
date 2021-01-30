@@ -40,6 +40,7 @@ import com.robin.miniBudget.database.DatabaseSchema;
 import org.joda.time.DateTime;
 
 import java.text.DateFormatSymbols;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -256,10 +257,11 @@ public class DataViewFragment extends Fragment {
         BarDataSet mBarDataSet;
         BarData mBarData;
         List<Integer> mSavingsColors;
-        LinearLayout mNoDataLayout;
+        LinearLayout mNoDataLayout, mDataViewLayout;
         Button mTextGraph1;
-        TextView mTextNoData;
+        TextView mTextNoData, mTextTotalPeriod;
         ImageView mImageNoData;
+        DecimalFormat mDecimalFormat;
 
 
         @Nullable
@@ -274,10 +276,13 @@ public class DataViewFragment extends Fragment {
             Bundle args = getArguments();
             int position = args.getInt(POSITION);
 
+            mDecimalFormat = new DecimalFormat("#.##");
             mTextGraph1 = (Button) view.findViewById(id.dataview_title);
             mNoDataLayout = (LinearLayout) view.findViewById(id.no_data_layout);
+            mDataViewLayout = (LinearLayout) view.findViewById(id.dataview_layout);
             mImageNoData = (ImageView) view.findViewById(id.img_no_data);
             mTextNoData = (TextView) view.findViewById(id.txt_no_data);
+            mTextTotalPeriod = (TextView) view.findViewById(id.total_period_val);
             mBarChart = (BarChart) view.findViewById(id.bar_chart);
             mBarEntries = new ArrayList<>();
 
@@ -334,16 +339,22 @@ public class DataViewFragment extends Fragment {
 
             int x = 0;
             if (group_id != Category.Group.SAVINGS) { //Add the entries for Incomes and Expenses
+                float totalValue = 0;
                 for (Category c : categoryList) {
                     float value = 0;
                     List<Transaction> transactionList = mListener.getTransactions(DatabaseSchema.TransactionTable.mTransactions, "CAST(category_id as TEXT) = ?", new String[]{c.getId().toString()});
                         for (Transaction t : transactionList) {
                             value += t.getAmount().floatValue();
                         }
+                        totalValue += value;
                     mBarEntries.add(new BarEntry((float) ++x, value));
                 }
+
+                mTextTotalPeriod.setText(MainActivity.CURRENCY+mDecimalFormat.format(totalValue));
+
             } else {
-                int checkDataInserted=0;
+                int checkDataInserted=0; //Check if there is any value inserted in the months-of-the-year bars created in the chart
+                float totalValue = 0;
                 for (int i = 1; i <= 12; i++) { //Add the entries for Savings
                     float monthlyAmount = 0;
                     //get the categories of Incomes on this YEAR and MONTH
@@ -362,19 +373,33 @@ public class DataViewFragment extends Fragment {
                             monthlyAmount -= t.getAmount();
                         }
                     }
+
                     mBarEntries.add(new BarEntry((float) ++x, monthlyAmount));
                     arrayDataSavings[i] = new DateFormatSymbols().getShortMonths()[i - 1];
                     mSavingsColors.add(ContextCompat.getColor(getContext(), monthlyAmount < 0.0F ? color.expenses_cat : monthlyAmount == 0.0F ? color.dark_grey : color.savings_trans));
                     if(monthlyAmount!=0.0f)++checkDataInserted;
+                    totalValue +=monthlyAmount;
                 }
                 if(checkDataInserted==0){
-                    mBarChart.setVisibility(View.GONE);
+                    mDataViewLayout.setVisibility(View.GONE);
                     mNoDataLayout.setVisibility(View.VISIBLE);
                     mImageNoData.setImageResource(drawable.no_savings_ic);
                     mTextNoData.setText(string.dataview_savings_no_data);
                 }else{
                     mNoDataLayout.setVisibility(View.GONE);
-                    mBarChart.setVisibility(View.VISIBLE);
+                    mDataViewLayout.setVisibility(View.VISIBLE);
+
+                    // set text to values here
+                    if(totalValue<0.0){
+                        mTextTotalPeriod.setText("-"+MainActivity.CURRENCY+mDecimalFormat.format(Math.abs(totalValue))); //Show the hyphen before the currency symbol
+                        mTextTotalPeriod.setTextColor(getResources().getColor(color.expenses_cat));
+                    }else if(totalValue>0.0){
+                        mTextTotalPeriod.setText(MainActivity.CURRENCY+mDecimalFormat.format(totalValue));
+                        mTextTotalPeriod.setTextColor(getResources().getColor(color.savings_trans));
+
+                    }else{
+                        mTextTotalPeriod.setText(MainActivity.CURRENCY+mDecimalFormat.format(totalValue));
+                    }
                 }
             }
 
@@ -398,18 +423,15 @@ public class DataViewFragment extends Fragment {
             //When the mBarDataSet is empty this layout will be visible to inform the user that there is no data.
             if (group_id != Category.Group.SAVINGS) {
                 if (arrayDataTransactions.length <= 1) {
-                    mBarChart.setVisibility(View.GONE);
+                    mDataViewLayout.setVisibility(View.GONE);
                     mImageNoData.setImageResource(group_id == 1 || group_id == 2 ? drawable.no_transaction_ic : drawable.no_savings_ic);
                     mTextNoData.setText(group_id == 1 ? string.dataview_incomes_no_data : group_id == 2 ? string.dataview_expenses_no_data : string.dataview_savings_no_data);
                     mNoDataLayout.setVisibility(View.VISIBLE);
                 } else {
-                    mBarChart.setVisibility(View.VISIBLE);
+                    mDataViewLayout.setVisibility(View.VISIBLE);
                     mNoDataLayout.setVisibility(View.GONE);
                 }
-            }else{
-
             }
-
 
             XAxis xAxis = mBarChart.getXAxis();
             xAxis.setValueFormatter(new myXAxisValueFormatter(group_id != 3 ? arrayDataTransactions : arrayDataSavings));

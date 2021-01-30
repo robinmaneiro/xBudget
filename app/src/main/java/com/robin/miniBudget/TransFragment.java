@@ -3,6 +3,7 @@ package com.robin.miniBudget;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,13 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -32,9 +34,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.robin.miniBudget.database.DatabaseSchema;
 
+import org.jetbrains.annotations.NotNull;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -86,14 +90,15 @@ public class TransFragment extends Fragment {
         spinnerAdapter = mOuterListener.getMonthArrayAdapter();
         mSpinner = view.findViewById(R.id.spinner_month);
         mSpinner.setAdapter(spinnerAdapter);
-        mSpinner.setSelection(mOuterListener.getMonthArrayAdapter().getPosition(mOuterListener.getCurrentDateParsed())!=-1?
+        mSpinner.setSelection(mOuterListener.getMonthArrayAdapter().getPosition(mOuterListener.getCurrentDateParsed()) != -1 ?
                 mOuterListener.getMonthArrayAdapter().getPosition(mOuterListener.getCurrentDateParsed())
-                :mOuterListener.getMonthArrayAdapter().getCount()-1);
+                : mOuterListener.getMonthArrayAdapter().getCount() - 1);
         dateSelected = mOuterListener
                 .spinnerToJodaTime(mOuterListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null)
                         .get(mSpinner.getSelectedItemPosition()));
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int currentItem = viewPager.getCurrentItem();
@@ -111,6 +116,7 @@ public class TransFragment extends Fragment {
         });
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int currentItem = viewPager.getCurrentItem();
@@ -172,6 +178,7 @@ public class TransFragment extends Fragment {
         int tabPosition;
         private LinearLayout mNoDataLayout;
         private ScrollView mScrollView;
+        private RelativeLayout mGlobalDataLayout;
         private ImageView mImageNoData;
         private TextView mTextNoData;
         private Button mGeneralSpendBtn;
@@ -200,6 +207,7 @@ public class TransFragment extends Fragment {
             return inflater.inflate(R.layout.fragment_trans, container, false);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             Bundle args = getArguments();
@@ -208,6 +216,7 @@ public class TransFragment extends Fragment {
 
             mNoDataLayout = (LinearLayout) view.findViewById(R.id.no_data_layout);
             mScrollView = (ScrollView) view.findViewById(R.id.scrollViewIncome);
+            mGlobalDataLayout = (RelativeLayout) view.findViewById(R.id.global_message_layout);
             mImageNoData = (ImageView) view.findViewById(R.id.img_no_data);
             mTextNoData = (TextView) view.findViewById(R.id.txt_no_data);
             mGeneralSpendBtn = ((Button) view.findViewById(R.id.btn_general_spent));
@@ -269,14 +278,19 @@ public class TransFragment extends Fragment {
             }
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         public void update(int group_id, String dateSelected) {
             expandingList.removeAllViews();
 
             listCatsSelectedMonth = mInnerListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ? AND CAST(date as TEXT) = ?", new String[]{String.valueOf(group_id), dateSelected});
             Log.d("DEMOFRAGMENT", "update() was called with dateSelected " + dateSelected + " and group id " + group_id);
 
+            listCatsSelectedMonth.sort(Comparator.comparing(o -> o.getName()));
+
+
             if (!listCatsSelectedMonth.isEmpty()) {
                 mScrollView.setVisibility(View.VISIBLE);
+                mGlobalDataLayout.setVisibility(View.VISIBLE);
                 mNoDataLayout.setVisibility(View.GONE);
 
                 double moneyBudgetedGeneral = 0;
@@ -289,7 +303,7 @@ public class TransFragment extends Fragment {
                     ((TextView) parent.findViewById(R.id.title)).setText(c.getName());
 
                     parent.setIndicatorColorRes(group_id % 2 == 0 ? R.color.expenses_cat : R.color.incomes_cat);
-                    //parent.setIndicatorIconRes(group_id % 2 == 0 ? R.drawable.expense_ic : R.drawable.income_ic); //NO ICON
+                    //parent.setIndicatorIconRes(group_id % 2 == 0 ? R.drawable.expense_ic : R.drawable.income_ic); // Next implementation - Add icon to each of the categories.
 
                     parent.findViewById(R.id.edit_item).setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -304,8 +318,10 @@ public class TransFragment extends Fragment {
                         }
                     });
 
+                    List<Transaction> listTransactions =mInnerListener.getTransactions(DatabaseSchema.TransactionTable.mTransactions, "CAST(category_id as TEXT) = ?", new String[]{c.getId().toString()});
+                    listTransactions.sort(Comparator.comparing(o -> o.getDateTime()));
 
-                    for (Transaction t : mInnerListener.getTransactions(DatabaseSchema.TransactionTable.mTransactions, "CAST(category_id as TEXT) = ?", new String[]{c.getId().toString()})) {
+                    for (Transaction t : listTransactions) {
                         View subItem = parent.createSubItem();
                         DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yy HH:mm");
                         ((TextView) subItem.findViewById(R.id.sub_date)).setText(fmt.print(t.getDateTime()));
@@ -326,6 +342,8 @@ public class TransFragment extends Fragment {
                             }
                         });
                     }
+                    parent.collapse();
+
                     // This set the text on the button representing the moneySpent/moneyBudgeted (Individual categories on the selected month)
                     double relation = moneySpentCategory / moneyBudgetedCategory;
                     Button spentBtn = ((Button) parent.findViewById(R.id.cat_spent));
@@ -341,14 +359,12 @@ public class TransFragment extends Fragment {
                 buttonColorer(mGeneralSpendBtn, generalRelation, group_id);
                 mGeneralSpendBtn.setText(Double.valueOf(moneySpentGeneral).intValue() + "/" + (int) moneyBudgetedGeneral);
 
-            } else {
-                //When the mBarDataSet is empty this layout will be visible to inform the user that there is no data.
-
-                Toast.makeText(getContext(),"visible",Toast.LENGTH_SHORT).show();
+            } else { //When the mBarDataSet is empty this layout will be visible to inform the user that there is no data.
                 mScrollView.setVisibility(View.GONE);
                 mImageNoData.setImageResource(group_id == 1 || group_id == 2 ? R.drawable.no_transaction_ic : R.drawable.no_savings_ic);
                 mTextNoData.setText(group_id == 1 ? R.string.dataview_incomes_no_data : group_id == 2 ? R.string.dataview_expenses_no_data : R.string.dataview_savings_no_data);
                 mNoDataLayout.setVisibility(View.VISIBLE);
+                mGlobalDataLayout.setVisibility(View.INVISIBLE);
             }
             Log.d("DEMO", "Transactions updated");
 
@@ -363,6 +379,8 @@ public class TransFragment extends Fragment {
                     button.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.round_yellow));
                 } else if (relation >= 1) {
                     button.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.round_green));
+                } else {
+                    button.setVisibility(View.INVISIBLE);
                 }
             }
             if (group_id == 2) {         //Buttons in Expense category
@@ -373,6 +391,8 @@ public class TransFragment extends Fragment {
                     button.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.round_yellow));
                 } else if (relation > 1) {
                     button.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.round_red));
+                } else {
+                    button.setVisibility(View.INVISIBLE);
                 }
             }
 
@@ -380,7 +400,7 @@ public class TransFragment extends Fragment {
 
 
         @Override
-        public void onAttach(Context context) {
+        public void onAttach(@NotNull Context context) {
             super.onAttach(context);
             try {
                 mInnerListener = (Listener) context;
@@ -399,7 +419,7 @@ public class TransFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         try {
             mOuterListener = (OuterListener) context;

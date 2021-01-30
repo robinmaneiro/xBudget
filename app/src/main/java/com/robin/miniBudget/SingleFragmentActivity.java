@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -27,6 +28,13 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();
     BottomNavigationView bottomNavigationView;
     Toolbar toolbar;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
 
     @LayoutRes
@@ -65,8 +73,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
         ((TextView)toolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
+        toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.dark_blue));
         bottomBarSupport();
-
     }
 
 
