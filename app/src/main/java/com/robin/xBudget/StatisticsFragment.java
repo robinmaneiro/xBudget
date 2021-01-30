@@ -1,4 +1,4 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
 import android.content.Context;
 import android.os.Build;
@@ -25,12 +25,11 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.robin.miniBudget.database.DatabaseSchema;
+import com.robin.xBudget.database.DatabaseSchema;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;

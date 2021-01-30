@@ -1,22 +1,13 @@
-package com.robin.miniBudget.database;
+package com.robin.xBudget.database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import androidx.fragment.app.Fragment;
-
-import com.robin.miniBudget.Category;
-import com.robin.miniBudget.MainActivity;
-import com.robin.miniBudget.R;
-import com.robin.miniBudget.SingleFragmentActivity;
-import com.robin.miniBudget.TransFragment;
-import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
-
-import java.util.concurrent.TransferQueue;
+import com.robin.xBudget.Category;
+import com.robin.xBudget.R;
+import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

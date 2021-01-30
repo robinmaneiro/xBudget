@@ -1,4 +1,4 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +19,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.robin.miniBudget.database.DatabaseSchema;
+import com.robin.xBudget.database.DatabaseSchema;
 
 import java.util.UUID;
 

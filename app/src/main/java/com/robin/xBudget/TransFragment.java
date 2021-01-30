@@ -1,4 +1,4 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
 
 import android.content.Context;
@@ -32,7 +32,7 @@ import com.diegodobelo.expandingview.ExpandingList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.robin.miniBudget.database.DatabaseSchema;
+import com.robin.xBudget.database.DatabaseSchema;
 
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.format.DateTimeFormat;

@@ -1,4 +1,4 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.robin.miniBudget.database;
+package com.robin.xBudget.database;
 
 public class DatabaseSchema {
 

@@ -1,13 +1,9 @@
-package com.robin.miniBudget;
-
-import android.util.Log;
+package com.robin.xBudget;
 
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class Transaction {

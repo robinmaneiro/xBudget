@@ -1,4 +1,4 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,26 +14,20 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.robin.miniBudget.database.DatabaseHelper;
-import com.robin.miniBudget.database.DatabaseSchema;
-import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
+import com.robin.xBudget.database.DatabaseHelper;
+import com.robin.xBudget.database.DatabaseSchema;
+import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Duration;
-import org.joda.time.DurationFieldType;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
-import org.joda.time.PeriodType;
-import org.joda.time.Period;
 import org.joda.time.Weeks;
 import org.joda.time.Years;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -41,7 +35,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class MainActivity extends SingleFragmentActivity implements

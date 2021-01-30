@@ -1,16 +1,14 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import android.util.Log;
 
-import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
+import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class GeneralCursorWrapper extends CursorWrapper {

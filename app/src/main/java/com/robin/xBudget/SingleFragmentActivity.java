@@ -1,7 +1,5 @@
-package com.robin.miniBudget;
+package com.robin.xBudget;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
