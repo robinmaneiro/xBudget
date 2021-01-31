@@ -221,7 +221,7 @@ public class StatisticsFragment extends Fragment {
 
         synchronized void setValuesTransactions(View view, int position) {
             //Log.d("position", " setValues() was called");
-            Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
             if (position != 2) {
                 for (int i = 1; i <= 4; i++) {
 

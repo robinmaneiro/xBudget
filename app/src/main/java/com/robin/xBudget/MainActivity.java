@@ -50,7 +50,7 @@ public class MainActivity extends SingleFragmentActivity implements
     private SQLiteDatabase mDatabase;
     private Context mContext;
 
-    public static String CURRENCY =  Currency.getInstance(Locale.getDefault()).getSymbol();
+    public static String CURRENCY = Currency.getInstance(Locale.getDefault()).getSymbol();
     ;
 
     @Override
@@ -254,8 +254,10 @@ public class MainActivity extends SingleFragmentActivity implements
             }
         }
         dateTimeSet.add(DateTime.now());         //Add the current month to make sure that even though we delete all categories, the current month is going to be shown in the spinner.
-        for (DateTime dt : dateTimeSet) if(!dateTimeList.contains(formatter.print(dt)))dateTimeList.add(formatter.print(dt)); //Insert String month only when it is not in the list to prevent duplicates
-        
+        for (DateTime dt : dateTimeSet)
+            if (!dateTimeList.contains(formatter.print(dt)))
+                dateTimeList.add(formatter.print(dt)); //Insert String month only when it is not in the list to prevent duplicates
+
         return dateTimeList;
     }
 
@@ -273,7 +275,8 @@ public class MainActivity extends SingleFragmentActivity implements
                 cursor.moveToNext();
             }
         }
-        if(!dateTime.contains(formatter.print(DateTime.now())))dateTime.add(formatter.print(DateTime.now())); //If not in the Set, add the current month to make sure that even though we delete all categories, the current month is going to be shown in the spinner.
+        if (!dateTime.contains(formatter.print(DateTime.now())))
+            dateTime.add(formatter.print(DateTime.now())); //If not in the Set, add the current month to make sure that even though we delete all categories, the current month is going to be shown in the spinner.
 
         return dateTime;
     }
@@ -468,7 +471,7 @@ public class MainActivity extends SingleFragmentActivity implements
         }
         double difference = currentPeriodAmount - previousPeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY,difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY,Math.abs(difference), percentage) : "< No data >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No data >";
     }
 
     @Override
@@ -482,55 +485,53 @@ public class MainActivity extends SingleFragmentActivity implements
         Integer timePassed;
 
 
-
-
         switch (period) {
 
             case 1:
                 DateTimeFormatter dailyFormatter = DateTimeFormat.forPattern("YYYY-MM-dd");
 
-                Map<String,Double> unorderedDailyMap =
-                        list.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()),(Collectors.summingDouble(Transaction::getAmount))));
+                Map<String, Double> unorderedDailyMap =
+                        list.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()), (Collectors.summingDouble(Transaction::getAmount))));
 
                 groupByDateTreeMap.putAll(unorderedDailyMap); // Convert the HashMap into a TreeMap to order the element by key
-                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getDays();
+                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
 
                 break;
 
             case 2:
                 DateTimeFormatter weeklyFormatter = DateTimeFormat.forPattern("YYYY-ww");
-                Map<String,Double> unorderedWeeklyMap =
+                Map<String, Double> unorderedWeeklyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> weeklyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedWeeklyMap); // Convert the HashMap into a TreeMap to order the element by key
 
-                for(Map.Entry<String,Double> entryset :groupByDateTreeMap.entrySet()){
-                    Log.d(TAG, "key: "+entryset.getKey()+" value: "+entryset.getValue());
+                for (Map.Entry<String, Double> entryset : groupByDateTreeMap.entrySet()) {
+                    Log.d(TAG, "key: " + entryset.getKey() + " value: " + entryset.getValue());
                 }
-                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getWeeks();
+                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getWeeks();
 
 
                 break;
 
             case 3:
                 DateTimeFormatter monthlyFormatter = DateTimeFormat.forPattern("YYYY-MM");
-                Map<String,Double> unorderedMontlyMap =
+                Map<String, Double> unorderedMontlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedMontlyMap); // Convert the HashMap into a TreeMap to order the element by key
-                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getMonths();
+                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getMonths();
 
                 break;
 
 
             case 4:
                 DateTimeFormatter yearlyFormatter = DateTimeFormat.forPattern("YYYY");
-                Map<String,Double> unorderedYearlyMap =
+                Map<String, Double> unorderedYearlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> yearlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedYearlyMap); // Convert the HashMap into a TreeMap to order the element by key
-                firstDate = (String)groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(),DateTime.now().toLocalDate()).getYears();
+                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getYears();
 
                 break;
 
@@ -539,19 +540,16 @@ public class MainActivity extends SingleFragmentActivity implements
         }
 
 
-
         Log.d(TAG, "FIRST VALUE IS: " + firstDate);
-        Log.d(TAG, "GET XXX "+ timePassed);
+        Log.d(TAG, "GET XXX " + timePassed);
 
 
-
-
-        double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum()/timePassed;
+        double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
 
 
         double difference = currentPeriodAmount - averagePeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY,difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY,Math.abs(difference), percentage) : "< No data >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No data >";
     }
 
     @Override
@@ -628,7 +626,7 @@ public class MainActivity extends SingleFragmentActivity implements
 
             case 5:
                 for (Transaction t : transactionList) {
-                    if (LocalDate.now().minusDays(1).getDayOfYear() ==t.getDateTime().getDayOfYear() && LocalDate.now().getYear() == t.getDateTime().getYear())
+                    if (LocalDate.now().minusDays(1).getDayOfYear() == t.getDateTime().getDayOfYear() && LocalDate.now().getYear() == t.getDateTime().getYear())
                         previousPeriodAmount += t.getAmount();
                 }
                 break;
@@ -669,14 +667,14 @@ public class MainActivity extends SingleFragmentActivity implements
                 throw new IllegalStateException("Unexpected value: " + period);
         }
 
-        Log.d("position","Period " +period+ " currentPeriodAmount is: "+currentPeriodAmount);
-        Log.d("position","Period " +period+ " previousPeriodAmount is: "+previousPeriodAmount);
+        Log.d("position", "Period " + period + " currentPeriodAmount is: " + currentPeriodAmount);
+        Log.d("position", "Period " + period + " previousPeriodAmount is: " + previousPeriodAmount);
 
         //Log.d("position","Period " +period+ " currentPeriodAmount is: "+currentPeriodAmount);
 
         double difference = currentPeriodAmount - previousPeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY,difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY,Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
     }
 
     @Override
@@ -686,11 +684,7 @@ public class MainActivity extends SingleFragmentActivity implements
         List<Transaction> transactionList = new ArrayList<>();
 
         for (Category c : categoryList) {
-            Log.d(TAG, "getCatsDiff CATEGORY: "+ c.getName());
-
             for (Transaction t : getTransactions(TransactionTable.mTransactions, "category_id = ?", new String[]{c.getId().toString()})) {
-                Log.d(TAG, "getCatsDiff TRANSACTION: "+ t.getName());
-
                 transactionList.add(t);
             }
         }
@@ -706,30 +700,29 @@ public class MainActivity extends SingleFragmentActivity implements
             case 5:
                 DateTimeFormatter dailyFormatter = DateTimeFormat.forPattern("YYYY-MM-dd");
 
-                Map<String,Double> unorderedDailyMap =
-                        transactionList.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()),(Collectors.summingDouble(Transaction::getAmount))));
+                Map<String, Double> unorderedDailyMap =
+                        transactionList.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()), (Collectors.summingDouble(Transaction::getAmount))));
 
                 groupByDateTreeMap.putAll(unorderedDailyMap); // Convert the HashMap into a TreeMap to order the element by key
-                if(!groupByDateTreeMap.isEmpty()) {
+                if (!groupByDateTreeMap.isEmpty()) {
                     firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                     timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
                 }
 
-                for(Map.Entry<String,Double> entryset :groupByDateTreeMap.entrySet()){
-                    Log.d(TAG, "key: "+entryset.getKey()+" value: "+entryset.getValue());
+                for (Map.Entry<String, Double> entryset : groupByDateTreeMap.entrySet()) {
+                    Log.d(TAG, "key: " + entryset.getKey() + " value: " + entryset.getValue());
                 }
-
 
                 break;
 
             case 6:
                 DateTimeFormatter weeklyFormatter = DateTimeFormat.forPattern("YYYY-ww");
-                Map<String,Double> unorderedWeeklyMap =
+                Map<String, Double> unorderedWeeklyMap =
                         transactionList.stream().collect(Collectors.groupingBy(transaction -> weeklyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedWeeklyMap); // Convert the HashMap into a TreeMap to order the element by key
 
 
-                if(!groupByDateTreeMap.isEmpty()) {
+                if (!groupByDateTreeMap.isEmpty()) {
                     firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                     timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getWeeks();
                 }
@@ -738,11 +731,11 @@ public class MainActivity extends SingleFragmentActivity implements
 
             case 7:
                 DateTimeFormatter monthlyFormatter = DateTimeFormat.forPattern("YYYY-MM");
-                Map<String,Double> unorderedMontlyMap =
+                Map<String, Double> unorderedMontlyMap =
                         transactionList.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedMontlyMap); // Convert the HashMap into a TreeMap to order the element by key
 
-                if(!groupByDateTreeMap.isEmpty()) {
+                if (!groupByDateTreeMap.isEmpty()) {
                     firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                     timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getMonths();
                 }
@@ -751,11 +744,11 @@ public class MainActivity extends SingleFragmentActivity implements
 
             case 8:
                 DateTimeFormatter yearlyFormatter = DateTimeFormat.forPattern("YYYY");
-                Map<String,Double> unorderedYearlyMap =
+                Map<String, Double> unorderedYearlyMap =
                         transactionList.stream().collect(Collectors.groupingBy(transaction -> yearlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedYearlyMap); // Convert the HashMap into a TreeMap to order the element by key
 
-                if(!groupByDateTreeMap.isEmpty()) {
+                if (!groupByDateTreeMap.isEmpty()) {
                     firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                     timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getYears();
                 }
@@ -765,9 +758,9 @@ public class MainActivity extends SingleFragmentActivity implements
                 throw new IllegalStateException("Unexpected value: " + period);
         }
 
-        double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum()/timePassed;
+        double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
 
-        Log.d(TAG, "AVERAGEPERIODCATEGORY IS: "+averagePeriodAmount );
+        Log.d(TAG, "AVERAGEPERIODCATEGORY IS: " + averagePeriodAmount);
         /*
         for (Map.Entry entry : groupByDateTreeSet.entrySet()) {
             Log.d("KEYVALUES", "AVE " + entry.getKey() + " VALUE " + entry.getValue());
@@ -779,7 +772,7 @@ public class MainActivity extends SingleFragmentActivity implements
          */
         double difference = currentPeriodAmount - averagePeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY,difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY,Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
     }
 
     @Override
@@ -804,7 +797,6 @@ public class MainActivity extends SingleFragmentActivity implements
                 amountExpenses += t.getAmount();
             }
         }
-
 
         return amountIncomes - amountExpenses;
     }
@@ -842,7 +834,7 @@ public class MainActivity extends SingleFragmentActivity implements
         Log.d(TAG, "AMOUNT currentperiod " + currentPeriodSavings);
         Log.d(TAG, "AMOUNT previousperiod " + (previousMonthIncomes - previousMonthExpenses));
 
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY,difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY,Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
 
     }
 
@@ -854,20 +846,38 @@ public class MainActivity extends SingleFragmentActivity implements
 
         double currentPeriodSavings = getMonthlySavingsAmount();
 
-        Map<String, Double> groupByMonthlyDateInc, groupByMonthlyDateExp;
-
+        Map<String, Double> groupByMonthlyDateInc = new TreeMap<>();
+        Map<String, Double> groupByMonthlyDateExp = new TreeMap<>();
 
         DateTimeFormatter monthlyFormatter = DateTimeFormat.forPattern("YYYY-MM");
-        groupByMonthlyDateInc = listIncomes.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
-        groupByMonthlyDateExp = listExpenses.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+        Map<String, Double> groupByMonthlyDateIncUnsorted = listIncomes.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+        Map<String, Double> groupByMonthlyDateExpUnsorted = listExpenses.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
+
+        groupByMonthlyDateInc.putAll(groupByMonthlyDateIncUnsorted);
+        groupByMonthlyDateExp.putAll(groupByMonthlyDateExpUnsorted);
+
+        String firstDateInc = (String) groupByMonthlyDateInc.keySet().toArray()[0];
+        String firstDateExp = (String) groupByMonthlyDateExp.keySet().toArray()[0];
+
+        DateTime firstDateTimeGeneralTrans;
+        DateTime firstDateTimeInc = monthlyFormatter.parseDateTime(firstDateInc);
+        DateTime firstDateTimeExp = monthlyFormatter.parseDateTime(firstDateExp);
+
+        if (firstDateTimeInc.isBefore(firstDateTimeExp)) { //Check if which transaction is previous and set the DateTime object 'firstDaTimeGeneralTrans'
+            firstDateTimeGeneralTrans = firstDateTimeInc;
+        } else {
+            firstDateTimeGeneralTrans = firstDateTimeExp;
+        }
+
+        int timePassed = Months.monthsBetween(firstDateTimeGeneralTrans.toLocalDate(), DateTime.now().toLocalDate()).getMonths() +1;
 
 
-        double averagePeriodAmountInc = groupByMonthlyDateInc.values().stream().mapToDouble(Double::doubleValue).average().orElse(0);
-        double averagePeriodAmountExp = groupByMonthlyDateExp.values().stream().mapToDouble(Double::doubleValue).average().orElse(0);
+        double averagePeriodAmountInc = groupByMonthlyDateInc.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
+        double averagePeriodAmountExp = groupByMonthlyDateExp.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
 
 
         double difference = currentPeriodSavings - (averagePeriodAmountInc - averagePeriodAmountExp);
         double percentage = (difference / currentPeriodSavings) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY,difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY,Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
     }
 }

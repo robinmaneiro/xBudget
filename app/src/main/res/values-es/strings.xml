@@ -105,7 +105,7 @@
     <string name="dialog_trans_cat_name">Nombre Categ.</string>
     <string name="dialog_trans_hint_cat_budget">Presup. Categ.</string>
     <string name="dialog_trans_hint_trans_descript">Descripción de transacción (Opcional)</string>
-    <string name="dialog_cat_category_name">Category name:</string>
+    <string name="dialog_cat_category_name">Nombre Categoría:</string>
     <string name="dialog_cat_category_allowance">"Presupuesto Categoría: "</string>
 
     <string name="demo_income_cat_0">Salario</string>

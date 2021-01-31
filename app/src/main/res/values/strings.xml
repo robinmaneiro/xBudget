@@ -59,12 +59,12 @@
     <string name="text_savings_a1">  - SAVINGS THIS MONTH </string>
     <string name="text_savings_b1">  % - COMP LAST MONTH </string>
     <string name="text_savings_c1">  % - COMP MONTHLY AVERAGE </string>
-    <string name="text_savings_a2" translatable="false"> </string>
+    <string name="text_savings_a2" translatable="false">" "</string>
     <string name="text_savings_b2" translatable="false"> </string>
-    <string name="text_savings_c2" translatable="false"> </string>
-    <string name="text_savings_a3" translatable="false"> </string>
+    <string name="text_savings_c2"> </string>
+    <string name="text_savings_a3"> </string>
     <string name="text_savings_b3" translatable="false"> </string>
-    <string name="text_savings_c3" translatable="false"> </string>
+    <string name="text_savings_c3"> </string>
     <string name="text_savings_a4" translatable="false"> </string>
     <string name="text_savings_b4" translatable="false"> </string>
     <string name="text_savings_c4" translatable="false"> </string>
@@ -81,7 +81,7 @@
     <string name="text_savings_b8" translatable="false"> </string>
     <string name="text_savings_c8" translatable="false"> </string>
 
-    <string name="dataview_incomes_no_data"> "No income transactions on this month" </string>
+    <string name="dataview_incomes_no_data">"No income transactions on this month "</string>
     <string name="dataview_expenses_no_data">"No expense transactions on this month"</string>
     <string name="dataview_savings_no_data">"No savings on the selected month"</string>
     <string name="dataview_incomes_title">Incomes - Total by Category</string>
@@ -118,7 +118,7 @@
     <string name="dialog_trans_spinner_new_category">New Category</string>
     <string name="dialog_trans_toast_validName">Please input a valid name</string>
     <string name="dialog_trans_toast_validAmount">Please, insert a valid amount</string>
-    <string name="dialog_trans_toast_bothFields">\"New Category - Please fill both fields \"</string>
+    <string name="dialog_trans_toast_bothFields">New Category - Please fill both fields</string>
     <string name="dialog_trans_toast_categoryExists">This category already exist</string>
     <string name="dialog_trans_toast_categoryBudget">Please, fill category budget</string>
     <string name="dialog_trans_title_updateIncomeTrans">Update Income Transaction</string>
