@@ -15,7 +15,7 @@
     <string name="dataview_total_period">Общий период:</string>
     <string name="dialog_trans_toast_categoryExists">Эта категория уже существует</string>
     <string name="demo_income_cat_1">Налоговая декларация</string>
-    <string name="bottom_bar_statistics">Statistics</string>
+    <string name="bottom_bar_statistics">Статистика</string>
     <string name="dataview_savings_title">Экономия - Всего по месяцам</string>
     <string name="text_savings_a1">"- СБЕРЕЖЕНИЯ ЗА ЭТОТ МЕСЯЦ "</string>
     <string name="dataview_savings_label">Экономия</string>
