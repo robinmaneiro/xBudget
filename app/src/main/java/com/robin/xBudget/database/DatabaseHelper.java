@@ -6,8 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.robin.xBudget.Category;
+import com.robin.xBudget.MainActivity;
 import com.robin.xBudget.R;
 import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
+
+import java.util.Currency;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -26,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         createTables(db);
         insertDemoGroups(db);
         insertDemoCats(db);
+        insertConstantValues(db);
     }
 
     private void createTables(SQLiteDatabase db) {
@@ -54,6 +59,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 TransactionTable.GroupCols.ID + " PRIMARY KEY " + ", " +
                 TransactionTable.GroupCols.NAME +
                 ")");
+
+        db.execSQL("create table " + TransactionTable.mConstants +
+                "(" +
+                TransactionTable.ConstantCols.NAME + " PRIMARY KEY " + ", " +
+                TransactionTable.ConstantCols.VALUE +
+                ")");
+
     }
 
     //Insert Demo Groups
@@ -97,7 +109,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    private ContentValues getContentValuesCategory(Category category) {
+    // Insert Categories demo for the first use of the application
+    public static synchronized  void insertConstantValues(SQLiteDatabase db) {
+        String query = "INSERT INTO "+TransactionTable.mConstants+" ("+TransactionTable.ConstantCols.NAME+","+TransactionTable.ConstantCols.VALUE +") VALUES ('"+
+
+        MainActivity.CURRENCY_KEY +"','"+ Currency.getInstance(Locale.getDefault()).getCurrencyCode()+"')";
+
+        db.execSQL(query);
+    }
+
+
+
+        private ContentValues getContentValuesCategory(Category category) {
         ContentValues values = new ContentValues();
         values.put(TransactionTable.CatCols.ID, category.getId().toString());
         values.put(TransactionTable.CatCols.GROUP_ID, category.getGroupId());
@@ -107,6 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return values;
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

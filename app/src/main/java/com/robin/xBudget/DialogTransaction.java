@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
@@ -213,9 +211,9 @@ public class DialogTransaction extends DialogFragment {
             }
         });
 
-        mTextViewCurrency0.setText(MainActivity.CURRENCY);
-        mTextViewCurrency1.setText(MainActivity.CURRENCY);
-        mTextViewCurrency2.setText(MainActivity.CURRENCY);
+        mTextViewCurrency0.setText(MainActivity.CURRENCY_SYMBOL);
+        mTextViewCurrency1.setText(MainActivity.CURRENCY_SYMBOL);
+        mTextViewCurrency2.setText(MainActivity.CURRENCY_SYMBOL);
 
 
         textViewDialogTitle = new TextView(getContext());
@@ -280,7 +278,6 @@ public class DialogTransaction extends DialogFragment {
             this.dialog = dialog;
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onClick(View v) {
 

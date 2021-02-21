@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -183,7 +182,7 @@ public class StatisticsFragment extends Fragment {
             for (char c : "abc".toCharArray()) {
                 for (int i = 1; i <= 8; i++) {
                     ((TextView) view.findViewById(getResources().getIdentifier("title_" + String.valueOf(c) + i, "id", getContext().getPackageName()))).
-                            setText(MainActivity.CURRENCY + " " + getString(getResources().getIdentifier("text_" + group + "_" + String.valueOf(c) + i, "string", getContext().getPackageName())));
+                            setText(MainActivity.CURRENCY_SYMBOL + " " + getString(getResources().getIdentifier("text_" + group + "_" + String.valueOf(c) + i, "string", getContext().getPackageName())));
                 }
             }
         }
@@ -232,7 +231,7 @@ public class StatisticsFragment extends Fragment {
                     double getTransAmount = mInnerListener.getTransAmount(DatabaseSchema.TransactionTable.mTransactions, position + 1, i);
                     String getTransDiff = mInnerListener.getTransDiff(DatabaseSchema.TransactionTable.mTransactions, position + 1, i);
                     String getTransDiffAvg = mInnerListener.getTransDiffAvg(DatabaseSchema.TransactionTable.mTransactions, position + 1, i);
-                    a1to4.setText(MainActivity.CURRENCY + mDecimalFormat.format(getTransAmount));
+                    a1to4.setText(MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(getTransAmount));
 
                     b1to4.setText(getTransDiff);
                     c1to4.setText(getTransDiffAvg);
@@ -273,7 +272,7 @@ public class StatisticsFragment extends Fragment {
                 String getCatsDiff = mInnerListener.getCatsDiff(DatabaseSchema.TransactionTable.mCategories, category, position + 1, i);
                 String getCatsAvgDiff = mInnerListener.getCatsDiffAvg(DatabaseSchema.TransactionTable.mCategories, category, position + 1, i);
 
-                a5to8.setText(MainActivity.CURRENCY + mDecimalFormat.format(getCatsAmount));
+                a5to8.setText(MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(getCatsAmount));
                 b5to8.setText(String.valueOf(getCatsDiff));
                 if (position != 2)
                     c5to8.setText(String.valueOf(getCatsAvgDiff));
@@ -310,7 +309,7 @@ public class StatisticsFragment extends Fragment {
             TextView b1 = ((TextView) view.findViewById(getResources().getIdentifier("value_b1", "id", getContext().getPackageName())));
             TextView c1 = ((TextView) view.findViewById(getResources().getIdentifier("value_c1", "id", getContext().getPackageName())));
 
-            a1.setText(MainActivity.CURRENCY + mDecimalFormat.format(mInnerListener.getMonthlySavingsAmount()));
+            a1.setText(MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(mInnerListener.getMonthlySavingsAmount()));
             b1.setText(mInnerListener.getSavingsDiff());
             c1.setText(mInnerListener.getSavingsDiffAvg());
 

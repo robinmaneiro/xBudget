@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">" xBudget "</string>
-    <string name="action_settings">" Einstellungen "</string>
+    <string name="overflow_menu_settings">" Einstellungen "</string>
     <string name="transaction_fgmt_incomes_title">" Alle Einkünfte "</string>
     <string name="transaction_fgmt_expenses_title">"Alle Aufwände "</string>
     <string name="text_incomes_a1">"- ALLE EINKÜNFTE HEUTE "</string>
@@ -106,4 +106,17 @@
     <string name="dialog_negativeButton">Abbrechen</string>
     <string name="statistics_category_title">Kategorie:</string>
     <string name="dialog_positive_update">Aktualisierung</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="text_savings_b2" translatable="false">" "</string>
+    <string name="overflow_menu_about">Über uns</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">Vielen Dank für das Herunterladen meiner Anwendung! Ich bin ein autodidaktischer Java- und Android-Entwickler, der ursprünglich aus Spanien stammt. Dieses Projekt wurde ins Leben gerufen, um Menschen dabei zu helfen, ihre finanzielle Gesundheit zu verbessern. Mein Ziel bei der Entwicklung dieser Anwendung war es, Finanzdaten auf einfache, intuitive und grafische Weise zu verwalten und auch Optionen für diejenigen anzubieten, die mehr Details benötigen.</string>
+    <string name="text_dialog_about_paragraph2">Ich würde mich sehr freuen, wenn Sie sich die Zeit nehmen, einen Fehler oder eine Verbesserungsidee einzureichen :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">Entwickelt von Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_category_confirmation_msg2">) in dieser Kategorie</string>
+    <string name="dialog_category_confirmation_msg1">Dadurch werden alle Transaktionen gelöscht (</string>
+    <string name="dialog_cat_confirmation_title">Bist du sicher?</string>
 </resources>

@@ -348,7 +348,7 @@ public class DataViewFragment extends Fragment {
                     mBarEntries.add(new BarEntry((float) ++x, value));
                 }
 
-                mTextTotalPeriod.setText(MainActivity.CURRENCY+mDecimalFormat.format(totalValue));
+                mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(totalValue));
 
             } else {
                 int checkDataInserted=0; //Check if there is any value inserted in the months-of-the-year bars created in the chart
@@ -389,14 +389,14 @@ public class DataViewFragment extends Fragment {
 
                     // set text to values here
                     if(totalValue<0.0){
-                        mTextTotalPeriod.setText("-"+MainActivity.CURRENCY+mDecimalFormat.format(Math.abs(totalValue))); //Show the hyphen before the currency symbol
+                        mTextTotalPeriod.setText("-"+MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(Math.abs(totalValue))); //Show the hyphen before the currency symbol
                         mTextTotalPeriod.setTextColor(getResources().getColor(color.expenses_cat));
                     }else if(totalValue>0.0){
-                        mTextTotalPeriod.setText(MainActivity.CURRENCY+mDecimalFormat.format(totalValue));
+                        mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(totalValue));
                         mTextTotalPeriod.setTextColor(getResources().getColor(color.savings_trans));
 
                     }else{
-                        mTextTotalPeriod.setText(MainActivity.CURRENCY+mDecimalFormat.format(totalValue));
+                        mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(totalValue));
                     }
                 }
             }

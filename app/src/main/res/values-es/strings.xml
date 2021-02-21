@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name"> xBudget </string>
-    <string name="action_settings"> Configuración </string>
+    <string name="overflow_menu_settings"> Configuración </string>
 
     <string name="transaction_fgmt_incomes_title">Todos los Ingresos</string>
     <string name="transaction_fgmt_expenses_title">Todos los Gastos</string>
@@ -135,6 +135,17 @@
     <string name="fragment_trans_txt_totalSpent">Total Gasto / Total Presupuesto:</string>
     <string name="stats_fragment_insertCategory">Inserte categoría</string>
     <string name="dataview_total_period">Total periodo:</string>
+    <string name="overflow_menu_about">¿Quiénes somos?</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">¡Gracias por descargar mi aplicación! Soy un desarrollador autodidacta de Java y Android originario de España. Este proyecto fue creado para ayudar a las personas a mejorar su salud financiera. Mi objetivo en el diseño de esta aplicación es gestionar los datos financieros de una forma sencilla, intuitiva y gráfica, ofreciendo también opciones para aquellos que necesiten tener más detalles.</string>
+    <string name="text_dialog_about_paragraph2">Realmente agradecería si se tomara su tiempo para enviar cualquier error o idea de mejora que pueda tener :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - Todos los Derechos Reservados</string>
+    <string name="dialog_aboutus_header_txt">Desarrollado por Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_category_confirmation_msg2">) en esta categoría</string>
+    <string name="dialog_category_confirmation_msg1">Esto eliminará todas las transacciones (</string>
+    <string name="dialog_cat_confirmation_title">¿Estás seguro?</string>
 
 
 </resources>

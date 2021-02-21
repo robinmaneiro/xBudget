@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name"> xBudget </string>
-    <string name="action_settings"> Settings </string>
+    <string name="app_name">"xBudget "</string>
+    <string name="overflow_menu_settings">"Settings "</string>
+    <string name="overflow_menu_about">About us</string>
 
-    <string name="transaction_fgmt_incomes_title">" All Incomes "</string>
+    <string name="transaction_fgmt_incomes_title">"All Incomes "</string>
     <string name="transaction_fgmt_expenses_title">"All Expenses "</string>
 
-    <string name="text_incomes_a1">  - ALL INCOMES TODAY </string>
+    <string name="text_incomes_a1">" - ALL INCOMES TODAY "</string>
     <string name="text_incomes_b1">  % - COMP YESTERDAY </string>
     <string name="text_incomes_c1">  % - COMP DAILY AVERAGE </string>
     <string name="text_incomes_a2">  - ALL INCOMES THIS WEEK </string>
@@ -61,10 +62,10 @@
     <string name="text_savings_c1">  % - COMP MONTHLY AVERAGE </string>
     <string name="text_savings_a2" translatable="false">" "</string>
     <string name="text_savings_b2" translatable="false"> </string>
-    <string name="text_savings_c2"> </string>
-    <string name="text_savings_a3"> </string>
+    <string name="text_savings_c2" translatable="false"> </string>
+    <string name="text_savings_a3" translatable="false"> </string>
     <string name="text_savings_b3" translatable="false"> </string>
-    <string name="text_savings_c3"> </string>
+    <string name="text_savings_c3" translatable="false"> </string>
     <string name="text_savings_a4" translatable="false"> </string>
     <string name="text_savings_b4" translatable="false"> </string>
     <string name="text_savings_c4" translatable="false"> </string>
@@ -132,5 +133,20 @@
     <string name="fragment_trans_txt_totalSpent">Total Spent / Total Budgeted:</string>
     <string name="stats_fragment_insertCategory">Insert a category</string>
     <string name="dataview_total_period">Total period:</string>
+    <string name="text_dialog_about_paragraph1">"Thank you for downloading my application! I am a self-taught Android developer originally from Spain. This project was created to help people to improve their financial health. My aim on the designing of this application was to manage financial data in a simple, intuitive and graphical way, offering also options for those who need to have more details.  "</string>
+    <string name="text_dialog_about_paragraph2">I would really appreciate if you take your time to submit any bug or improvement idea you may have :)</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_email_link" translatable="false">robin.maneiro@gmail.com</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+
+    <string name="text_dialog_about_linkedin_link" translatable="false"><a href="https://www.linkedin.com/in/robinmaneiro/">Robin Maneiro</a></string>
+    <string name="dialog_aboutus_header_txt">Developed by Robin Maneiro</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_cat_confirmation_title">Are you sure?</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_category_confirmation_msg1">This will delete all the transactions (</string>
+    <string name="dialog_category_confirmation_msg2">) in this category</string>
+    <string name="note_this_will_change_currency_symbol_in_the_next_start_of_the_app">NOTE: This will change currency symbol in the next start of the app</string>
+
 
 </resources>

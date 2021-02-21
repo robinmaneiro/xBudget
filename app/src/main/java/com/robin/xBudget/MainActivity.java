@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.mynameismidori.currencypicker.ExtendedCurrency;
 import com.robin.xBudget.database.DatabaseHelper;
 import com.robin.xBudget.database.DatabaseSchema;
 import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
@@ -45,28 +47,30 @@ public class MainActivity extends SingleFragmentActivity implements
         , DataViewFragment.DemoObjectFragment.Listener
         , DataViewFragment.OuterListener
         , DialogTransaction.Listener
-        , DialogCategory.Listener {
+        , DialogCategory.Listener
+            ,DialogSettings.Listener
+{
     private final String TAG = this.getClass().getSimpleName();
     private SQLiteDatabase mDatabase;
     private Context mContext;
 
-    public static String CURRENCY = Currency.getInstance(Locale.getDefault()).getSymbol();
-    ;
+    public static String CURRENCY_KEY = "currency";
+    public static String CURRENCY_SYMBOL = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
     }
 
+
     @Override
     protected Fragment createFragment() {
-        //init();
         getParsedMonthDates(TransactionTable.mCategories, null, null);
 
-
+        CURRENCY_SYMBOL = ExtendedCurrency.getCurrencyByISO(getConstantValue(CURRENCY_KEY)).getSymbol(); //get currency from db and set symbol
         return TransFragment.newInstance();
-
     }
+
 
     public void init() {
         Log.d(TAG, "initObject() was called");
@@ -75,6 +79,31 @@ public class MainActivity extends SingleFragmentActivity implements
         mDatabase = new DatabaseHelper(mContext).getWritableDatabase();
     }
 
+
+    @Override
+     public String getConstantValue (String key ){
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM constants"+" WHERE "+TransactionTable.ConstantCols.NAME+" = '"+key+"'",null);
+
+        //Toast.makeText(getApplicationContext(),"value is"+cursor.getCount(),Toast.LENGTH_LONG).show();
+
+        if(cursor.moveToFirst()) {
+            do {
+                return cursor.getString(cursor.getColumnIndex(TransactionTable.ConstantCols.VALUE));
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return "";
+    }
+
+    @Override
+    public void setConstantValue (String key,String value){
+        String query = "UPDATE "+TransactionTable.mConstants
+                + " SET "+TransactionTable.ConstantCols.VALUE+" = '"+value
+                + "' WHERE "+TransactionTable.ConstantCols.NAME+" = '"+key+"'";
+
+        mDatabase.execSQL(query);
+
+    }
 
     private ContentValues getContentValuesTransaction(Transaction transaction) {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm");
@@ -86,7 +115,6 @@ public class MainActivity extends SingleFragmentActivity implements
         values.put(TransactionTable.TransCols.AMOUNT, transaction.getAmount());
         values.put(TransactionTable.TransCols.DESCRIPTION, transaction.getDescription());
         values.put(TransactionTable.TransCols.DATE, String.valueOf(fmt.print(transaction.getDateTime())));
-
 
         return values;
     }
@@ -471,7 +499,7 @@ public class MainActivity extends SingleFragmentActivity implements
         }
         double difference = currentPeriodAmount - previousPeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No data >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No data >";
     }
 
     @Override
@@ -494,9 +522,13 @@ public class MainActivity extends SingleFragmentActivity implements
                         list.stream().collect(Collectors.groupingBy(transaction -> dailyFormatter.print(transaction.getDateTime()), (Collectors.summingDouble(Transaction::getAmount))));
 
                 groupByDateTreeMap.putAll(unorderedDailyMap); // Convert the HashMap into a TreeMap to order the element by key
-                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
 
+                if(!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
+                }else{
+                    timePassed = 0;
+                }
                 break;
 
             case 2:
@@ -508,9 +540,13 @@ public class MainActivity extends SingleFragmentActivity implements
                 for (Map.Entry<String, Double> entryset : groupByDateTreeMap.entrySet()) {
                     Log.d(TAG, "key: " + entryset.getKey() + " value: " + entryset.getValue());
                 }
+                if(!groupByDateTreeMap.isEmpty()) {
+
                 firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                 timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getWeeks();
-
+            }else{
+                    timePassed = 0;
+                }
 
                 break;
 
@@ -519,9 +555,12 @@ public class MainActivity extends SingleFragmentActivity implements
                 Map<String, Double> unorderedMontlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedMontlyMap); // Convert the HashMap into a TreeMap to order the element by key
+                if(!groupByDateTreeMap.isEmpty()) {
                 firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                 timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getMonths();
-
+            }else{
+                    timePassed = 0;
+                }
                 break;
 
 
@@ -530,9 +569,12 @@ public class MainActivity extends SingleFragmentActivity implements
                 Map<String, Double> unorderedYearlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> yearlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedYearlyMap); // Convert the HashMap into a TreeMap to order the element by key
+                if(!groupByDateTreeMap.isEmpty()) {
                 firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                 timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getYears();
-
+            }else{
+                    timePassed = 0;
+                }
                 break;
 
             default:
@@ -540,16 +582,12 @@ public class MainActivity extends SingleFragmentActivity implements
         }
 
 
-        Log.d(TAG, "FIRST VALUE IS: " + firstDate);
-        Log.d(TAG, "GET XXX " + timePassed);
-
-
         double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
 
 
         double difference = currentPeriodAmount - averagePeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No data >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No data >";
     }
 
     @Override
@@ -674,7 +712,7 @@ public class MainActivity extends SingleFragmentActivity implements
 
         double difference = currentPeriodAmount - previousPeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
     }
 
     @Override
@@ -772,7 +810,7 @@ public class MainActivity extends SingleFragmentActivity implements
          */
         double difference = currentPeriodAmount - averagePeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
     }
 
     @Override
@@ -834,7 +872,7 @@ public class MainActivity extends SingleFragmentActivity implements
         Log.d(TAG, "AMOUNT currentperiod " + currentPeriodSavings);
         Log.d(TAG, "AMOUNT previousperiod " + (previousMonthIncomes - previousMonthExpenses));
 
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
 
     }
 
@@ -856,21 +894,35 @@ public class MainActivity extends SingleFragmentActivity implements
         groupByMonthlyDateInc.putAll(groupByMonthlyDateIncUnsorted);
         groupByMonthlyDateExp.putAll(groupByMonthlyDateExpUnsorted);
 
-        String firstDateInc = (String) groupByMonthlyDateInc.keySet().toArray()[0];
-        String firstDateExp = (String) groupByMonthlyDateExp.keySet().toArray()[0];
 
-        DateTime firstDateTimeGeneralTrans;
-        DateTime firstDateTimeInc = monthlyFormatter.parseDateTime(firstDateInc);
-        DateTime firstDateTimeExp = monthlyFormatter.parseDateTime(firstDateExp);
+        String firstDateInc=null;
+        String firstDateExp=null;
+        DateTime firstDateTimeInc;
+        DateTime firstDateTimeExp;
+        int timePassed=0;
 
-        if (firstDateTimeInc.isBefore(firstDateTimeExp)) { //Check if which transaction is previous and set the DateTime object 'firstDaTimeGeneralTrans'
-            firstDateTimeGeneralTrans = firstDateTimeInc;
-        } else {
-            firstDateTimeGeneralTrans = firstDateTimeExp;
+                if(!groupByMonthlyDateInc.isEmpty()) {
+                    firstDateInc = (String) groupByMonthlyDateInc.keySet().toArray()[0];
+
+                }else if(!groupByMonthlyDateExp.isEmpty()) {
+                    firstDateExp = (String) groupByMonthlyDateExp.keySet().toArray()[0];
+
+                }else if(!(groupByMonthlyDateExp.isEmpty()&&groupByMonthlyDateExp.isEmpty())) {
+            DateTime firstDateTimeGeneralTrans;
+                    firstDateTimeInc = monthlyFormatter.parseDateTime(firstDateInc);
+
+                    firstDateTimeExp = monthlyFormatter.parseDateTime(firstDateExp);
+
+                    if (firstDateTimeInc.isBefore(firstDateTimeExp)) { //Check if which transaction is previous and set the DateTime object 'firstDaTimeGeneralTrans'
+                firstDateTimeGeneralTrans = firstDateTimeInc;
+            } else {
+                firstDateTimeGeneralTrans = firstDateTimeExp;
+            }
+
+            timePassed = Months.monthsBetween(firstDateTimeGeneralTrans.toLocalDate(), DateTime.now().toLocalDate()).getMonths() + 1;
+        }else{
+            timePassed=0;
         }
-
-        int timePassed = Months.monthsBetween(firstDateTimeGeneralTrans.toLocalDate(), DateTime.now().toLocalDate()).getMonths() +1;
-
 
         double averagePeriodAmountInc = groupByMonthlyDateInc.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
         double averagePeriodAmountExp = groupByMonthlyDateExp.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
@@ -878,6 +930,6 @@ public class MainActivity extends SingleFragmentActivity implements
 
         double difference = currentPeriodSavings - (averagePeriodAmountInc - averagePeriodAmountExp);
         double percentage = (difference / currentPeriodSavings) * 100;
-        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY, Math.abs(difference), percentage) : "< No diff. >";
+        return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">" xBudget "</string>
-    <string name="action_settings">"Настройки "</string>
+    <string name="overflow_menu_settings">"Настройки "</string>
     <string name="transaction_fgmt_incomes_title">"Все доходы "</string>
     <string name="transaction_fgmt_expenses_title">"Все расходы "</string>
     <string name="text_incomes_a1">"- ВСЕ ДОХОДЫ СЕГОДНЯ "</string>
@@ -106,4 +106,16 @@
     <string name="text_expenses_c5">% - СРАВНЕНИЕ СРЕДНЕСУТОЧНОГО ПОКАЗАТЕЛЯ</string>
     <string name="text_incomes_c1">% - СРАВНЕНИЕ СРЕДНЕСУТОЧНОГО ПОКАЗАТЕЛЯ</string>
     <string name="text_expenses_c1">% - СРАВНЕНИЕ СРЕДНЕСУТОЧНОГО ПОКАЗАТЕЛЯ</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="overflow_menu_about">о нас</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">Спасибо, что скачали мое приложение! Я разработчик Java и Android-самоучка из Испании. Этот проект был создан, чтобы помочь людям улучшить свое финансовое здоровье. Моя цель при разработке этого приложения состояла в том, чтобы управлять финансовыми данными простым, интуитивно понятным и графическим способом, предлагая также варианты для тех, кому нужно иметь более подробную информацию.</string>
+    <string name="text_dialog_about_paragraph2">Я был бы очень признателен, если вы не торопитесь, чтобы отправить любую ошибку или идею улучшения, которая может у вас возникнуть :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">Разработан Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_cat_confirmation_title">Esti sigur?</string>
+    <string name="dialog_category_confirmation_msg1">Aceasta va șterge toate tranzacțiile (</string>
+    <string name="dialog_category_confirmation_msg2">) în această categorie</string>
 </resources>

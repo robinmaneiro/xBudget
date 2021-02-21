@@ -12,7 +12,7 @@
     <string name="dialog_trans_toast_categoryExists">Questa categoria esiste già</string>
     <string name="demo_income_cat_1">Dichiarazione fiscale</string>
     <string name="bottom_bar_statistics">Statistiche</string>
-    <string name="action_settings">"Impostazioni "</string>
+    <string name="overflow_menu_settings">"Impostazioni "</string>
     <string name="dataview_savings_title">Risparmi - Totale per mese</string>
     <string name="text_savings_a1">"- RISPARMIO QUESTO MESE "</string>
     <string name="dataview_savings_label">Risparmio</string>
@@ -106,4 +106,17 @@
     <string name="text_expenses_c5">"  % - CONFRONTO MEDIA GIORNALIERA"</string>
     <string name="text_incomes_c1">"  % - CONFRONTO MEDIA GIORNALIERA"</string>
     <string name="text_expenses_c1">"  % - CONFRONTO MEDIA GIORNALIERA"</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="text_savings_b2" translatable="false">" "</string>
+    <string name="overflow_menu_about">Circa noi</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">Grazie per aver scaricato la mia applicazione! Sono uno sviluppatore Java e Android autodidatta originario della Spagna. Questo progetto è stato creato per aiutare le persone a migliorare la loro salute finanziaria. Il mio scopo nella progettazione di questa applicazione è stato quello di gestire i dati finanziari in modo semplice, intuitivo e grafico, offrendo anche opzioni per chi ha bisogno di avere maggiori dettagli.</string>
+    <string name="text_dialog_about_paragraph2">Ti sarei davvero grato se prendessi il tuo tempo per inviare qualsiasi bug o idea di miglioramento che potresti avere :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">Sviluppato da Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_cat_confirmation_title">Sei sicuro?</string>
+    <string name="dialog_category_confirmation_msg1">Questo cancellerà tutte le transazioni (</string>
+    <string name="dialog_category_confirmation_msg2">) in questa categoria</string>
 </resources>

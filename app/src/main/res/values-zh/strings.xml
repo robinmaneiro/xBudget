@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">" xBudget "</string>
-    <string name="action_settings">設定</string>
+    <string name="overflow_menu_settings">設定</string>
     <string name="transaction_fgmt_incomes_title">"所有收入 "</string>
     <string name="transaction_fgmt_expenses_title">"所有费用 "</string>
     <string name="text_incomes_a1">"- 今天的所有收入  "</string>
@@ -106,4 +106,30 @@
     <string name="dialog_positive_update">更新</string>
     <string name="dialog_trans_title_updateExpenseTrans">更新费用交易</string>
     <string name="dialog_trans_title_updateIncomeTrans">更新收入交易</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="text_savings_b2" translatable="false">" "</string>
+    <string name="text_savings_c2" translatable="false">" "</string>
+    <string name="text_savings_a3" translatable="false">" "</string>
+    <string name="text_savings_b3" translatable="false">" "</string>
+    <string name="text_savings_c3" translatable="false">" "</string>
+    <string name="text_savings_a4" translatable="false">" "</string>
+    <string name="text_savings_b4" translatable="false">" "</string>
+    <string name="text_savings_c4" translatable="false">" "</string>
+    <string name="text_savings_a5" translatable="false">" "</string>
+    <string name="text_savings_b5" translatable="false">" "</string>
+    <string name="text_savings_c5" translatable="false">" "</string>
+    <string name="text_savings_a6" translatable="false">" "</string>
+    <string name="text_savings_b6" translatable="false">" "</string>
+    <string name="text_savings_c6" translatable="false">" "</string>
+    <string name="overflow_menu_about">关于我们</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">感谢您下载我的应用程序！ 我是一位来自西班牙的自学成才的Java＆Android开发人员。 创建该项目是为了帮助人们改善财务状况。 我设计此应用程序的目的是以简单，直观和图形化的方式管理财务数据，并为需要更多详细信息的人员提供选项。</string>
+    <string name="text_dialog_about_paragraph2">如果您花时间提交您可能有的任何错误或改进建议，我将不胜感激：</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">由Robin Maneiro开发</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_cat_confirmation_title">你确定吗？</string>
+    <string name="dialog_category_confirmation_msg1">这将删除所有交易（</string>
+    <string name="dialog_category_confirmation_msg2">）在此类别中</string>
 </resources>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">" xBudget "</string>
-    <string name="action_settings">समायोजन</string>
+    <string name="overflow_menu_settings">समायोजन</string>
     <string name="transaction_fgmt_incomes_title">सभी आय</string>
     <string name="transaction_fgmt_expenses_title">सभी खर्चे</string>
     <string name="text_incomes_a1">- सभी आय टुडे</string>
@@ -106,4 +106,17 @@
     <string name="dialog_positive_update">अपडेट करें</string>
     <string name="dialog_trans_title_updateExpenseTrans">एक्सपेंस ट्रांजैक्शन को अपडेट करें</string>
     <string name="dialog_trans_title_updateIncomeTrans">अद्यतन आय लेन-देन</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="text_savings_b2" translatable="false">" "</string>
+    <string name="overflow_menu_about">हमारे बारे में</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">मेरे आवेदन को डाउनलोड करने के लिए धन्यवाद! मैं मूल रूप से स्पेन का एक स्वयं-सिखाया जावा और Android डेवलपर हूं। यह परियोजना लोगों को उनके वित्तीय स्वास्थ्य को बेहतर बनाने में मदद करने के लिए बनाई गई थी। इस एप्लिकेशन के डिजाइन पर मेरा उद्देश्य वित्तीय डेटा को एक सरल, सहज और चित्रमय तरीके से प्रबंधित करना था, जो उन लोगों के लिए भी विकल्प प्रदान करता है जिनके पास अधिक विवरण होने की आवश्यकता है।</string>
+    <string name="text_dialog_about_paragraph2">अगर आप किसी भी बग या सुधार विचार को प्रस्तुत करने के लिए अपना समय लेते हैं, तो मैं वास्तव में सराहना करूंगा :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">द्वारा विकसित Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_cat_confirmation_title">क्या आपको यकीन है?</string>
+    <string name="dialog_category_confirmation_msg1">यह सभी लेनदेन को हटा देगा (</string>
+    <string name="dialog_category_confirmation_msg2">) इस श्रेणी में</string>
 </resources>

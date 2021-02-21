@@ -12,7 +12,7 @@
     <string name="dialog_trans_toast_categoryExists">Această categorie există deja</string>
     <string name="demo_income_cat_1">Înapoierea Taxei</string>
     <string name="bottom_bar_statistics">Statistici</string>
-    <string name="action_settings">Setări</string>
+    <string name="overflow_menu_settings">Setări</string>
     <string name="dataview_savings_title">Economii - Total pe Lună</string>
     <string name="text_savings_a1">- ECONOMII ÎN LUNA LUNĂ</string>
     <string name="dataview_savings_label">Economii</string>
@@ -106,4 +106,16 @@
     <string name="text_expenses_c5">" % - COMPARAȚIE MEDIE ZILNICĂ"</string>
     <string name="text_incomes_c1">" % - COMPARAȚIE MEDIE ZILNICĂ"</string>
     <string name="text_expenses_c1">" % - COMPARAȚIE MEDIE ZILNICĂ"</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="overflow_menu_about">Despre noi</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">Vă mulțumesc pentru descărcarea aplicației mele! Sunt un dezvoltator autodidact Java și Android, originar din Spania. Acest proiect a fost creat pentru a ajuta oamenii să-și îmbunătățească sănătatea financiară. Scopul meu în proiectarea acestei aplicații a fost să gestionez datele financiare într-un mod simplu, intuitiv și grafic, oferind și opțiuni pentru cei care au nevoie de mai multe detalii.</string>
+    <string name="text_dialog_about_paragraph2">Aș aprecia cu adevărat dacă vă luați timp pentru a trimite orice eroare sau idee de îmbunătățire pe care o aveți :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">Dezvoltat de Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_cat_confirmation_title">Esti sigur?</string>
+    <string name="dialog_category_confirmation_msg1">Aceasta va șterge toate tranzacțiile (</string>
+    <string name="dialog_category_confirmation_msg2">) în această categorie</string>
 </resources>

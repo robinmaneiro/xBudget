@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -242,7 +243,7 @@ public class TransFragment extends Fragment {
                     addTransaction.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(@Nullable View v) {
-                            DialogTransaction dialog = new DialogTransaction();
+                            DialogOnBoarding dialog = new DialogOnBoarding();
                             Bundle bundle = new Bundle();
                             bundle.putInt(DialogTransaction.GROUP_ID, Category.Group.INCOMES);
                             //bundle.putSerializable(DialogTransaction.ARG_CALENDAR, listener.getPeriodSelected());
@@ -326,7 +327,7 @@ public class TransFragment extends Fragment {
                         DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yy HH:mm");
                         ((TextView) subItem.findViewById(R.id.sub_date)).setText(fmt.print(t.getDateTime()));
                         ((TextView) subItem.findViewById(R.id.sub_title)).setText(t.getName());
-                        ((TextView) subItem.findViewById(R.id.sub_amount)).setText(MainActivity.CURRENCY + t.getAmount().toString());
+                        ((TextView) subItem.findViewById(R.id.sub_amount)).setText(MainActivity.CURRENCY_SYMBOL + t.getAmount().toString());
 
                         moneySpentCategory += t.getAmount();
                         subItem.setOnClickListener(new View.OnClickListener() {

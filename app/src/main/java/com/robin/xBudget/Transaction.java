@@ -31,8 +31,6 @@ public class Transaction {
         mDateTime = dateTime;
     }
 
-
-
     public Transaction() {
         this(UUID.randomUUID());
     }

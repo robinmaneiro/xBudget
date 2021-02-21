@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.LayoutRes;
@@ -51,7 +52,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         JodaTimeAndroid.init(this);
         init();
-        Log.d(TAG, "onCreate was called");
+        //Log.d(TAG, "onCreate was called");
 
         //With this method SingleFragmentActivity gets prepared to adapt the layout to a tablet in future implementations
         setContentView(getLayoutResId());
@@ -75,6 +76,22 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         bottomBarSupport();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.overflow_menu_about:
+                DialogAboutUs aboutUsFragment = new DialogAboutUs();
+                aboutUsFragment.show(getSupportFragmentManager(), "Dialog AboutUs");
+                break;
+
+            case R.id.overflow_menu_settings:
+                DialogSettings dialogSettings = new DialogSettings();
+                dialogSettings.show(getSupportFragmentManager(), "Dialog Settings");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     public void bottomBarSupport() {
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);

@@ -61,5 +61,4 @@ public class GeneralCursorWrapper extends CursorWrapper {
 
         return dateTime;
     }
-
 }

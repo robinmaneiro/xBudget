@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">" xBudget "</string>
-    <string name="action_settings">الإعدادات</string>
+    <string name="overflow_menu_settings">الإعدادات</string>
     <string name="transaction_fgmt_incomes_title">كل المداخيل</string>
     <string name="transaction_fgmt_expenses_title">كل التكاليف</string>
     <string name="text_incomes_a1">- كل الدخل اليوم</string>
@@ -106,4 +106,36 @@
     <string name="dialog_positive_update">تحديث</string>
     <string name="dialog_trans_title_updateExpenseTrans">تحديث معاملة المصاريف</string>
     <string name="dialog_trans_title_updateIncomeTrans">تحديث معاملة الدخل</string>
+    <string name="text_savings_a2" translatable="false">" "</string>
+    <string name="text_savings_b2" translatable="false">" "</string>
+    <string name="text_savings_c2" translatable="false">" "</string>
+    <string name="text_savings_a3" translatable="false">" "</string>
+    <string name="text_savings_b3" translatable="false">" "</string>
+    <string name="text_savings_c3" translatable="false">" "</string>
+    <string name="text_savings_a4" translatable="false">" "</string>
+    <string name="text_savings_b4" translatable="false">" "</string>
+    <string name="text_savings_c4" translatable="false">" "</string>
+    <string name="text_savings_a5" translatable="false">" "</string>
+    <string name="text_savings_b5" translatable="false">" "</string>
+    <string name="text_savings_c5" translatable="false">" "</string>
+    <string name="text_savings_a6" translatable="false">" "</string>
+    <string name="text_savings_b6" translatable="false">" "</string>
+    <string name="text_savings_c6" translatable="false">" "</string>
+    <string name="text_savings_a7" translatable="false">" "</string>
+    <string name="text_savings_b7" translatable="false">" "</string>
+    <string name="text_savings_c7" translatable="false">" "</string>
+    <string name="text_savings_a8" translatable="false">" "</string>
+    <string name="text_savings_b8" translatable="false">" "</string>
+    <string name="text_savings_c8" translatable="false">" "</string>
+    <string name="overflow_menu_about">معلومات عنا</string>
+    <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
+    <string name="text_dialog_about_email_text">Email:</string>
+    <string name="text_dialog_about_paragraph1">شكرا لك لتحميل التطبيق الخاص بي! أنا مطور برامج Java و Android عصامي في الأصل من إسبانيا. تم إنشاء هذا المشروع لمساعدة الناس على تحسين صحتهم المالية. كان هدفي من تصميم هذا التطبيق هو إدارة البيانات المالية بطريقة بسيطة وبديهية ورسومية ، مع تقديم خيارات أيضًا لمن يحتاجون إلى مزيد من التفاصيل.</string>
+    <string name="text_dialog_about_paragraph2">سأكون ممتنًا حقًا إذا أخذت وقتك في إرسال أي فكرة خطأ أو تحسين قد تكون لديك :)</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_header_txt">طورت بواسطة Robin Maneiro</string>
+    <string name="dialog_okbutton">OK</string>
+    <string name="dialog_cat_confirmation_title">هل أنت واثق؟</string>
+    <string name="dialog_category_confirmation_msg1">سيؤدي هذا إلى حذف جميع المعاملات (</string>
+    <string name="dialog_category_confirmation_msg2">) في هذه الفئة</string>
 </resources>
