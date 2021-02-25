@@ -45,7 +45,7 @@ public class DialogTransaction extends DialogFragment {
     public static final String TRANSACTION_ID = "TransactionID";
 
     private UUID mId;
-    private EditText mEditTextName,  mEditTextAmount, mEditTextDescription, mCategoryAllowance, mCategoryEditText, mCategoryNewAllowance;
+    private EditText mEditTextName, mEditTextAmount, mEditTextDescription, mCategoryAllowance, mCategoryEditText, mCategoryNewAllowance;
     private TextView textViewDialogTitle, mTextViewCurrency0, mTextViewCurrency1, mTextViewCurrency2;
     private DatePicker mDatePicker;
     private TimePicker mTimePicker;
@@ -59,7 +59,7 @@ public class DialogTransaction extends DialogFragment {
     private ArrayAdapter spinnerAdapter;
     private Integer mType;
     LinearLayout newCatLayout;
-    private String positiveButton,mTitle;
+    private String positiveButton, mTitle;
     private Listener mListener;
 
 
@@ -80,11 +80,13 @@ public class DialogTransaction extends DialogFragment {
             mType = (Integer) getArguments().getInt(GROUP_ID);
             switch (mType) {
                 case Category.Group.INCOMES:
-                    if(mId!=null)mTitle = getString(R.string.dialog_trans_title_updateIncomeTrans);
-                            else mTitle = getString(R.string.dialog_trans_title_newIncomeTrans);
+                    if (mId != null)
+                        mTitle = getString(R.string.dialog_trans_title_updateIncomeTrans);
+                    else mTitle = getString(R.string.dialog_trans_title_newIncomeTrans);
                     break;
                 case Category.Group.EXPENSES:
-                    if(mId!=null)mTitle = getString(R.string.dialog_trans_title_updateExpenseTrans);
+                    if (mId != null)
+                        mTitle = getString(R.string.dialog_trans_title_updateExpenseTrans);
                     else mTitle = getString(R.string.dialog_trans_title_newExpenseTrans);
                     break;
             }
@@ -117,17 +119,17 @@ public class DialogTransaction extends DialogFragment {
 
         mCategoriesList = mListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(getArguments().get(GROUP_ID))});
         mCategoriesSet = new TreeSet();
-        for(Category c: mCategoriesList)mCategoriesSet.add(c.getName());
-        List<String> mFilteredCategories=new ArrayList<>(mCategoriesSet);
-        mFilteredCategories.add("< "+getString(R.string.dialog_trans_spinner_new_category)+" >");
+        for (Category c : mCategoriesList) mCategoriesSet.add(c.getName());
+        List<String> mFilteredCategories = new ArrayList<>(mCategoriesSet);
+        mFilteredCategories.add("< " + getString(R.string.dialog_trans_spinner_new_category) + " >");
 
         spinnerAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, mFilteredCategories);
         mSpinner.setAdapter(spinnerAdapter);
 
         newCatLayout = (LinearLayout) view.findViewById(R.id.layout_add_category);
 
-        mCategoryAllowance.setHint(mType==Category.Group.INCOMES?getString(R.string.dialog_trans_hint_cat_expected):getString(R.string.dialog_trans_hint_cat_budget));
-        mCategoryNewAllowance.setHint(mType==Category.Group.INCOMES?getString(R.string.dialog_trans_hint_cat_expected):getString(R.string.dialog_trans_hint_cat_budget));
+        mCategoryAllowance.setHint(mType == Category.Group.INCOMES ? getString(R.string.dialog_trans_hint_cat_expected) : getString(R.string.dialog_trans_hint_cat_budget));
+        mCategoryNewAllowance.setHint(mType == Category.Group.INCOMES ? getString(R.string.dialog_trans_hint_cat_expected) : getString(R.string.dialog_trans_hint_cat_budget));
 
         //Either creating a new Transaction object or looking for an existing one by its 'mId'
         if (mId == null) {
@@ -150,13 +152,12 @@ public class DialogTransaction extends DialogFragment {
             mTimePicker.setMinute(dt.getMinuteOfHour());
 
             Category category = mListener.getSingleCategory(DatabaseSchema.TransactionTable.mCategories,
-                    DatabaseSchema.TransactionTable.CatCols.ID+ " = ?",
+                    DatabaseSchema.TransactionTable.CatCols.ID + " = ?",
                     new String[]{mTransaction.getCategoryId().toString()});
             mSpinner.setSelection(mFilteredCategories.indexOf(category.getName()));
 
             positiveButton = getString(R.string.dialog_positive_update);
         }
-
 
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -173,10 +174,10 @@ public class DialogTransaction extends DialogFragment {
                     //CHECK IF THE CATEGORY EXIST
                     Boolean categoryExist = mListener.checkIfCategoryExists(DatabaseSchema.TransactionTable.mCategories, mCategoryStringSelected, categoryDate);
                     newCatLayout.setVisibility(View.INVISIBLE);
-                    if(!categoryExist) {
+                    if (!categoryExist) {
                         mCategoryNewAllowance.setVisibility(View.VISIBLE);
                         mTextViewCurrency1.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         mCategoryNewAllowance.setVisibility(View.INVISIBLE);
                         mTextViewCurrency1.setVisibility(View.INVISIBLE);
                     }
@@ -197,7 +198,7 @@ public class DialogTransaction extends DialogFragment {
                 //CHECK IF THE CATEGORY EXIST
                 Boolean categoryExist = mListener.checkIfCategoryExists(DatabaseSchema.TransactionTable.mCategories, mCategoryStringSelected, categoryDate);
 
-                if(mSpinner.getSelectedItemPosition()!=mFilteredCategories.size()-1) {
+                if (mSpinner.getSelectedItemPosition() != mFilteredCategories.size() - 1) {
                     newCatLayout.setVisibility(View.INVISIBLE);
                     if (!categoryExist) {
                         mCategoryNewAllowance.setVisibility(View.VISIBLE);
@@ -222,8 +223,8 @@ public class DialogTransaction extends DialogFragment {
         textViewDialogTitle.setTextSize(23F);
         textViewDialogTitle.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         textViewDialogTitle.setTypeface(ResourcesCompat.getFont(getContext(), R.font.carter_one));
-        textViewDialogTitle.setBackgroundColor(ContextCompat.getColor(getContext(),mType == Category.Group.INCOMES?R.color.incomes_cat:R.color.expenses_cat));
-        textViewDialogTitle.setTextColor(ContextCompat.getColor(getContext(),R.color.text_gray));
+        textViewDialogTitle.setBackgroundColor(ContextCompat.getColor(getContext(), mType == Category.Group.INCOMES ? R.color.incomes_cat : R.color.expenses_cat));
+        textViewDialogTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
 
         builder.setView(view)
                 .setCustomTitle(textViewDialogTitle)
@@ -245,7 +246,7 @@ public class DialogTransaction extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mListener.deleteTransaction(mTransaction);
-                    ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID),mListener.datePickerToJodaTime(mDatePicker.getYear()+" "+(mDatePicker.getMonth()+1)));
+                    ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mListener.datePickerToJodaTime(mDatePicker.getYear() + " " + (mDatePicker.getMonth() + 1)));
                 }
             });
         }
@@ -263,7 +264,7 @@ public class DialogTransaction extends DialogFragment {
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
         WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
-        lp.alpha=0.90f;
+        lp.alpha = 0.90f;
         getDialog().getWindow().setAttributes(lp);
 
         //getDialog().getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
@@ -292,11 +293,10 @@ public class DialogTransaction extends DialogFragment {
 
             if (newCatLayout.getVisibility() == View.VISIBLE) {
 
-                if (mCategoryEditText.getText().toString().isEmpty() || mCategoryAllowance.getText().toString().isEmpty()){
+                if (mCategoryEditText.getText().toString().isEmpty() || mCategoryAllowance.getText().toString().isEmpty()) {
                     Toast.makeText(getContext(), getString(R.string.dialog_trans_toast_bothFields), Toast.LENGTH_SHORT).show();
                     return;
-                }
-               else if (!mCategoryEditText.getText().toString().isEmpty() && !mCategoryAllowance.getText().toString().isEmpty()) {
+                } else if (!mCategoryEditText.getText().toString().isEmpty() && !mCategoryAllowance.getText().toString().isEmpty()) {
                     mCategory = new Category();
                     mCategory.setName(mCategoryEditText.getText().toString());
                     mCategory.setAmount(Double.parseDouble(mCategoryAllowance.getText().toString()));
@@ -309,12 +309,12 @@ public class DialogTransaction extends DialogFragment {
                         return;
                     }
                 }
-            } else{
+            } else {
                 //CHECK IF THE CATEGORY EXIST
                 //Boolean categoryExist = mListener.checkIfCategoryExists(DatabaseSchema.TransactionTable.mCategories, mCategoryStringSelected, categoryDate);
 
-                if(mCategoryNewAllowance.getVisibility()==View.VISIBLE){
-                    if (mCategoryNewAllowance.getText().toString().isEmpty()){
+                if (mCategoryNewAllowance.getVisibility() == View.VISIBLE) {
+                    if (mCategoryNewAllowance.getText().toString().isEmpty()) {
                         Toast.makeText(getContext(), getString(R.string.dialog_trans_toast_categoryBudget), Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -328,13 +328,13 @@ public class DialogTransaction extends DialogFragment {
 
                 } else {
                     mCategory = mListener.getSingleCategory(DatabaseSchema.TransactionTable.mCategories,
-                            DatabaseSchema.TransactionTable.CatCols.NAME+" = ? AND CAST("+ DatabaseSchema.TransactionTable.CatCols.DATE+" as TEXT) = ?",
-                            new String[]{mCategoryStringSelected,String.valueOf(categoryDate)});
+                            DatabaseSchema.TransactionTable.CatCols.NAME + " = ? AND CAST(" + DatabaseSchema.TransactionTable.CatCols.DATE + " as TEXT) = ?",
+                            new String[]{mCategoryStringSelected, String.valueOf(categoryDate)});
 
                 }
             }
 
-            if(mCategory.getId()!=null) {
+            if (mCategory.getId() != null) {
                 mTransaction.setCategoryId(mCategory.getId());
                 mTransaction.setGroupId(getArguments().getInt(GROUP_ID));
                 mTransaction.setName(mEditTextName.getText().toString());
@@ -355,17 +355,17 @@ public class DialogTransaction extends DialogFragment {
                 } else {
                     mListener.updateTransaction(mTransaction);
                 }
-                ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID),mListener.datePickerToJodaTime(mDatePicker.getYear()+" "+(mDatePicker.getMonth()+1)));
+                ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mListener.datePickerToJodaTime(mDatePicker.getYear() + " " + (mDatePicker.getMonth() + 1)));
 
                 TransFragment.spinnerAdapter.clear();
-                TransFragment.spinnerAdapter.addAll(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories,null,null));
+                TransFragment.spinnerAdapter.addAll(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null));
                 TransFragment.mSpinner
-                        .setSelection(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories,null,null)
-                        .indexOf(DateTimeFormat.forPattern("MMM yyyy").print(mTransaction.getDateTime())));
+                        .setSelection(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null)
+                                .indexOf(DateTimeFormat.forPattern("MMM yyyy").print(mTransaction.getDateTime())));
                 dialog.dismiss();
-                }
             }
         }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -379,14 +379,19 @@ public class DialogTransaction extends DialogFragment {
 
     public interface Listener {
         List<Category> getCategories(String table, String whereClause, String[] whereArgs);
+
         List<Transaction> getTransactions(String table, String whereClause, String[] whereArgs);
+
         boolean checkIfCategoryExists(String TableName, String categoryName, int categoryDate);
 
         Transaction getSingleTransaction(String table, String whereClause, String[] whereArgs);
+
         Category getSingleCategory(String table, String whereClause, String[] whereArgs);
 
         void insertTransaction(Transaction transaction);
+
         void updateTransaction(Transaction transaction);
+
         void deleteTransaction(Transaction transaction);
 
         void insertCategory(Category category);
@@ -394,6 +399,7 @@ public class DialogTransaction extends DialogFragment {
         String datePickerToJodaTime(String parsedDate);
 
         ArrayAdapter getMonthArrayAdapter();
+
         List<String> getParsedMonthDates(String table, String whereClause, String[] whereArgs);
 
 
