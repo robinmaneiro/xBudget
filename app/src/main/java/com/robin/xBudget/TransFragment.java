@@ -2,9 +2,11 @@ package com.robin.xBudget;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +54,8 @@ public class TransFragment extends Fragment {
     static String dateSelected;
     static ArrayAdapter spinnerAdapter;
     DemoCollectionAdapter demoCollectionAdapter;
-
+    SharedPreferences sharedPreferences;
+    Boolean firstTime;
 
     public static TransFragment newInstance() {
         return new TransFragment();
@@ -60,6 +63,26 @@ public class TransFragment extends Fragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        sharedPreferences = this.getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        firstTime = sharedPreferences.getBoolean("firstTime", true);        //Set default value to true if the boolean is not in the sharedPreferences object
+
+        if (firstTime) {        //Initiate DialogOnboarding on the first execution of the application to give the user guidance of app usage
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    firstTime = false;
+                    editor.putBoolean("firstTime", firstTime);
+                    editor.apply();
+                    new DialogOnBoarding().show(getFragmentManager(), "dialogOnBoarding");
+                }
+            }, 2000);
+        }
+
+        new DialogOnBoarding().show(getFragmentManager(), "dialogOnBoarding"); //DELETE ME AFTER ALL TESTS
+
         super.onCreate(savedInstanceState);
     }
 
@@ -71,6 +94,7 @@ public class TransFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_pager, container, false);
     }
 
@@ -81,7 +105,7 @@ public class TransFragment extends Fragment {
         viewPager.setAdapter(demoCollectionAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
         //viewPager.setCurrentItem(1);
-        Log.d("DEMO", "CURRENT POSITION IS: " + viewPager.getCurrentItem());
+        //Log.d("DEMO", "CURRENT POSITION IS: " + viewPager.getCurrentItem()); 250221
 
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, viewPager,
@@ -181,11 +205,13 @@ public class TransFragment extends Fragment {
         private ScrollView mScrollView;
         private RelativeLayout mGlobalDataLayout;
         private ImageView mImageNoData;
-        private TextView mTextNoData;
+        private TextView mTextNoData, mTextMonthlyTotal;
         private Button mGeneralSpendBtn;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
+
+
             super.onCreate(savedInstanceState);
         }
 
@@ -220,19 +246,19 @@ public class TransFragment extends Fragment {
             mGlobalDataLayout = (RelativeLayout) view.findViewById(R.id.global_message_layout);
             mImageNoData = (ImageView) view.findViewById(R.id.img_no_data);
             mTextNoData = (TextView) view.findViewById(R.id.txt_no_data);
+            mTextMonthlyTotal = (TextView) view.findViewById(R.id.txt_monthly_total);
             mGeneralSpendBtn = ((Button) view.findViewById(R.id.btn_general_spent));
-
 
             expandingList = (ExpandingList) view.findViewById(R.id.expanding_list_main);
             addTransaction = (FloatingActionButton) view.findViewById(R.id.imgview_add_transaction);
             parsedDates = mInnerListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null);
-
 
             switch (tabPosition) {
                 case 1:
                     ((Button) view.findViewById(R.id.text_transaction)).setText(getString(R.string.transaction_fgmt_incomes_title));
                     ((Button) view.findViewById(R.id.text_transaction)).setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_income_title));
                     //((ImageView) view.findViewById(R.id.imgview_transaction)).setBackgroundResource(R.drawable.ic_add_income);
+                    mTextMonthlyTotal.setText(R.string.fragment_trans_txt_totalEarned);
                     addTransaction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.incomes_cat)));
                     addTransaction.setRippleColor(getResources().getColor(R.color.incomes_trans));
 
@@ -243,7 +269,7 @@ public class TransFragment extends Fragment {
                     addTransaction.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(@Nullable View v) {
-                            DialogOnBoarding dialog = new DialogOnBoarding();
+                            DialogTransaction dialog = new DialogTransaction();
                             Bundle bundle = new Bundle();
                             bundle.putInt(DialogTransaction.GROUP_ID, Category.Group.INCOMES);
                             //bundle.putSerializable(DialogTransaction.ARG_CALENDAR, listener.getPeriodSelected());
@@ -260,6 +286,7 @@ public class TransFragment extends Fragment {
                     expenseBtn.setText(getString(R.string.transaction_fgmt_expenses_title));
                     expenseBtn.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_expense_title));
                     //((ImageView) view.findViewById(R.id.imgview_transaction)).setBackgroundResource(R.drawable.ic_add_expense);
+                    mTextMonthlyTotal.setText(R.string.fragment_trans_txt_totalSpent);
                     addTransaction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.expenses_cat)));
                     addTransaction.setRippleColor(getResources().getColor(R.color.expenses_trans));
                     update(Category.Group.EXPENSES, dateSelected);
@@ -319,7 +346,7 @@ public class TransFragment extends Fragment {
                         }
                     });
 
-                    List<Transaction> listTransactions =mInnerListener.getTransactions(DatabaseSchema.TransactionTable.mTransactions, "CAST(category_id as TEXT) = ?", new String[]{c.getId().toString()});
+                    List<Transaction> listTransactions = mInnerListener.getTransactions(DatabaseSchema.TransactionTable.mTransactions, "CAST(category_id as TEXT) = ?", new String[]{c.getId().toString()});
                     listTransactions.sort(Comparator.comparing(o -> o.getDateTime()));
 
                     for (Transaction t : listTransactions) {
@@ -396,7 +423,6 @@ public class TransFragment extends Fragment {
                     button.setVisibility(View.INVISIBLE);
                 }
             }
-
         }
 
 

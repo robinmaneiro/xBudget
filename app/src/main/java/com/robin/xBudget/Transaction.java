@@ -82,9 +82,7 @@ public class Transaction {
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yy HH:mm");
-        return
-
-               fmt.print(getDateTime()) + "   " + getName() + "   " + getAmount();
+        return fmt.print(getDateTime()) + "   " + getName() + "   " + getAmount();
     }
 
     @Override

@@ -131,6 +131,8 @@
     <string name="dialog_negativeButton">cancel</string>
     <string name="dialog_category_neutral_delete">Delete</string>
     <string name="fragment_trans_txt_totalSpent">Total Spent / Total Budgeted:</string>
+    <string name="fragment_trans_txt_totalEarned" translatable="false">Total Earned / Total Expected:</string>
+
     <string name="stats_fragment_insertCategory">Insert a category</string>
     <string name="dataview_total_period">Total period:</string>
     <string name="text_dialog_about_paragraph1">"Thank you for downloading my application! I am a self-taught Android developer originally from Spain. This project was created to help people to improve their financial health. My aim on the designing of this application was to manage financial data in a simple, intuitive and graphical way, offering also options for those who need to have more details.  "</string>
@@ -147,6 +149,7 @@
     <string name="dialog_category_confirmation_msg1">This will delete all the transactions (</string>
     <string name="dialog_category_confirmation_msg2">) in this category</string>
     <string name="note_this_will_change_currency_symbol_in_the_next_start_of_the_app">NOTE: This will change currency symbol in the next start of the app</string>
+    <string name="dialogonboarding_skip_btn">SKIP</string>
 
 
 </resources>

@@ -100,7 +100,7 @@
                 android:layout_gravity="left"
                 android:layout_weight="0.9"
                 android:hint="@string/dialog_trans_cat_name"
-                android:maxLength="14" />
+                android:maxLength="15" />
 
             <TextView
                 android:id="@+id/text_currency2"

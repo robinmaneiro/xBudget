@@ -58,7 +58,7 @@ public class DialogSettings extends DialogFragment {
 
     Listener mListener;
     public final String TAG = this.getClass().getSimpleName();
-    Set <Currency> mCurrencySet;
+   // Set <Currency> mCurrencySet;
 
     TextView mTextViewValue;
     ImageView mImageViewFlag;
@@ -121,7 +121,7 @@ public class DialogSettings extends DialogFragment {
  *
  */
 
-        List<ExtendedCurrency> currencies = ExtendedCurrency.getAllCurrencies(); //List of all currencies
+        //List<ExtendedCurrency> currencies = ExtendedCurrency.getAllCurrencies(); //List of all currencies
         //ExtendedCurrency[] currencies = ExtendedCurrency.CURRENCIES; //Array of all currencies
 
         /*
@@ -178,8 +178,8 @@ public class DialogSettings extends DialogFragment {
 
             }
         });
-
          */
+
         builder.setView(view).setCustomTitle(textView)
 
                 .setPositiveButton("OK", new DialogInterface.OnClickListener(){
@@ -197,36 +197,6 @@ public class DialogSettings extends DialogFragment {
 
         return builder.create();
     }
-
-    /*
-    static class Utils {
-        public static SortedMap<Currency, Locale> currencyLocaleMap;
-
-        static {
-            currencyLocaleMap = new TreeMap<Currency, Locale>(new Comparator<Currency>() {
-                public int compare(Currency c1, Currency c2) {
-                    return c1.getCurrencyCode().compareTo(c2.getCurrencyCode());
-                }
-            });
-            for (Locale locale : Locale.getAvailableLocales()) {
-                try {
-                    Currency currency = Currency.getInstance(locale);
-                    currencyLocaleMap.put(currency, locale);
-                } catch (Exception e) {
-                }
-            }
-        }
-
-
-        public static String getCurrencySymbol(String currencyCode) {
-            Currency currency = Currency.getInstance(currencyCode);
-            System.out.println(currencyCode + ":-" + currency.getSymbol(currencyLocaleMap.get(currency)));
-            return currency.getSymbol(currencyLocaleMap.get(currency));
-        }
-
-    }
-
-     */
 
     @Override
     public void onAttachFragment(@NonNull Fragment childFragment) {

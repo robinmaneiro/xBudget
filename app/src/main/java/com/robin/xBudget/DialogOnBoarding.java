@@ -14,62 +14,56 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DialogOnBoarding extends DialogFragment {
 
+    ViewPager viewPager;
+    Button nextButton, skipButton;
+    int startingPosition;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.fragment_on_boarding, null);
+        View view = inflater.inflate(R.layout.dialog_on_boarding, null);
 
-        builder.setView(view).setPositiveButton("SKIP", new DialogInterface.OnClickListener() {
+        skipButton = view.findViewById(R.id.dialog_onboarding_btn_skip);
+        nextButton = view.findViewById(R.id.dialog_onboarding_btn_next);
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+            }
+        });
+
+        viewPager.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                if(viewPager.getCurrentItem()==6)nextButton.setText("FINISH");
+
+            }
+        });
+        builder.setView(view)
+                .setNegativeButton(R.string.dialogonboarding_skip_btn, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+                //dialogInterface.dismiss();
+                //viewPager.setCurrentItem(++startingPosition);
             }
         });
 
 
         // Initialize ViewPager view
-        ViewPager viewPager = view.findViewById(R.id.viewPagerOnBoarding);
+         viewPager = view.findViewById(R.id.viewPagerOnBoarding);
         // create ViewPager adapter
-        TestAdapter viewPagerAdapter = new TestAdapter();
-
-        /*
-        // Add All Fragments to ViewPager
-        viewPagerAdapter.addFragment(new StepOneFragment());
-        viewPagerAdapter.addFragment(new StepTwoFragment());
-        viewPagerAdapter.addFragment(new StepThreeFragment());
-        viewPagerAdapter.addFragment(new StepFourFragment());
-
-         */
-
-        //mSkipButton = view.findViewById(R.id.skip_btn);
-
-/*
-        mSkipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-
- */
-
+        OnBoardingAdapter viewPagerAdapter = new OnBoardingAdapter();
 
         // Set Adapter for ViewPager
         viewPager.setAdapter(viewPagerAdapter);
@@ -82,6 +76,7 @@ public class DialogOnBoarding extends DialogFragment {
         return builder.create();
     }
 
+    /*
     // ViewPager Adapter class
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -103,35 +98,47 @@ public class DialogOnBoarding extends DialogFragment {
         }
     }
 
-    private class TestAdapter extends PagerAdapter {
+     */
 
-        private int mCurrentPosition = -1;
-        
+    private class OnBoardingAdapter extends PagerAdapter {
+
+        //private int mCurrentPosition = -1;
+
         @Override
         public int getCount() {
-            return 4;
+            return 7;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            int layoutThingy;
+
+            int layoutSelected;
 
             switch(position) {
                 case 0:
-                    layoutThingy = R.layout.fragment_step_one;
+                    layoutSelected = R.layout.fragment_step_one;
                     break;
                 case 1:
-                    layoutThingy = R.layout.fragment_step_two;
+                    layoutSelected = R.layout.fragment_step_two;
                     break;
                 case 2:
-                    layoutThingy = R.layout.fragment_step_three;
+                    layoutSelected = R.layout.fragment_step_three;
+                    break;
+                case 3:
+                    layoutSelected = R.layout.fragment_step_four;
+                    break;
+                case 4:
+                    layoutSelected = R.layout.fragment_step_five;
+                    break;
+                case 5:
+                    layoutSelected = R.layout.fragment_step_six;
                     break;
                 default:
-                    layoutThingy = R.layout.fragment_step_four;
+                    layoutSelected = R.layout.fragment_step_seven;
             }
 
-            View view = inflater.inflate(layoutThingy, null);
+            View view = inflater.inflate(layoutSelected, null);
             container.addView(view);
             view.requestFocus();
             return view;

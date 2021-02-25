@@ -25,10 +25,8 @@
             android:layout_marginStart="13dp"
             android:textColor="@color/text_gray"
             android:fontFamily="@font/carter_one"
-            android:text="TODOS LOS INGRESOS"
             android:textSize="15dp"
             />
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
 

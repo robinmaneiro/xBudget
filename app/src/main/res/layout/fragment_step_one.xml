@@ -3,32 +3,249 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/ic_menu_delete" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="Welcome to xBudget!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Welcome"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold"
-         />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Onboarding screen example"
+        android:layout_marginTop="5dp"
+        android:text="Some demo categories have been created"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textStyle="bold"
-         />
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/dark_grey"
+        android:fontFamily="@font/carter_one"
+        android:text="Incomes"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_income_cat_0"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/blue_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_income_cat_0"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/demo_income_cat_0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_income_cat_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/blue_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_income_cat_1"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+
+            android:text="@string/demo_income_cat_1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_income_cat_2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/blue_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_income_cat_2"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/demo_income_cat_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Expenses"
+        android:textColor="@color/dark_grey"
+        android:fontFamily="@font/carter_one"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_expense_cat_0"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/red_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_expense_cat_0"
+            android:gravity="center"
+            android:text="@string/demo_expense_cat_0"
+            android:layout_marginLeft="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_expense_cat_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/red_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_expense_cat_1"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/demo_expense_cat_1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_expense_cat_2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/red_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_expense_cat_2"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/demo_expense_cat_2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_expense_cat_3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/red_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_expense_cat_3"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/demo_expense_cat_3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dot_expense_cat_4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="111dp"
+            android:src="@drawable/red_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_expense_cat_4"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/demo_expense_cat_4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/pen_category_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_pencil_edit_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/pen_category_icon"
+            android:gravity="center"
+            android:text="Press this icon, next to each category, to delete, change name or adjust the expented amount for the selected income/expense category "
+            android:textSize="10dp"
+            android:textStyle="italic" />
+    </RelativeLayout>
+
 
 </LinearLayout>

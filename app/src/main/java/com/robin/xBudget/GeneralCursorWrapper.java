@@ -26,7 +26,6 @@ public class GeneralCursorWrapper extends CursorWrapper {
         Double amount = getDouble(getColumnIndex(TransactionTable.TransCols.AMOUNT));
         String description = getString(getColumnIndex(TransactionTable.TransCols.DESCRIPTION));
         String date = getString(getColumnIndex(TransactionTable.TransCols.DATE));
-        //Log.d("TEST", " DATE IS: "+date);
 
         Transaction transaction = new Transaction(UUID.fromString(id));
         transaction.setGroupId(groupId);
