@@ -45,7 +45,7 @@ import java.util.List;
 import static com.robin.xBudget.R.*;
 
 public class DataViewFragment extends Fragment {
-    private final String TAG = "DataViewFragment";
+    private final String TAG = this.getClass().getSimpleName();
 
     public static DataViewFragment newInstance() {
         return new DataViewFragment();
@@ -97,32 +97,13 @@ public class DataViewFragment extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                /*
-                Log.d("TABGRAPH", "OnTabSelected called with tab value:" + tab.getPosition());
-                Log.d("TABGRAPH", "tab.getposition() is:" + tab.getPosition());
-                Log.d("TABGRAPH", "viewpager.getcurrentitem() is;" + viewPager.getCurrentItem());
-                 */
-
-                //Toast.makeText(getContext(), "dateSelected is: " + dateSelected, Toast.LENGTH_SHORT).show();
 
                 if (tab.getPosition() != 2) {
-                    int currentItem = viewPager.getCurrentItem();
                     dateSelected = mOuterListener.spinnerToJodaTime(mOuterListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null).get(mSpinner.getSelectedItemPosition()));
 
                     DataViewFragment.DemoObjectFragment fragment = (DataViewFragment.DemoObjectFragment) getChildFragmentManager()
                             .findFragmentByTag("f" + tab.getPosition());
                     if (fragment != null) {
-
-                        /*
-                        fragment.mBarChart.clear();
-                        fragment.mBarData.clearValues();
-                        fragment.mBarEntries.clear();
-                        fragment.mBarDataSet.clear();
-                        fragment.dataFiller(tab.getPosition() + 1, dateSelected);
-                        fragment.mBarChart.notifyDataSetChanged();
-                        fragment.mBarData.notifyDataChanged();
-                        fragment.mBarChart.invalidate();
-                         */
 
                         fragment.mBarChart.notifyDataSetChanged();
                         fragment.mBarChart.clear();
@@ -143,8 +124,6 @@ public class DataViewFragment extends Fragment {
                     DataViewFragment.DemoObjectFragment fragment = (DataViewFragment.DemoObjectFragment) getChildFragmentManager()
                             .findFragmentByTag("f" + tab.getPosition());
                     if (fragment != null) {
-                        //fragment.mBarDataSet.clear();
-                        //fragment.mBarData.clearValues();
                         fragment.mBarChart.notifyDataSetChanged();
                         fragment.mBarChart.clear();
                         fragment.mBarDataSet.clear();
@@ -173,17 +152,12 @@ public class DataViewFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (flagItemSelected++ > 0) {
-                    //Log.d("TABGRAPH", "OnItemSelected called");
-
-                    //int currentItem = viewPager.getCurrentItem();
                     int currentItem = tabLayout.getSelectedTabPosition();
 
                     if (currentItem != 2) {
                         dateSelected = mOuterListener.spinnerToJodaTime(mOuterListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null).get(i));
                     } else {
                         dateSelected = (String) mOuterListener.getYearArrayAdapter().getItem(i);
-                        //Toast.makeText(getContext(), "dateSelected is: " + dateSelected, Toast.LENGTH_SHORT).show();
-
                     }
 
                     DataViewFragment.DemoObjectFragment fragment = (DataViewFragment.DemoObjectFragment) getChildFragmentManager()
@@ -206,21 +180,6 @@ public class DataViewFragment extends Fragment {
         });
     }
 
-
-
-    /*
-    public String dateConverter(String parsedDate) {
-        DateTimeFormatter formatterFrom = DateTimeFormat.forPattern("MMMM yyyy");
-        DateTime dt = formatterFrom.parseDateTime(parsedDate);
-
-        DateTimeFormatter formatterTo = DateTimeFormat.forPattern("yyyyM");
-        String dateReady = formatterTo.print(dt);
-
-        return dateReady;
-    }
-
-     */
-
     public class DemoCollectionAdapter extends FragmentStateAdapter {
         public DemoCollectionAdapter(Fragment fragment) {
             super(fragment);
@@ -229,10 +188,10 @@ public class DataViewFragment extends Fragment {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            // Return a NEW fragment instance in createFragment(int)
+            // Return a NEW fragment instance
             Fragment fragment = new DataViewFragment.DemoObjectFragment();
             Bundle args = new Bundle();
-            // Our object is just an integer :-P
+            // Pass to the fragment the position
             args.putInt(DataViewFragment.DemoObjectFragment.POSITION, position);
             fragment.setArguments(args);
             return fragment;
@@ -341,17 +300,17 @@ public class DataViewFragment extends Fragment {
                 for (Category c : categoryList) {
                     float value = 0;
                     List<Transaction> transactionList = mListener.getTransactions(DatabaseSchema.TransactionTable.mTransactions, "CAST(category_id as TEXT) = ?", new String[]{c.getId().toString()});
-                        for (Transaction t : transactionList) {
-                            value += t.getAmount().floatValue();
-                        }
-                        totalValue += value;
+                    for (Transaction t : transactionList) {
+                        value += t.getAmount().floatValue();
+                    }
+                    totalValue += value;
                     mBarEntries.add(new BarEntry((float) ++x, value));
                 }
 
-                mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(totalValue));
+                mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(totalValue));
 
             } else {
-                int checkDataInserted=0; //Check if there is any value inserted in the months-of-the-year bars created in the chart
+                int checkDataInserted = 0; //Check if there is any value inserted in the months-of-the-year bars created in the chart
                 float totalValue = 0;
                 for (int i = 1; i <= 12; i++) { //Add the entries for Savings
                     float monthlyAmount = 0;
@@ -375,28 +334,28 @@ public class DataViewFragment extends Fragment {
                     mBarEntries.add(new BarEntry((float) ++x, monthlyAmount));
                     arrayDataSavings[i] = new DateFormatSymbols().getShortMonths()[i - 1];
                     mSavingsColors.add(ContextCompat.getColor(getContext(), monthlyAmount < 0.0F ? color.expenses_cat : monthlyAmount == 0.0F ? color.dark_grey : color.savings_trans));
-                    if(monthlyAmount!=0.0f)++checkDataInserted;
-                    totalValue +=monthlyAmount;
+                    if (monthlyAmount != 0.0f) ++checkDataInserted;
+                    totalValue += monthlyAmount;
                 }
-                if(checkDataInserted==0){
+                if (checkDataInserted == 0) {
                     mDataViewLayout.setVisibility(View.GONE);
                     mNoDataLayout.setVisibility(View.VISIBLE);
                     mImageNoData.setImageResource(drawable.no_savings_ic);
                     mTextNoData.setText(string.dataview_savings_no_data);
-                }else{
+                } else {
                     mNoDataLayout.setVisibility(View.GONE);
                     mDataViewLayout.setVisibility(View.VISIBLE);
 
                     // set text to values here
-                    if(totalValue<0.0){
-                        mTextTotalPeriod.setText("-"+MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(Math.abs(totalValue))); //Show the hyphen before the currency symbol
+                    if (totalValue < 0.0) {
+                        mTextTotalPeriod.setText("-" + MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(Math.abs(totalValue))); //Show the hyphen before the currency symbol
                         mTextTotalPeriod.setTextColor(getResources().getColor(color.expenses_cat));
-                    }else if(totalValue>0.0){
-                        mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(totalValue));
+                    } else if (totalValue > 0.0) {
+                        mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(totalValue));
                         mTextTotalPeriod.setTextColor(getResources().getColor(color.savings_trans));
 
-                    }else{
-                        mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL +mDecimalFormat.format(totalValue));
+                    } else {
+                        mTextTotalPeriod.setText(MainActivity.CURRENCY_SYMBOL + mDecimalFormat.format(totalValue));
                     }
                 }
             }
@@ -437,11 +396,6 @@ public class DataViewFragment extends Fragment {
             xAxis.setPosition(XAxis.XAxisPosition.TOP);
             xAxis.setGranularity(1f);
             mBarChart.animateY(arrayDataTransactions.length > 2 ? 850 : 450);
-
-            //xAxis.setCenterAxisLabels(true);
-            //xAxis.setAxisMinimum(1);
-            //mBarChart.notifyDataSetChanged();
-            //mBarChart.invalidate();
 
         }
 
@@ -492,10 +446,13 @@ public class DataViewFragment extends Fragment {
 
     public interface OuterListener {
         ArrayAdapter getMonthArrayAdapter();
+
         ArrayAdapter getYearArrayAdapter();
 
         List<String> getParsedMonthDates(String table, String whereClause, String[] whereArgs);
+
         String getCurrentDateParsed();
+
         String spinnerToJodaTime(String parsedDate);
     }
 }

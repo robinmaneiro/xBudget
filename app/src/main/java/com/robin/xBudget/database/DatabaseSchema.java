@@ -8,14 +8,14 @@ public class DatabaseSchema {
 
     public static final class TransactionTable {
 
-            private final String TAG = this.getClass().getSimpleName();
+        private final String TAG = this.getClass().getSimpleName();
 
-            public static final String mTransactions = "transactions";
-            public static final String mCategories = "categories";
-            public static final String mGroups = "groups";
-            public static final String mConstants = "constants";
+        public static final String mTransactions = "transactions";
+        public static final String mCategories = "categories";
+        public static final String mGroups = "groups";
+        public static final String mConstants = "constants";
 
-            public static final class TransCols {
+        public static final class TransCols {
             public static final String ID = "id";
             public static final String GROUP_ID = "group_id";
             public static final String CATEGORY_ID = "category_id";

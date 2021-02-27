@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">" xBudget "</string>
     <string name="overflow_menu_settings">"Настройки "</string>
-    <string name="transaction_fgmt_incomes_title">"Все доходы "</string>
-    <string name="transaction_fgmt_expenses_title">"Все расходы "</string>
+    <string name="trans_fragment_title_incomes">"Все доходы "</string>
+    <string name="trans_fragment_title_expenses">"Все расходы "</string>
     <string name="text_incomes_a1">"- ВСЕ ДОХОДЫ СЕГОДНЯ "</string>
     <string name="dialog_trans_title_updateExpenseTrans">Операция по обновлению расходов</string>
     <string name="dialog_trans_title_updateIncomeTrans">Операция по обновлению доходов</string>
@@ -118,4 +118,33 @@
     <string name="dialog_cat_confirmation_title">Esti sigur?</string>
     <string name="dialog_category_confirmation_msg1">Aceasta va șterge toate tranzacțiile (</string>
     <string name="dialog_category_confirmation_msg2">) în această categorie</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">ПРИМЕЧАНИЕ: Это изменит символ валюты в следующем запуске приложения.</string>
+    <string name="dialog_onboarding_skipBtn">скип</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[следующий >]]></string>
+    <string name="fragment_step_one_welcome">Добро пожаловать в xBudget!</string>
+    <string name="fragment_step_one_pointOne">Для Вашего удобства были созданы некоторые демо-категории</string>
+    <string name="fragment_step_one_pointTwo">Затем вы можете редактировать или удалять их, а также добавлять больше.</string>
+    <string name="fragment_step_three_pointOne">Ваши расходы будут перечислены здесь</string>
+    <string name="fragment_step_three_pointTwo">Нажмите на карандаш рядом с каждой категорией, чтобы удалить, изменить название или скорректировать ожидаемую сумму для выбранной категории доходов/расходов.</string>
+    <string name="fragment_step_two_pointOne">Ваши операции с доходами будут перечислены здесь</string>
+    <string name="fragment_step_two_pointTwo">Нажмите на карандаш рядом с каждой категорией, чтобы удалить, изменить название или скорректировать ожидаемую сумму для выбранной категории доходов/расходов.</string>
+    <string name="fragment_step_four_pointOne">Всего по уровню \"Ежедневно\", \"Еженедельно\", \"Ежемесячно\" и \"Ежегодно\".</string>
+    <string name="fragment_step_four_pointTwo">Сравнение с предыдущим днем/неделей/месяцем/годом</string>
+    <string name="fragment_step_four_pointThree">Сравнение с ежедневным/недельным/ежемесячным/годовым средним показателем</string>
+    <string name="fragment_step_five_selectedCategory">Выбранная категория</string>
+    <string name="fragment_step_five_pointOne">Всего по уровню \"Ежедневно\", \"Еженедельно\", \"Ежемесячно\" и \"Ежегодно\".</string>
+    <string name="fragment_step_five_pointTwo">Сравнение с предыдущим днем/неделей/месяцем/годом</string>
+    <string name="fragment_step_five_pointThree">Сравнение с ежедневным/недельным/ежемесячным/годовым средним показателем</string>
+    <string name="fragment_step_six_transByCat">Итого сделки по категориям</string>
+    <string name="fragment_step_six_pointOne">Ежемесячные операции, отображаемые по категориям.</string>
+    <string name="fragment_step_six_pointTwo">Под графиком вы увидите ежемесячную итоговую сумму.</string>
+    <string name="fragment_step_seven_savingByMonth">Экономия по месяцам</string>
+    <string name="fragment_step_seven_pointOne">Ежегодная экономия отображается по месяцам.</string>
+    <string name="fragment_step_seven_pointTwo">Под графиком вы увидите общую годовую сумму.</string>
+    <string name="fragment_step_eight_newTransCat">Новая операция/категория</string>
+    <string name="fragment_step_eight_pointOne">Добавить прибыльную операцию, нажав</string>
+    <string name="fragment_step_eight_pointTwo">Добавить операцию расходов, нажав</string>
+    <string name="fragment_step_eight_pointThree">Выберите категорию в выпадающем меню или выберите Новую категорию.</string>
+    <string name="dialog_onboarding_finishBtn">КОНЕЦ</string>
+    <string name="fragment_step_eight_newIncomeExpense">Добавить новую транзакцию доходов или расходов</string>
 </resources>

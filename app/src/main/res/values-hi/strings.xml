@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">" xBudget "</string>
     <string name="overflow_menu_settings">समायोजन</string>
-    <string name="transaction_fgmt_incomes_title">सभी आय</string>
-    <string name="transaction_fgmt_expenses_title">सभी खर्चे</string>
+    <string name="trans_fragment_title_incomes">सभी आय</string>
+    <string name="trans_fragment_title_expenses">सभी खर्चे</string>
     <string name="text_incomes_a1">- सभी आय टुडे</string>
     <string name="text_incomes_b1">% - तुलना पूर्व दिवस</string>
     <string name="text_incomes_c1">% -  कम्पेयर दैनिक अवार्ड</string>
@@ -119,4 +119,33 @@
     <string name="dialog_cat_confirmation_title">क्या आपको यकीन है?</string>
     <string name="dialog_category_confirmation_msg1">यह सभी लेनदेन को हटा देगा (</string>
     <string name="dialog_category_confirmation_msg2">) इस श्रेणी में</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">नोट: यह एप्लिकेशन के अगले प्रारंभ पर मुद्रा प्रतीक को बदल देगा</string>
+    <string name="dialog_onboarding_skipBtn">छोड़ें</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[अगला >]]></string>
+    <string name="fragment_step_one_pointOne">आपकी सुविधा के लिए, कुछ डेमो श्रेणियां बनाई गई हैं</string>
+    <string name="fragment_step_one_welcome">XBudget में आपका स्वागत है!</string>
+    <string name="fragment_step_one_pointTwo">फिर आप उन्हें संपादित या हटा सकते हैं, और अधिक भी जोड़ सकते हैं।</string>
+    <string name="fragment_step_three_pointOne">आपका व्यय लेनदेन यहां सूचीबद्ध होगा</string>
+    <string name="fragment_step_two_pointTwo">चयनित आय / व्यय श्रेणी के लिए अपेक्षित राशि को हटाने, नाम बदलने या समायोजित करने के लिए प्रत्येक श्रेणी के आगे पेंसिल दबाएं</string>
+    <string name="fragment_step_three_pointTwo">चयनित आय / व्यय श्रेणी के लिए अपेक्षित राशि को हटाने, नाम बदलने या समायोजित करने के लिए प्रत्येक श्रेणी के आगे पेंसिल दबाएं</string>
+    <string name="fragment_step_two_pointOne">आपके आय लेनदेन को यहां सूचीबद्ध किया जाएगा</string>
+    <string name="fragment_step_four_pointTwo">पिछले दिन / सप्ताह / माह / वर्ष के साथ तुलना</string>
+    <string name="fragment_step_four_pointOne">दैनिक, साप्ताहिक, मासिक और वार्षिक स्तर का कुल।</string>
+    <string name="fragment_step_four_pointThree">दैनिक / साप्ताहिक / मासिक / वार्षिक औसत के साथ तुलना</string>
+    <string name="fragment_step_five_selectedCategory">चयनित श्रेणी</string>
+    <string name="fragment_step_five_pointOne">दैनिक, साप्ताहिक, मासिक और वार्षिक स्तर का कुल।</string>
+    <string name="fragment_step_five_pointTwo">पिछले दिन / सप्ताह / माह / वर्ष के साथ तुलना</string>
+    <string name="fragment_step_five_pointThree">दैनिक / साप्ताहिक / मासिक / वार्षिक औसत के साथ तुलना</string>
+    <string name="fragment_step_six_transByCat">श्रेणी के अनुसार कुल लेनदेन</string>
+    <string name="fragment_step_six_pointOne">श्रेणी द्वारा प्रदर्शित मासिक लेनदेन</string>
+    <string name="fragment_step_six_pointTwo">ग्राफिक के नीचे, आप मासिक भव्य-कुल राशि दिखाएंगे।</string>
+    <string name="fragment_step_seven_savingByMonth">महीने के हिसाब से बचत</string>
+    <string name="fragment_step_seven_pointOne">महीने के हिसाब से सालभर की बचत।</string>
+    <string name="fragment_step_seven_pointTwo">ग्राफिक के नीचे, आप वार्षिक भव्य-कुल राशि दिखाएंगे।</string>
+    <string name="fragment_step_eight_newTransCat">नया लेन-देन / श्रेणी</string>
+    <string name="fragment_step_eight_pointOne">दबाकर एक आय लेनदेन जोड़ें</string>
+    <string name="fragment_step_eight_pointTwo">दबाकर एक व्यय लेनदेन जोड़ें</string>
+    <string name="fragment_step_eight_pointThree">ड्रॉपडाउन मेनू पर एक श्रेणी का चयन करें या एक नई श्रेणी चुनें</string>
+    <string name="dialog_onboarding_finishBtn">समाप्त</string>
+    <string name="fragment_step_eight_newIncomeExpense">एक नई आय या व्यय लेनदेन जोड़ें</string>
 </resources>

@@ -28,20 +28,29 @@
         >
 
         <Button
-            android:id="@+id/dialog_onboarding_btn_next"
+            android:id="@+id/dialog_onboarding_btn_skip"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="NEXT >"
+            android:layout_height="33dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/round_red"
+            android:layout_toLeftOf="@+id/dialog_onboarding_btn_next"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/text_gray"
+            android:fontFamily="@font/carter_one"
+            android:text="@string/dialog_onboarding_skipBtn"
             />
 
         <Button
-            android:id="@+id/dialog_onboarding_btn_skip"
+            android:id="@+id/dialog_onboarding_btn_next"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/dialog_onboarding_btn_next"
-            android:layout_marginRight="5dp"
-            android:text="SKIP"
+            android:layout_height="33dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/round_green"
+            android:textColor="@color/text_gray"
+            android:fontFamily="@font/carter_one"
+            android:text="@string/fragment_step_two_nextBtn"
             />
+
     </RelativeLayout>
 </LinearLayout>

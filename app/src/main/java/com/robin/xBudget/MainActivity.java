@@ -48,8 +48,7 @@ public class MainActivity extends SingleFragmentActivity implements
         , DataViewFragment.OuterListener
         , DialogTransaction.Listener
         , DialogCategory.Listener
-            ,DialogSettings.Listener
-{
+        , DialogSettings.Listener {
     private final String TAG = this.getClass().getSimpleName();
     private SQLiteDatabase mDatabase;
     private Context mContext;
@@ -73,7 +72,6 @@ public class MainActivity extends SingleFragmentActivity implements
 
 
     public void init() {
-        Log.d(TAG, "initObject() was called");
         //Starting the databases
         mContext = getApplicationContext();
         mDatabase = new DatabaseHelper(mContext).getWritableDatabase();
@@ -81,25 +79,23 @@ public class MainActivity extends SingleFragmentActivity implements
 
 
     @Override
-     public String getConstantValue (String key ){
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM constants"+" WHERE "+TransactionTable.ConstantCols.NAME+" = '"+key+"'",null);
+    public String getConstantValue(String key) {
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM constants" + " WHERE " + TransactionTable.ConstantCols.NAME + " = '" + key + "'", null);
 
-        //Toast.makeText(getApplicationContext(),"value is"+cursor.getCount(),Toast.LENGTH_LONG).show();
-
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             do {
                 return cursor.getString(cursor.getColumnIndex(TransactionTable.ConstantCols.VALUE));
-            }while(cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return "";
     }
 
     @Override
-    public void setConstantValue (String key,String value){
-        String query = "UPDATE "+TransactionTable.mConstants
-                + " SET "+TransactionTable.ConstantCols.VALUE+" = '"+value
-                + "' WHERE "+TransactionTable.ConstantCols.NAME+" = '"+key+"'";
+    public void setConstantValue(String key, String value) {
+        String query = "UPDATE " + TransactionTable.mConstants
+                + " SET " + TransactionTable.ConstantCols.VALUE + " = '" + value
+                + "' WHERE " + TransactionTable.ConstantCols.NAME + " = '" + key + "'";
 
         mDatabase.execSQL(query);
 
@@ -140,21 +136,21 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void deleteCategory(Category category) {
         ContentValues values = getContentValuesCategory(category);
-        Log.d(TAG, "CATEGORY DELETED???" + mDatabase.delete(TransactionTable.mCategories, TransactionTable.CatCols.ID + " = ? ", new String[]{category.getId().toString()}));
-        Log.d(TAG, "TRANSACTIONS DELETED???" + mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransCols.CATEGORY_ID + " = ?", new String[]{category.getId().toString()}));
+        mDatabase.delete(TransactionTable.mCategories, TransactionTable.CatCols.ID + " = ? ", new String[]{category.getId().toString()});
+        mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransCols.CATEGORY_ID + " = ?", new String[]{category.getId().toString()});
     }
 
     @Override
     public void updateCategory(Category category) {
         ContentValues values = getContentValuesCategory(category);
-        Log.d(TAG, "TRANSACTION UPDATED???" + mDatabase.update(TransactionTable.mCategories, values, TransactionTable.CatCols.ID + " = ? ", new String[]{category.getId().toString()}));
+        mDatabase.update(TransactionTable.mCategories, values, TransactionTable.CatCols.ID + " = ? ", new String[]{category.getId().toString()});
     }
 
 
     @Override
     public void insertTransaction(Transaction transaction) {
         ContentValues values = getContentValuesTransaction(transaction);
-        Log.d(TAG, "TRANSACTION INSERTED???" + mDatabase.insert(TransactionTable.mTransactions, null, values));
+        mDatabase.insert(TransactionTable.mTransactions, null, values);
 
         //Change month to show to the just added
         //calendarSpinner.setTime(transaction.getDate());
@@ -163,7 +159,7 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void updateTransaction(Transaction transaction) {
         ContentValues values = getContentValuesTransaction(transaction);
-        Log.d(TAG, "TRANSACTION INSERTED???" + mDatabase.update(TransactionTable.mTransactions, values, TransactionTable.TransCols.ID + " = ? ", new String[]{transaction.getId().toString()}));
+        mDatabase.update(TransactionTable.mTransactions, values, TransactionTable.TransCols.ID + " = ? ", new String[]{transaction.getId().toString()});
 
         //Change month to show to the just added
         //calendarSpinner.setTime(transaction.getDate());
@@ -172,7 +168,7 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void deleteTransaction(Transaction transaction) {
         ContentValues values = getContentValuesTransaction(transaction);
-        Log.d(TAG, "TRANSACTION DELETED???" + mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransCols.ID + " = ?", new String[]{transaction.getId().toString()}));
+        mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransCols.ID + " = ?", new String[]{transaction.getId().toString()});
 
         //Change month to show to the just added
         //calendarSpinner.setTime(transaction.getDate());
@@ -181,7 +177,7 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void insertCategory(Category category) {
         ContentValues values = getContentValuesCategory(category);
-        Log.d(TAG, "CATEGORY INSERTED???: " + mDatabase.insert(TransactionTable.mCategories, null, values));
+        mDatabase.insert(TransactionTable.mCategories, null, values);
     }
 
 
@@ -329,28 +325,6 @@ public class MainActivity extends SingleFragmentActivity implements
 
         return spinnerArrayAdapter;
     }
-
-
-    /*
-    @Override
-    public Set<Category> getDistinctCategories(String table, String whereClause, String[] whereArgs){
-        Set<Category> categories = new HashSet<>();
-        //Cursor cursor = mDatabase.rawQuery("SELECT DISTINCT "+TransactionTable.CatCols.NAME+" FROM "+table+" WHERE "+whereClause, whereArgs);
-
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM 'categories' WHERE group_id = 2",null);
-
-        GeneralCursorWrapper gcw = new GeneralCursorWrapper(cursor);
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                categories.add(gcw.getCategory());
-                Log.d(TAG, "NAME IS:"+gcw.getCategory().getName());
-                cursor.moveToNext();
-            }
-        }
-        return categories;
-    }
-
-     */
 
     @Override
     public boolean checkIfCategoryExists(String TableName,
@@ -523,10 +497,10 @@ public class MainActivity extends SingleFragmentActivity implements
 
                 groupByDateTreeMap.putAll(unorderedDailyMap); // Convert the HashMap into a TreeMap to order the element by key
 
-                if(!groupByDateTreeMap.isEmpty()) {
+                if (!groupByDateTreeMap.isEmpty()) {
                     firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                     timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
-                }else{
+                } else {
                     timePassed = 0;
                 }
                 break;
@@ -537,14 +511,11 @@ public class MainActivity extends SingleFragmentActivity implements
                         list.stream().collect(Collectors.groupingBy(transaction -> weeklyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedWeeklyMap); // Convert the HashMap into a TreeMap to order the element by key
 
-                for (Map.Entry<String, Double> entryset : groupByDateTreeMap.entrySet()) {
-                    Log.d(TAG, "key: " + entryset.getKey() + " value: " + entryset.getValue());
-                }
-                if(!groupByDateTreeMap.isEmpty()) {
+                if (!groupByDateTreeMap.isEmpty()) {
 
-                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getWeeks();
-            }else{
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Weeks.weeksBetween(weeklyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getWeeks();
+                } else {
                     timePassed = 0;
                 }
 
@@ -555,10 +526,10 @@ public class MainActivity extends SingleFragmentActivity implements
                 Map<String, Double> unorderedMontlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> monthlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedMontlyMap); // Convert the HashMap into a TreeMap to order the element by key
-                if(!groupByDateTreeMap.isEmpty()) {
-                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getMonths();
-            }else{
+                if (!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Months.monthsBetween(monthlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getMonths();
+                } else {
                     timePassed = 0;
                 }
                 break;
@@ -569,10 +540,10 @@ public class MainActivity extends SingleFragmentActivity implements
                 Map<String, Double> unorderedYearlyMap =
                         list.stream().collect(Collectors.groupingBy(transaction -> yearlyFormatter.print(transaction.getDateTime()), Collectors.summingDouble(Transaction::getAmount)));
                 groupByDateTreeMap.putAll(unorderedYearlyMap); // Convert the HashMap into a TreeMap to order the element by key
-                if(!groupByDateTreeMap.isEmpty()) {
-                firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
-                timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getYears();
-            }else{
+                if (!groupByDateTreeMap.isEmpty()) {
+                    firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
+                    timePassed = Years.yearsBetween(yearlyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getYears();
+                } else {
                     timePassed = 0;
                 }
                 break;
@@ -593,15 +564,12 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public synchronized double getCatsAmount(String tableName, String name, int group_id, int period) {
         List<Category> categoryList = getCategories(tableName, "name = ? AND CAST(group_id as TEXT) = ?", new String[]{name, String.valueOf(group_id)});
-        //Log.d("GETCATSACCOUNTS", "List of categories is: "+categoryList);
 
         List<Transaction> listTransactionFilter = new ArrayList<>();
 
         for (Category c : categoryList) {
-            //Log.d("GETCATSACCOUNTS", "Category in the list is: "+c.getDateAssigned());
 
             for (Transaction t : getTransactions(TransactionTable.mTransactions, "category_id = ?", new String[]{c.getId().toString()})) {
-                //Log.d("GETCATSACCOUNTS", "Transactino in the list is: "+c.getName()+" with date "+t.getDateTime()+" and amount "+t.getAmount());
 
                 listTransactionFilter.add(t);
             }
@@ -705,11 +673,6 @@ public class MainActivity extends SingleFragmentActivity implements
                 throw new IllegalStateException("Unexpected value: " + period);
         }
 
-        Log.d("position", "Period " + period + " currentPeriodAmount is: " + currentPeriodAmount);
-        Log.d("position", "Period " + period + " previousPeriodAmount is: " + previousPeriodAmount);
-
-        //Log.d("position","Period " +period+ " currentPeriodAmount is: "+currentPeriodAmount);
-
         double difference = currentPeriodAmount - previousPeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
         return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
@@ -745,10 +708,6 @@ public class MainActivity extends SingleFragmentActivity implements
                 if (!groupByDateTreeMap.isEmpty()) {
                     firstDate = (String) groupByDateTreeMap.keySet().toArray()[0];
                     timePassed = Days.daysBetween(dailyFormatter.parseDateTime(firstDate).toLocalDate(), DateTime.now().toLocalDate()).getDays();
-                }
-
-                for (Map.Entry<String, Double> entryset : groupByDateTreeMap.entrySet()) {
-                    Log.d(TAG, "key: " + entryset.getKey() + " value: " + entryset.getValue());
                 }
 
                 break;
@@ -798,16 +757,6 @@ public class MainActivity extends SingleFragmentActivity implements
 
         double averagePeriodAmount = groupByDateTreeMap.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;
 
-        Log.d(TAG, "AVERAGEPERIODCATEGORY IS: " + averagePeriodAmount);
-        /*
-        for (Map.Entry entry : groupByDateTreeSet.entrySet()) {
-            Log.d("KEYVALUES", "AVE " + entry.getKey() + " VALUE " + entry.getValue());
-        }
-
-
-        Log.d("AVERAGE", "AVERAGE IS:" + averagePeriodAmount + " WITH GROUP" + group_id + " and period " + period);
-
-         */
         double difference = currentPeriodAmount - averagePeriodAmount;
         double percentage = (difference / currentPeriodAmount) * 100;
         return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
@@ -869,8 +818,6 @@ public class MainActivity extends SingleFragmentActivity implements
 
         double difference = currentPeriodSavings - (previousMonthIncomes - previousMonthExpenses);
         double percentage = (difference / currentPeriodSavings) * 100;
-        Log.d(TAG, "AMOUNT currentperiod " + currentPeriodSavings);
-        Log.d(TAG, "AMOUNT previousperiod " + (previousMonthIncomes - previousMonthExpenses));
 
         return difference > 0.0 ? String.format("+%s%.2f    +%.0f%%", MainActivity.CURRENCY_SYMBOL, difference, percentage) : difference < 0.0 ? String.format("-%s%.2f    %.0f%%", MainActivity.CURRENCY_SYMBOL, Math.abs(difference), percentage) : "< No diff. >";
 
@@ -895,33 +842,33 @@ public class MainActivity extends SingleFragmentActivity implements
         groupByMonthlyDateExp.putAll(groupByMonthlyDateExpUnsorted);
 
 
-        String firstDateInc=null;
-        String firstDateExp=null;
+        String firstDateInc = null;
+        String firstDateExp = null;
         DateTime firstDateTimeInc;
         DateTime firstDateTimeExp;
-        int timePassed=0;
+        int timePassed = 0;
 
-                if(!groupByMonthlyDateInc.isEmpty()) {
-                    firstDateInc = (String) groupByMonthlyDateInc.keySet().toArray()[0];
+        if (!groupByMonthlyDateInc.isEmpty()) {
+            firstDateInc = (String) groupByMonthlyDateInc.keySet().toArray()[0];
 
-                }else if(!groupByMonthlyDateExp.isEmpty()) {
-                    firstDateExp = (String) groupByMonthlyDateExp.keySet().toArray()[0];
+        } else if (!groupByMonthlyDateExp.isEmpty()) {
+            firstDateExp = (String) groupByMonthlyDateExp.keySet().toArray()[0];
 
-                }else if(!(groupByMonthlyDateExp.isEmpty()&&groupByMonthlyDateExp.isEmpty())) {
+        } else if (!(groupByMonthlyDateExp.isEmpty() && groupByMonthlyDateExp.isEmpty())) {
             DateTime firstDateTimeGeneralTrans;
-                    firstDateTimeInc = monthlyFormatter.parseDateTime(firstDateInc);
+            firstDateTimeInc = monthlyFormatter.parseDateTime(firstDateInc);
 
-                    firstDateTimeExp = monthlyFormatter.parseDateTime(firstDateExp);
+            firstDateTimeExp = monthlyFormatter.parseDateTime(firstDateExp);
 
-                    if (firstDateTimeInc.isBefore(firstDateTimeExp)) { //Check if which transaction is previous and set the DateTime object 'firstDaTimeGeneralTrans'
+            if (firstDateTimeInc.isBefore(firstDateTimeExp)) { //Check if which transaction is previous and set the DateTime object 'firstDaTimeGeneralTrans'
                 firstDateTimeGeneralTrans = firstDateTimeInc;
             } else {
                 firstDateTimeGeneralTrans = firstDateTimeExp;
             }
 
             timePassed = Months.monthsBetween(firstDateTimeGeneralTrans.toLocalDate(), DateTime.now().toLocalDate()).getMonths() + 1;
-        }else{
-            timePassed=0;
+        } else {
+            timePassed = 0;
         }
 
         double averagePeriodAmountInc = groupByMonthlyDateInc.values().stream().mapToDouble(Double::doubleValue).sum() / timePassed;

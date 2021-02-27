@@ -113,7 +113,6 @@ public class StatisticsFragment extends Fragment {
         DecimalFormat mDecimalFormat;
 
 
-
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -126,8 +125,6 @@ public class StatisticsFragment extends Fragment {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             Bundle args = getArguments();
             position = args.getInt(POSITION);
-            //Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
-            //Log.d("position ","position is: "+position);
 
             mDecimalFormat = new DecimalFormat("#.##");
             sv = view.findViewById(R.id.scroll_stats_1);
@@ -137,7 +134,7 @@ public class StatisticsFragment extends Fragment {
             mCategoriesList = mInnerListener.getCategories(DatabaseSchema.TransactionTable.mCategories, "CAST(group_id as TEXT) = ?", new String[]{String.valueOf(position + 1)});
             mCategoriesSet = new TreeSet();
 
-            mCategoriesList.forEach(c->mCategoriesSet.add(c.getName()));
+            mCategoriesList.forEach(c -> mCategoriesSet.add(c.getName()));
 
             if (mCategoriesSet.isEmpty())
                 mCategoriesSet.add(getString(R.string.stats_fragment_insertCategory));
@@ -149,9 +146,6 @@ public class StatisticsFragment extends Fragment {
             mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View v, int i, long l) {
-
-                    //Toast.makeText(getContext(), "" + spinnerAdapter.getItem(i), Toast.LENGTH_SHORT).show();
-                    //if(position!=2)setValues(view, (String) mSpinner.getSelectedItem(), position);
 
                     if (flagItemSelected++ > 0 && position != 2)
                         setValuesCategories(view, (String) mSpinner.getSelectedItem(), position);
@@ -219,8 +213,6 @@ public class StatisticsFragment extends Fragment {
 
 
         synchronized void setValuesTransactions(View view, int position) {
-            //Log.d("position", " setValues() was called");
-            //Toast.makeText(getContext(),"position is: "+position,Toast.LENGTH_SHORT).show();
             if (position != 2) {
                 for (int i = 1; i <= 4; i++) {
 
@@ -262,7 +254,6 @@ public class StatisticsFragment extends Fragment {
 
         synchronized void setValuesCategories(View view, String category, int position) {
             for (int i = 5; i <= 8; i++) {
-                //Log.d("position", "position is :"+position+ " and i value is: "+i+" and Category is: "+category+" getContext().getPackageName() "+ getContext().getPackageName());
 
                 TextView a5to8 = ((TextView) view.findViewById(getResources().getIdentifier("value_a" + i, "id", getContext().getPackageName())));
                 TextView b5to8 = ((TextView) view.findViewById(getResources().getIdentifier("value_b" + i, "id", getContext().getPackageName())));

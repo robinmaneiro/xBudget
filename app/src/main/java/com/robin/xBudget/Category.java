@@ -3,6 +3,7 @@ package com.robin.xBudget;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -23,8 +24,8 @@ public class Category {
         this(UUID.randomUUID());
     }
 
-    public Category(UUID id){
-        mId =id;
+    public Category(UUID id) {
+        mId = id;
     }
 
     public Category(String name, Double amount, Integer groupId) {
@@ -93,7 +94,7 @@ public class Category {
         return this.getName();
     }
 
-    public static class Group{
+    public static class Group {
         public static final int INCOMES = 1;
         public static final int EXPENSES = 2;
         public static final int SAVINGS = 3;

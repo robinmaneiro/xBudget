@@ -3,8 +3,8 @@
     <string name="overflow_menu_settings">"Settings "</string>
     <string name="overflow_menu_about">About us</string>
 
-    <string name="transaction_fgmt_incomes_title">"All Incomes "</string>
-    <string name="transaction_fgmt_expenses_title">"All Expenses "</string>
+    <string name="trans_fragment_title_incomes">"All Incomes "</string>
+    <string name="trans_fragment_title_expenses">"All Expenses "</string>
 
     <string name="text_incomes_a1">" - ALL INCOMES TODAY "</string>
     <string name="text_incomes_b1">  % - COMP YESTERDAY </string>
@@ -108,6 +108,7 @@
     <string name="dialog_trans_hint_trans_descript">Description of this transaction</string>
     <string name="dialog_cat_category_name">Category Name:</string>
     <string name="dialog_cat_category_allowance">Category Allowance:</string>
+
     <string name="demo_income_cat_0">Salary</string>
     <string name="demo_income_cat_1">Tax Return</string>
     <string name="demo_income_cat_2">Online Business</string>
@@ -116,7 +117,9 @@
     <string name="demo_expense_cat_2">Internet</string>
     <string name="demo_expense_cat_3">Grocery Shop</string>
     <string name="demo_expense_cat_4">Transport</string>
+
     <string name="dialog_trans_spinner_new_category">New Category</string>
+
     <string name="dialog_trans_toast_validName">Please input a valid name</string>
     <string name="dialog_trans_toast_validAmount">Please, insert a valid amount</string>
     <string name="dialog_trans_toast_bothFields">New Category - Please fill both fields</string>
@@ -129,7 +132,11 @@
     <string name="dialog_transaction_positive_add">add</string>
     <string name="dialog_positive_update">update</string>
     <string name="dialog_negativeButton">cancel</string>
+
+    <string name="dialog_category_confirmation_msg1">This will delete all the transactions (</string>
+    <string name="dialog_category_confirmation_msg2">) in this category</string>
     <string name="dialog_category_neutral_delete">Delete</string>
+
     <string name="fragment_trans_txt_totalSpent">Total Spent / Total Budgeted:</string>
     <string name="fragment_trans_txt_totalEarned" translatable="false">Total Earned / Total Expected:</string>
 
@@ -146,10 +153,35 @@
     <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
     <string name="dialog_cat_confirmation_title">Are you sure?</string>
     <string name="dialog_okbutton">OK</string>
-    <string name="dialog_category_confirmation_msg1">This will delete all the transactions (</string>
-    <string name="dialog_category_confirmation_msg2">) in this category</string>
-    <string name="note_this_will_change_currency_symbol_in_the_next_start_of_the_app">NOTE: This will change currency symbol in the next start of the app</string>
-    <string name="dialogonboarding_skip_btn">SKIP</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">NOTE: This will change the currency symbol on the next start of the app</string>
+    <string name="dialog_onboarding_skipBtn">SKIP</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[NEXT >]]></string>
+    <string name="dialog_onboarding_finishBtn">FINISH</string>
+    <string name="fragment_step_one_welcome">Welcome to xBudget!</string>
+    <string name="fragment_step_one_pointOne">For your convenience, some demo categories have been created</string>
+    <string name="fragment_step_one_pointTwo">You can then edit or delete them, and also add more.</string>
+    <string name="fragment_step_three_pointOne">Your Expense transactions will be listed here</string>
+    <string name="fragment_step_three_pointTwo">Press the pencil next to each category to delete, change the name or adjust the expected amount for the selected income/expense category</string>
+    <string name="fragment_step_two_pointOne">Your Income transactions will be listed here</string>
+    <string name="fragment_step_two_pointTwo">Press the pencil next to each category to delete, change the name or adjust the expected amount for the selected income/expense category</string>
+    <string name="fragment_step_four_pointOne">Total of Daily, Weekly, Monthly, and Yearly level.</string>
+    <string name="fragment_step_four_pointTwo">Comparison with the previous Day/Week/Month/Year</string>
+    <string name="fragment_step_four_pointThree">Comparison with Daily/Weekly/Monthly/Yearly average</string>
+    <string name="fragment_step_five_selectedCategory">Selected Category</string>
+    <string name="fragment_step_five_pointOne">Total of Daily, Weekly, Monthly, and Yearly level.</string>
+    <string name="fragment_step_five_pointTwo">Comparison with previous Day/Week/Month/Year</string>
+    <string name="fragment_step_five_pointThree">Comparison with Daily/Weekly/Monthly/Yearly average</string>
+    <string name="fragment_step_six_transByCat">Total Transactions by Category</string>
+    <string name="fragment_step_six_pointOne">Monthly Transactions displayed by Category.</string>
+    <string name="fragment_step_six_pointTwo">Below the graphic, you will show the monthly grand-total amount.</string>
+    <string name="fragment_step_seven_savingByMonth">Savings by Month</string>
+    <string name="fragment_step_seven_pointOne">Yearly savings displayed by month.</string>
+    <string name="fragment_step_seven_pointTwo">Below the graphic, you will show the yearly grand-total amount.</string>
+    <string name="fragment_step_eight_newTransCat">New Transaction/Category</string>
+    <string name="fragment_step_eight_pointOne">Add an Income Transaction by pressing</string>
+    <string name="fragment_step_eight_pointTwo">Add an Expense Transaction by pressing</string>
+    <string name="fragment_step_eight_pointThree">Select an existing category on the dropdown menu or select a New Category</string>
+    <string name="fragment_step_eight_newIncomeExpense">Add a new Income or Expense Transaction</string>
 
 
 </resources>

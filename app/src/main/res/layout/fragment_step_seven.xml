@@ -22,14 +22,14 @@
         />
 
     <TextView
-        android:layout_margin="5dp"
-        android:textSize="15dp"
-        android:textColor="@color/dark_grey"
-        android:fontFamily="@font/carter_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="Savings by Month" />
+        android:layout_margin="5dp"
+        android:fontFamily="@font/carter_one"
+        android:text="@string/fragment_step_seven_savingByMonth"
+        android:textColor="@color/dark_grey"
+        android:textSize="15dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,7 +47,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/dot_column_0"
-            android:text="Total of Daily, Weekly, Monthly and Yearly level."
+            android:text="@string/fragment_step_seven_pointOne"
+            android:textSize="13dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/dot_column_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/default_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_column_1"
+            android:text="@string/fragment_step_seven_pointTwo"
             android:textSize="13dp"
             />
     </RelativeLayout>

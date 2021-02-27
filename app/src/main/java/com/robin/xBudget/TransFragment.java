@@ -81,7 +81,7 @@ public class TransFragment extends Fragment {
             }, 2000);
         }
 
-        new DialogOnBoarding().show(getFragmentManager(), "dialogOnBoarding"); //DELETE ME AFTER ALL TESTS
+        //new DialogOnBoarding().show(getFragmentManager(), "dialogOnBoarding"); //DELETE ME AFTER ALL TESTS
 
         super.onCreate(savedInstanceState);
     }
@@ -218,8 +218,6 @@ public class TransFragment extends Fragment {
         @Override
         public void onResume() {
             super.onResume();
-            //Toast.makeText(getContext(),"onresume called with position "+tabPosition, Toast.LENGTH_SHORT).show();
-            // update(tabPosition,dateSelected);
         }
 
         @Override
@@ -255,9 +253,8 @@ public class TransFragment extends Fragment {
 
             switch (tabPosition) {
                 case 1:
-                    ((Button) view.findViewById(R.id.text_transaction)).setText(getString(R.string.transaction_fgmt_incomes_title));
+                    ((Button) view.findViewById(R.id.text_transaction)).setText(getString(R.string.trans_fragment_title_incomes));
                     ((Button) view.findViewById(R.id.text_transaction)).setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_income_title));
-                    //((ImageView) view.findViewById(R.id.imgview_transaction)).setBackgroundResource(R.drawable.ic_add_income);
                     mTextMonthlyTotal.setText(R.string.fragment_trans_txt_totalEarned);
                     addTransaction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.incomes_cat)));
                     addTransaction.setRippleColor(getResources().getColor(R.color.incomes_trans));
@@ -272,7 +269,6 @@ public class TransFragment extends Fragment {
                             DialogTransaction dialog = new DialogTransaction();
                             Bundle bundle = new Bundle();
                             bundle.putInt(DialogTransaction.GROUP_ID, Category.Group.INCOMES);
-                            //bundle.putSerializable(DialogTransaction.ARG_CALENDAR, listener.getPeriodSelected());
                             dialog.setArguments(bundle);
                             dialog.setTargetFragment(DemoObjectFragment.this, tabPosition);
                             dialog.show(getFragmentManager(), "Input new income");
@@ -283,9 +279,8 @@ public class TransFragment extends Fragment {
 
                 case 2:
                     Button expenseBtn = ((Button) view.findViewById(R.id.text_transaction));
-                    expenseBtn.setText(getString(R.string.transaction_fgmt_expenses_title));
+                    expenseBtn.setText(getString(R.string.trans_fragment_title_expenses));
                     expenseBtn.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_expense_title));
-                    //((ImageView) view.findViewById(R.id.imgview_transaction)).setBackgroundResource(R.drawable.ic_add_expense);
                     mTextMonthlyTotal.setText(R.string.fragment_trans_txt_totalSpent);
                     addTransaction.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.expenses_cat)));
                     addTransaction.setRippleColor(getResources().getColor(R.color.expenses_trans));
@@ -331,7 +326,7 @@ public class TransFragment extends Fragment {
                     ((TextView) parent.findViewById(R.id.title)).setText(c.getName());
 
                     parent.setIndicatorColorRes(group_id % 2 == 0 ? R.color.expenses_cat : R.color.incomes_cat);
-                    //parent.setIndicatorIconRes(group_id % 2 == 0 ? R.drawable.expense_ic : R.drawable.income_ic); // Next implementation - Add icon to each of the categories.
+                    //parent.setIndicatorIconRes(group_id % 2 == 0 ? R.drawable.expense_ic : R.drawable.income_ic); // Next update - Add icon to each of the categories.
 
                     parent.findViewById(R.id.edit_item).setOnClickListener(new View.OnClickListener() {
                         @Override

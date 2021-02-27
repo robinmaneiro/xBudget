@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">" xBudget "</string>
     <string name="overflow_menu_settings">" Einstellungen "</string>
-    <string name="transaction_fgmt_incomes_title">" Alle Einkünfte "</string>
-    <string name="transaction_fgmt_expenses_title">"Alle Aufwände "</string>
+    <string name="trans_fragment_title_incomes">" Alle Einkünfte "</string>
+    <string name="trans_fragment_title_expenses">"Alle Aufwände "</string>
     <string name="text_incomes_a1">"- ALLE EINKÜNFTE HEUTE "</string>
     <string name="text_incomes_b1">"% - VERGLEICH GESTERN "</string>
     <string name="text_incomes_c1">"% - VERGLEICH TAGESDURCHSCHNITT "</string>
@@ -119,4 +119,33 @@
     <string name="dialog_category_confirmation_msg2">) in dieser Kategorie</string>
     <string name="dialog_category_confirmation_msg1">Dadurch werden alle Transaktionen gelöscht (</string>
     <string name="dialog_cat_confirmation_title">Bist du sicher?</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">HINWEIS: Dadurch wird das Währungssymbol beim nächsten Start der App geändert</string>
+    <string name="dialog_onboarding_skipBtn">ÜBERSPRINGEN</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[NÄCHSTER >]]></string>
+    <string name="fragment_step_three_pointTwo">Drücken Sie den Stift neben jeder Kategorie, um sie zu löschen, den Namen zu ändern oder den erwarteten Betrag für die ausgewählte Einnahmen- / Ausgabenkategorie anzupassen</string>
+    <string name="fragment_step_one_welcome">Willkommen bei xBudget!</string>
+    <string name="fragment_step_one_pointOne">Zur Vereinfachung wurden einige Demokategorien erstellt</string>
+    <string name="fragment_step_one_pointTwo">Sie können sie dann bearbeiten oder löschen und weitere hinzufügen.</string>
+    <string name="fragment_step_four_pointOne">Wählen Sie eine Kategorie im Dropdown-Menü oder eine neue Kategorie</string>
+    <string name="fragment_step_three_pointOne">Wählen Sie eine Kategorie im Dropdown-Menü oder eine neue Kategorie</string>
+    <string name="fragment_step_two_pointOne">Ihre Einkommenstransaktionen werden hier aufgelistet</string>
+    <string name="fragment_step_two_pointTwo">Drücken Sie den Stift neben jeder Kategorie, um sie zu löschen, den Namen zu ändern oder den erwarteten Betrag für die ausgewählte Einnahmen- / Ausgabenkategorie anzupassen</string>
+    <string name="fragment_step_four_pointTwo">Vergleich mit dem vorherigen Tag / Woche / Monat / Jahr</string>
+    <string name="fragment_step_four_pointThree">Vergleich mit dem Tages- / Wochen- / Monats- / Jahresdurchschnitt</string>
+    <string name="fragment_step_five_selectedCategory">Ausgewählte Kategorie</string>
+    <string name="fragment_step_five_pointOne">Summe der täglichen, wöchentlichen, monatlichen und jährlichen Ebenen.</string>
+    <string name="fragment_step_five_pointTwo">Vergleich mit vorherigem Tag / Woche / Monat / Jahr</string>
+    <string name="fragment_step_five_pointThree">Vergleich mit dem Tages- / Wochen- / Monats- / Jahresdurchschnitt</string>
+    <string name="fragment_step_six_transByCat">Gesamttransaktionen nach Kategorie</string>
+    <string name="fragment_step_six_pointOne">Monatliche Transaktionen nach Kategorie angezeigt.</string>
+    <string name="fragment_step_six_pointTwo">Unterhalb der Grafik wird der monatliche Gesamtbetrag angezeigt.</string>
+    <string name="fragment_step_seven_savingByMonth">Einsparungen pro Monat</string>
+    <string name="fragment_step_seven_pointOne">Jährliche Einsparungen pro Monat.</string>
+    <string name="fragment_step_seven_pointTwo">Unterhalb der Grafik wird der jährliche Gesamtbetrag angezeigt.</string>
+    <string name="fragment_step_eight_newTransCat">Neue Transaktion / Kategorie</string>
+    <string name="fragment_step_eight_pointOne">Fügen Sie eine Einkommenstransaktion hinzu, indem Sie auf drücken</string>
+    <string name="fragment_step_eight_pointTwo">Fügen Sie eine Spesentransaktion hinzu, indem Sie auf drücken</string>
+    <string name="fragment_step_eight_pointThree">Wählen Sie eine Kategorie im Dropdown-Menü oder eine neue Kategorie</string>
+    <string name="dialog_onboarding_finishBtn">FERTIG</string>
+    <string name="fragment_step_eight_newIncomeExpense">Fügen Sie eine neue Einnahmen- oder Ausgaben-Transaktion hinzu</string>
 </resources>

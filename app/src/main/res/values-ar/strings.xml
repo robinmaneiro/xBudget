@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">" xBudget "</string>
     <string name="overflow_menu_settings">الإعدادات</string>
-    <string name="transaction_fgmt_incomes_title">كل المداخيل</string>
-    <string name="transaction_fgmt_expenses_title">كل التكاليف</string>
+    <string name="trans_fragment_title_incomes">كل المداخيل</string>
+    <string name="trans_fragment_title_expenses">كل التكاليف</string>
     <string name="text_incomes_a1">- كل الدخل اليوم</string>
     <string name="text_incomes_c1">٪ - متوسط المقارنة اليومي</string>
     <string name="text_expenses_c1">٪ - متوسط المقارنة اليومي</string>
@@ -138,4 +138,33 @@
     <string name="dialog_cat_confirmation_title">هل أنت واثق؟</string>
     <string name="dialog_category_confirmation_msg1">سيؤدي هذا إلى حذف جميع المعاملات (</string>
     <string name="dialog_category_confirmation_msg2">) في هذه الفئة</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">ملاحظة: سيؤدي هذا إلى تغيير رمز العملة في البداية التالية للتطبيق</string>
+    <string name="dialog_onboarding_skipBtn">تخطى</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[التالي >]]></string>
+    <string name="fragment_step_one_welcome">مرحبا بكم في xBudget!</string>
+    <string name="fragment_step_one_pointOne">لراحتك ، تم إنشاء بعض الفئات التجريبية</string>
+    <string name="fragment_step_one_pointTwo">يمكنك بعد ذلك تعديلها أو حذفها وإضافة المزيد.</string>
+    <string name="fragment_step_three_pointOne">سيتم سرد معاملات النفقات الخاصة بك هنا</string>
+    <string name="fragment_step_three_pointTwo">اضغط على القلم الرصاص بجوار كل فئة لحذف أو تغيير الاسم أو ضبط المبلغ المتوقع لفئة الدخل أو المصاريف المحددة</string>
+    <string name="fragment_step_two_pointOne">سيتم سرد معاملات الدخل الخاصة بك هنا</string>
+    <string name="fragment_step_two_pointTwo">اضغط على القلم الرصاص بجوار كل فئة لحذف أو تغيير الاسم أو ضبط المبلغ المتوقع لفئة الدخل أو المصاريف المحددة</string>
+    <string name="fragment_step_four_pointOne">إجمالي المستوى اليومي والأسبوعي والشهري والسنوي.</string>
+    <string name="fragment_step_four_pointTwo">مقارنة باليوم / الأسبوع / الشهر / السنة السابقة</string>
+    <string name="fragment_step_four_pointThree">مقارنة بالمتوسط اليومي / الأسبوعي / الشهري / السنوي</string>
+    <string name="fragment_step_five_selectedCategory">الفئة المختارة</string>
+    <string name="fragment_step_five_pointOne">إجمالي المستوى اليومي والأسبوعي والشهري والسنوي.</string>
+    <string name="fragment_step_five_pointTwo">مقارنة باليوم / الأسبوع / الشهر / السنة السابقة</string>
+    <string name="fragment_step_five_pointThree">مقارنة بالمتوسط اليومي / الأسبوعي / الشهري / السنوي</string>
+    <string name="fragment_step_six_transByCat">إجمالي المعاملات حسب الفئة</string>
+    <string name="fragment_step_six_pointOne">يتم عرض المعاملات الشهرية حسب الفئة.</string>
+    <string name="fragment_step_six_pointTwo">ستظهر أسفل الرسم المبلغ الإجمالي الشهري الإجمالي.</string>
+    <string name="fragment_step_seven_savingByMonth">التوفير في الشهر</string>
+    <string name="fragment_step_seven_pointOne">المدخرات السنوية معروضة حسب الشهر.</string>
+    <string name="fragment_step_seven_pointTwo">ستظهر أسفل الرسم المبلغ الإجمالي السنوي الإجمالي.</string>
+    <string name="fragment_step_eight_newTransCat">معاملة / فئة جديدة</string>
+    <string name="fragment_step_eight_pointOne">أضف معاملة الدخل بالضغط على</string>
+    <string name="fragment_step_eight_pointTwo">أضف معاملة نفقات بالضغط على</string>
+    <string name="fragment_step_eight_pointThree">حدد فئة من القائمة المنسدلة أو حدد فئة جديدة</string>
+    <string name="dialog_onboarding_finishBtn">ينهي</string>
+    <string name="fragment_step_eight_newIncomeExpense">أضف معاملة دخل أو نفقات جديدة</string>
 </resources>

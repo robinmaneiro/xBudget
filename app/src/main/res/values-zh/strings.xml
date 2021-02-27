@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name">" xBudget "</string>
     <string name="overflow_menu_settings">設定</string>
-    <string name="transaction_fgmt_incomes_title">"所有收入 "</string>
-    <string name="transaction_fgmt_expenses_title">"所有费用 "</string>
+    <string name="trans_fragment_title_incomes">"所有收入 "</string>
+    <string name="trans_fragment_title_expenses">"所有费用 "</string>
     <string name="text_incomes_a1">"- 今天的所有收入  "</string>
     <string name="text_incomes_c1">"% - 每日平均比较 "</string>
     <string name="text_expenses_c1">"% - 每日平均比较 "</string>
@@ -132,4 +132,33 @@
     <string name="dialog_cat_confirmation_title">你确定吗？</string>
     <string name="dialog_category_confirmation_msg1">这将删除所有交易（</string>
     <string name="dialog_category_confirmation_msg2">）在此类别中</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">注意：这将在下次启动应用程序时改变货币符号。</string>
+    <string name="dialog_onboarding_skipBtn">跳过</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[下一个 >]]></string>
+    <string name="fragment_step_one_welcome">欢迎来到xBudget!</string>
+    <string name="fragment_step_one_pointOne">为了您的方便，我们创建了一些演示类别。</string>
+    <string name="fragment_step_one_pointTwo">然后你可以编辑或删除它们，也可以添加更多。</string>
+    <string name="fragment_step_three_pointOne">您的费用交易将在这里列出</string>
+    <string name="fragment_step_three_pointTwo">按每个类别旁边的铅笔删除、更改名称或调整所选收入/支出类别的预期金额。</string>
+    <string name="fragment_step_two_pointOne">您的收入交易将在这里列出</string>
+    <string name="fragment_step_two_pointTwo">按每个类别旁边的铅笔删除、更改名称或调整所选收入/支出类别的预期金额。</string>
+    <string name="fragment_step_four_pointOne">每日、每周、每月和每年的总数。</string>
+    <string name="fragment_step_four_pointTwo">与前一天/周/月/年的比较。</string>
+    <string name="fragment_step_four_pointThree">与日/周/月/年平均数比较</string>
+    <string name="fragment_step_five_selectedCategory">选定类别</string>
+    <string name="fragment_step_five_pointOne">日、周、月、年的总和。</string>
+    <string name="fragment_step_five_pointTwo">与以前的日/周/月/年比较。</string>
+    <string name="fragment_step_five_pointThree">与日/周/月/年平均数比较</string>
+    <string name="fragment_step_six_transByCat">按类别分列的交易总额</string>
+    <string name="fragment_step_six_pointOne">每月交易按类别显示。</string>
+    <string name="fragment_step_six_pointTwo">在图形下方，将显示每月的总金额。</string>
+    <string name="fragment_step_seven_savingByMonth">按月节省的费用</string>
+    <string name="fragment_step_seven_pointOne">按月显示的年度储蓄额。</string>
+    <string name="fragment_step_seven_pointTwo">在图形下方，你会看到每年的总金额。</string>
+    <string name="fragment_step_eight_newTransCat">新交易/类别</string>
+    <string name="fragment_step_eight_pointOne">按以下键添加一个收入交易</string>
+    <string name="fragment_step_eight_pointTwo">按以下键添加费用交易</string>
+    <string name="fragment_step_eight_pointThree">在下拉菜单中选择一个类别或选择一个新类别</string>
+    <string name="dialog_onboarding_finishBtn">结束</string>
+    <string name="fragment_step_eight_newIncomeExpense">添加新的收入或费用交易</string>
 </resources>

@@ -33,6 +33,7 @@ import java.util.Comparator;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -58,7 +59,7 @@ public class DialogSettings extends DialogFragment {
 
     Listener mListener;
     public final String TAG = this.getClass().getSimpleName();
-   // Set <Currency> mCurrencySet;
+    // Set <Currency> mCurrencySet;
 
     TextView mTextViewValue;
     ImageView mImageViewFlag;
@@ -69,9 +70,7 @@ public class DialogSettings extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_settings,null);
-
-        //getFragmentManager().getBackStackEntryAt(getFragmentManager().getBackStackEntryCount()-1).getId();
+        View view = inflater.inflate(R.layout.dialog_settings, null);
 
         //TextView for AboutUsDialog title
         TextView textView = new TextView(getContext());
@@ -79,8 +78,8 @@ public class DialogSettings extends DialogFragment {
         textView.setPadding(50, 30, 20, 30);
         textView.setTextSize(23F);
         textView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.carter_one));
-        textView.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.title_orange));
-        textView.setTextColor(ContextCompat.getColor(getContext(),R.color.text_gray));
+        textView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.title_orange));
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
 
         ExtendedCurrency currency = ExtendedCurrency.getCurrencyByISO(mListener.getConstantValue(MainActivity.CURRENCY_KEY));
 
@@ -102,97 +101,33 @@ public class DialogSettings extends DialogFragment {
             }
         });
 
-        mTextViewValue.setOnClickListener(new View.OnClickListener(){
+        mTextViewValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 picker.show(getFragmentManager(), "CURRENCY_PICKER");
             }
         });
 
-        mImageViewFlag.setOnClickListener(new View.OnClickListener(){
+        mImageViewFlag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 picker.show(getFragmentManager(), "CURRENCY_PICKER");
 
             }
         });
-
-/**
- *
- */
-
-        //List<ExtendedCurrency> currencies = ExtendedCurrency.getAllCurrencies(); //List of all currencies
-        //ExtendedCurrency[] currencies = ExtendedCurrency.CURRENCIES; //Array of all currencies
-
-        /*
-         //Get currency by its name
-
-        String name = currency.getName();
-        String code = currency.getCode();
-        int flag = currency.getFlag();  // returns android resource id of flag or -1, if none is associated
-        String symbol = currency.getSymbol();
-
-        */
-        //currency.loadFlagByCode();  // attempts to associate flag to currency based on its ISO code. Used if you create your own instance of Currency.class
-
-        // mListener.setConstantValue(MainActivity.CURRENCY_KEY,currency.getCode());
-
-        /*
-        mSpinner = view.findViewById(R.id.settings_spinner);
-
-
-        mCurrencySet = Currency.getAvailableCurrencies();
-
-        List<Currency> currencyList = new ArrayList<>(mCurrencySet);
-
-        currencyList.sort(new Comparator<Currency>() {
-            @Override
-            public int compare(Currency o1, Currency o2) {
-                return o1.getCurrencyCode().compareTo(o2.getCurrencyCode());
-            }
-        });
-        Locale current = getResources().getConfiguration().locale;
-
-        ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(getContext(),
-                android.R.layout.simple_spinner_dropdown_item, currencyList);
-
-        mSpinner.setAdapter(spinnerArrayAdapter);
-
-        //mSpinner.setSelection(currencyList.indexOf(Currency.getInstance(current)));
-
-        Log.d(TAG, "SUNDAY LOCALE "+current);
-        Log.d(TAG, "SUNDAY CURRENCY "+Currency.getInstance(current));
-
-        mSpinner.setSelection(currencyList.indexOf(Currency.getInstance(current)));
-
-        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                 mListener.setConstantValue(MainActivity.CURRENCY_KEY,Utils.getCurrencySymbol(currencyList.get(i).getCurrencyCode()));
-
-                //Toast.makeText(getContext(),"Symbol: "+ Utils.getCurrencySymbol(currencyList.get(i).getCurrencyCode()),Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-         */
 
         builder.setView(view).setCustomTitle(textView)
 
-                .setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
-                }).setNegativeButton(R.string.dialog_negativeButton,new DialogInterface.OnClickListener(){
+                }).setNegativeButton(R.string.dialog_negativeButton, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-
 
 
         return builder.create();
@@ -210,7 +145,7 @@ public class DialogSettings extends DialogFragment {
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
         WindowManager.LayoutParams layoutParams = getDialog().getWindow().getAttributes();
-        layoutParams.alpha=0.90f;
+        layoutParams.alpha = 0.90f;
         getDialog().getWindow().setAttributes(layoutParams);
         getDialog().getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 
@@ -219,12 +154,14 @@ public class DialogSettings extends DialogFragment {
 
 
     public interface Listener {
-        void setConstantValue (String key,String value);
-        String getConstantValue (String key );
+        void setConstantValue(String key, String value);
+
+        String getConstantValue(String key);
 
 
-        }
-        @Override
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {

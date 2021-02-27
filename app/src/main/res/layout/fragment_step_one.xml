@@ -11,19 +11,58 @@
         android:layout_height="60dp"
         android:background="@color/black"
         android:gravity="center"
-        android:text="Welcome to xBudget!"
+        android:text="@string/fragment_step_one_welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
         android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <ImageView
+        android:id="@+id/dot_column_0"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/default_dot" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="5dp"
-        android:text="Some demo categories have been created"
+        android:layout_centerVertical="true"
+        android:text="@string/fragment_step_one_pointOne"
+        android:layout_toRightOf="@id/dot_column_0"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textStyle="bold" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/dot_column_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/default_dot" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_centerVertical="true"
+            android:text="@string/fragment_step_one_pointTwo"
+            android:layout_toRightOf="@id/dot_column_1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -31,7 +70,7 @@
         android:gravity="center"
         android:textColor="@color/dark_grey"
         android:fontFamily="@font/carter_one"
-        android:text="Incomes"
+        android:text="@string/tab_title_incomes"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold" />
 
@@ -107,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Expenses"
+        android:text="@string/tab_title_expenses"
         android:textColor="@color/dark_grey"
         android:fontFamily="@font/carter_one"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -223,29 +262,6 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-
-        <ImageView
-            android:id="@+id/pen_category_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_pencil_edit_normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/pen_category_icon"
-            android:gravity="center"
-            android:text="Press this icon, next to each category, to delete, change name or adjust the expented amount for the selected income/expense category "
-            android:textSize="10dp"
-            android:textStyle="italic" />
-    </RelativeLayout>
 
 
 </LinearLayout>

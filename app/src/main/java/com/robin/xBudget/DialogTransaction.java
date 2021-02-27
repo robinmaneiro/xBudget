@@ -41,7 +41,7 @@ import java.util.UUID;
 public class DialogTransaction extends DialogFragment {
     private final String TAG = this.getClass().getSimpleName();
 
-    public static final String GROUP_ID = "Group_Id";
+    public static final String GROUP_ID = "GroupId";
     public static final String TRANSACTION_ID = "TransactionID";
 
     private UUID mId;
@@ -159,13 +159,13 @@ public class DialogTransaction extends DialogFragment {
             positiveButton = getString(R.string.dialog_positive_update);
         }
 
-
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == mFilteredCategories.size() - 1) {
                     //Toast.makeText(getContext(),"Other selected",Toast.LENGTH_SHORT).show();
                     mCategoryNewAllowance.setVisibility(View.INVISIBLE);
+                    mTextViewCurrency1.setVisibility(View.INVISIBLE);
                     newCatLayout.setVisibility(View.VISIBLE);
                 } else {
                     mCategoryStringSelected = (String) mSpinner.getAdapter().getItem(position);

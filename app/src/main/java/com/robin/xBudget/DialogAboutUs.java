@@ -34,7 +34,7 @@ public class DialogAboutUs extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_aboutus,null);
+        View view = inflater.inflate(R.layout.dialog_aboutus, null);
 
         //TextView for AboutUsDialog title
         TextView textView = new TextView(getContext());
@@ -42,11 +42,11 @@ public class DialogAboutUs extends DialogFragment {
         textView.setPadding(50, 30, 20, 30);
         textView.setTextSize(23F);
         textView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.carter_one));
-        textView.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.title_orange));
-        textView.setTextColor(ContextCompat.getColor(getContext(),R.color.text_gray));
+        textView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.title_orange));
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
 
         builder.setView(view).setCustomTitle(textView)
-                .setPositiveButton(R.string.dialog_okbutton, new DialogInterface.OnClickListener(){
+                .setPositiveButton(R.string.dialog_okbutton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -65,7 +65,7 @@ public class DialogAboutUs extends DialogFragment {
 
         getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
         WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
-        lp.alpha=0.90f;
+        lp.alpha = 0.90f;
         getDialog().getWindow().setAttributes(lp);
 
         getDialog().getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);

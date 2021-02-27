@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name"> xBudget </string>
     <string name="overflow_menu_settings">Paramètres</string>
-    <string name="transaction_fgmt_incomes_title">Touts Revenus</string>
-    <string name="transaction_fgmt_expenses_title">Toutes Dépenses</string>
+    <string name="trans_fragment_title_incomes">Touts Revenus</string>
+    <string name="trans_fragment_title_expenses">Toutes Dépenses</string>
     <string name="text_incomes_a1">"  - TOUS LES REVENUS AUJOURD'HUI "</string>
     <string name="text_incomes_b1">"  % - COMP HIER"</string>
     <string name="text_incomes_c1">"  % - COMP MOYENNE JOURNALIÈRE"</string>
@@ -137,4 +137,33 @@
     <string name="dialog_category_confirmation_msg1">Cela supprimera toutes les transactions (</string>
     <string name="dialog_category_confirmation_msg2">) dans cette catégorie</string>
     <string name="dialog_cat_confirmation_title">Êtes-vous sûr?</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">REMARQUE : cela modifiera le symbole de la monnaie au prochain démarrage de l\'application</string>
+    <string name="dialog_onboarding_skipBtn">SAUTER</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[SUIVANT >]]></string>
+    <string name="fragment_step_one_welcome">Bienvenue à xBudget !</string>
+    <string name="fragment_step_one_pointOne">Pour vous faciliter la tâche, certaines catégories de démo ont été créées</string>
+    <string name="fragment_step_one_pointTwo">Vous pouvez ensuite les modifier ou les supprimer, et aussi en ajouter d\'autres.</string>
+    <string name="fragment_step_three_pointOne">Vos transactions de dépenses seront répertoriées ici</string>
+    <string name="fragment_step_three_pointTwo">Appuyez sur le crayon à côté de chaque catégorie pour supprimer, modifier le nom ou ajuster le montant prévu pour la catégorie de revenu/dépense sélectionnée</string>
+    <string name="fragment_step_two_pointOne">Your Income transactions will be listed here</string>
+    <string name="fragment_step_two_pointTwo">Appuyez sur le crayon à côté de chaque catégorie pour supprimer, modifier le nom ou ajuster le montant prévu pour la catégorie de revenu/dépense sélectionnée</string>
+    <string name="fragment_step_four_pointOne">Total des niveaux quotidien, hebdomadaire, mensuel et annuel.</string>
+    <string name="fragment_step_four_pointTwo">Comparaison avec le jour, la semaine, le mois ou l\'année précédents</string>
+    <string name="fragment_step_four_pointThree">Comparaison avec la moyenne quotidienne, hebdomadaire, mensuelle et annuelle</string>
+    <string name="fragment_step_five_selectedCategory">Catégorie sélectionnée</string>
+    <string name="fragment_step_five_pointOne">Total des niveaux quotidien, hebdomadaire, mensuel et annuel.</string>
+    <string name="fragment_step_five_pointTwo">Comparaison avec le jour, la semaine, le mois ou l\'année précédents</string>
+    <string name="fragment_step_five_pointThree">Comparaison avec la moyenne quotidienne, hebdomadaire, mensuelle et annuelle</string>
+    <string name="fragment_step_six_transByCat">Total des transactions par catégorie</string>
+    <string name="fragment_step_six_pointOne">Transactions mensuelles affichées par catégorie.</string>
+    <string name="fragment_step_six_pointTwo">Sous le graphique, vous verrez le montant total mensuel.</string>
+    <string name="fragment_step_seven_savingByMonth">Savings per month</string>
+    <string name="fragment_step_seven_pointOne">Épargne annuelle affichée par mois.</string>
+    <string name="fragment_step_seven_pointTwo">Sous le graphique, vous verrez le montant total annuel.</string>
+    <string name="fragment_step_eight_newTransCat">Nouvelle transaction/catégorie</string>
+    <string name="fragment_step_eight_pointOne">Ajoutez une transaction de revenu en appuyant sur</string>
+    <string name="fragment_step_eight_pointTwo">Ajoutez une transaction de dépense en appuyant sur</string>
+    <string name="fragment_step_eight_pointThree">Sélectionnez une catégorie dans le menu déroulant ou sélectionnez une nouvelle catégorie</string>
+    <string name="dialog_onboarding_finishBtn">TERMINER</string>
+    <string name="fragment_step_eight_newIncomeExpense">Ajouter une nouvelle transaction de revenus ou de dépenses</string>
 </resources>

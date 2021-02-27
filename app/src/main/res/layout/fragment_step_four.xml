@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dot_column_0"
-        android:text="Total of Daily, Weekly, Monthly and Yearly level."
+        android:text="@string/fragment_step_four_pointOne"
         android:textSize="13dp"
         />
     </RelativeLayout>
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dot_column_1"
-        android:text="Comparison with the previous Day/Week/Month/Year"
+        android:text="@string/fragment_step_four_pointTwo"
         android:textSize="13dp"
         />
 
@@ -92,8 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/dot_column_2"
-
-        android:text="Comparison with Daily/Weekly/Monthly/Yearly average"
+        android:text="@string/fragment_step_four_pointThree"
         android:textSize="13dp"
         />
 
@@ -104,6 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginHorizontal="5dp"
-        android:src="@drawable/onboarding_stats_all_expenses" />
+        android:src="@drawable/onboarding_stats_all_expenses"
+        />
 
 </LinearLayout>

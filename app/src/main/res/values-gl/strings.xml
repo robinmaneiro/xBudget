@@ -2,8 +2,8 @@
     <string name="app_name"> xBudget </string>
     <string name="overflow_menu_settings"> Configuración </string>
 
-    <string name="transaction_fgmt_incomes_title">" Todos os Ingresos"</string>
-    <string name="transaction_fgmt_expenses_title">" Todos os Gastos  "</string>
+    <string name="trans_fragment_title_incomes">" Todos os Ingresos"</string>
+    <string name="trans_fragment_title_expenses">" Todos os Gastos  "</string>
 
     <string name="text_incomes_a1">  - TOTAL INGRESOS HOXE </string>
     <string name="text_incomes_b1">  % - COMP. ONTE </string>
@@ -143,4 +143,33 @@
     <string name="dialog_cat_confirmation_title">Estás seguro?</string>
     <string name="dialog_category_confirmation_msg1">Isto eliminará todas as transaccións (</string>
     <string name="dialog_category_confirmation_msg2">) nesta categoría</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">NOTA: Isto cambiará o símbolo de moeda no seguinte inicio da aplicación</string>
+    <string name="dialog_onboarding_skipBtn">SALTAR</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[SEGUINTE>]]></string>
+    <string name="fragment_step_one_welcome">Benvido a xBudget!</string>
+    <string name="fragment_step_one_pointOne">Para a súa comodidade, creáronse algunhas categorías de demostración</string>
+    <string name="fragment_step_one_pointTwo">Despois pode editalos ou eliminalos e tamén engadir máis.</string>
+    <string name="fragment_step_three_pointOne">As súas transaccións de gastos aparecerán aquí</string>
+    <string name="fragment_step_three_pointTwo">Preme o lapis ao lado de cada categoría para eliminar, cambiar o nome ou axustar o importe esperado para a categoría de ingresos / gastos seleccionada</string>
+    <string name="fragment_step_two_pointOne">As súas transaccións de ingresos aparecerán aquí</string>
+    <string name="fragment_step_two_pointTwo">Preme o lapis ao lado de cada categoría para eliminar, cambiar o nome ou axustar o importe esperado para a categoría de ingresos / gastos seleccionada</string>
+    <string name="fragment_step_four_pointOne">Total do nivel diario, semanal, mensual e anual.</string>
+    <string name="fragment_step_four_pointTwo">Comparación co día / semana / mes / ano anterior</string>
+    <string name="fragment_step_four_pointThree">Comparación coa media diaria / semanal / mensual / anual</string>
+    <string name="fragment_step_five_selectedCategory">Categoría seleccionada</string>
+    <string name="fragment_step_five_pointOne">Total do nivel diario, semanal, mensual e anual.</string>
+    <string name="fragment_step_five_pointTwo">Comparación co día / semana / mes / ano anterior</string>
+    <string name="fragment_step_five_pointThree">Comparación coa media diaria / semanal / mensual / anual</string>
+    <string name="fragment_step_six_transByCat">Total de transaccións por categoría</string>
+    <string name="fragment_step_six_pointOne">Transaccións mensuais mostradas por categoría.</string>
+    <string name="fragment_step_six_pointTwo">Debaixo do gráfico, amosará o importe total mensual.</string>
+    <string name="fragment_step_seven_savingByMonth">Aforro por mes</string>
+    <string name="fragment_step_seven_pointOne">Aforro anual mostrado por mes.</string>
+    <string name="fragment_step_seven_pointTwo">Debaixo do gráfico, amosará o importe total anual.</string>
+    <string name="fragment_step_eight_newTransCat">Nova transacción / categoría</string>
+    <string name="fragment_step_eight_pointOne">Engade unha transacción de ingresos premendo</string>
+    <string name="fragment_step_eight_pointTwo">Engade unha transacción de gastos premendo</string>
+    <string name="fragment_step_eight_pointThree">Selecciona unha categoría no menú despregable ou selecciona unha nova categoría</string>
+    <string name="dialog_onboarding_finishBtn">SALIR</string>
+    <string name="fragment_step_eight_newIncomeExpense">Engadir unha nova transacción de Ingresos ou Gastos</string>
 </resources>

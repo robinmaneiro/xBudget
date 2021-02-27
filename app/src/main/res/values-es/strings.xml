@@ -2,8 +2,9 @@
     <string name="app_name"> xBudget </string>
     <string name="overflow_menu_settings"> Configuración </string>
 
-    <string name="transaction_fgmt_incomes_title">Todos los Ingresos</string>
-    <string name="transaction_fgmt_expenses_title">Todos los Gastos</string>
+    <string name="trans_fragment_title_incomes">Todos los Ingresos</string>
+    <string name="trans_fragment_title_expenses">Todos los Gastos</string>
+
 
     <string name="text_incomes_a1">  - TOTAL INGRESOS HOY </string>
     <string name="text_incomes_b1">  % - COMP. AYER </string>
@@ -146,6 +147,35 @@
     <string name="dialog_category_confirmation_msg2">) en esta categoría</string>
     <string name="dialog_category_confirmation_msg1">Esto eliminará todas las transacciones (</string>
     <string name="dialog_cat_confirmation_title">¿Estás seguro?</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">NOTA: Esto cambiará el símbolo de la moneda en el siguiente inicio de la aplicación.</string>
+    <string name="dialog_onboarding_skipBtn">SALTAR</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[SIGUIENTE >]]></string>
+    <string name="fragment_step_one_welcome">¡Bienvenido a xBudget!</string>
+    <string name="fragment_step_one_pointOne">Para su comodidad, hemos creado algunas categorías de demostración.</string>
+    <string name="fragment_step_one_pointTwo">Puede editarlas a su gusto o eliminarlas, y también añadir nuevas categorías.</string>
+    <string name="fragment_step_three_pointOne">Las transacciones de gastos aparecerán aquí</string>
+    <string name="fragment_step_three_pointTwo">Pulse el lápiz junto a cada categoría para eliminar, cambiar el nombre o ajustar el importe previsto para la categoría de ingresos/gastos seleccionada</string>
+    <string name="fragment_step_two_pointOne">Las transacciones de ingresos aparecerán aquí</string>
+    <string name="fragment_step_two_pointTwo">Pulse el lápiz junto a cada categoría para eliminar, cambiar el nombre o ajustar el importe previsto para la categoría de ingresos/gastos seleccionada</string>
+    <string name="fragment_step_four_pointOne">Importe total a un nivel diario, semanal, mensual y anual.</string>
+    <string name="fragment_step_four_pointTwo">Comparación con el día/semana/mes/año anterior.</string>
+    <string name="fragment_step_four_pointThree">Comparación con la media diaria/semanal/mensual/anual.</string>
+    <string name="fragment_step_five_selectedCategory">Categoría seleccionada</string>
+    <string name="fragment_step_five_pointOne">Importe total a un nivel diario, semanal, mensual y anual.</string>
+    <string name="fragment_step_five_pointTwo">Comparación con el día/semana/mes/año anterior.</string>
+    <string name="fragment_step_five_pointThree">Comparación con la media diaria/semanal/mensual/anual.</string>
+    <string name="fragment_step_six_transByCat">Total de transacciones por categoría</string>
+    <string name="fragment_step_six_pointOne">Transacciones mensuales mostradas por categoría.</string>
+    <string name="fragment_step_six_pointTwo">Debajo del gráfico, podrá ver el importe total mensual.</string>
+    <string name="fragment_step_seven_savingByMonth">Ahorro mensual</string>
+    <string name="fragment_step_seven_pointOne">El ahorro anual se muestra por meses.</string>
+    <string name="fragment_step_seven_pointTwo">Debajo del gráfico, podrá ver el importe total anual.</string>
+    <string name="fragment_step_eight_newTransCat">Nueva Transacción/Categoría</string>
+    <string name="fragment_step_eight_pointOne">Añada una nueva Transacción de Ingresos pulsando</string>
+    <string name="fragment_step_eight_pointTwo">Añada una nueva Transacción de Gastos pulsando</string>
+    <string name="fragment_step_eight_pointThree">Seleccione una categoría existente en el menú desplegable o seleccione una Nueva Categoría</string>
+    <string name="dialog_onboarding_finishBtn">SALIR</string>
+    <string name="fragment_step_eight_newIncomeExpense">Añadir una nueva transacción de Ingresos o Gastos</string>
 
 
 </resources>

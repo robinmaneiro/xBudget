@@ -2,8 +2,8 @@
     <string name="app_name"> xBudget </string>
     <string name="overflow_menu_settings">Configurações</string>
 
-    <string name="transaction_fgmt_incomes_title">Todas as Receitas</string>
-    <string name="transaction_fgmt_expenses_title">"Todas as Despesas "</string>
+    <string name="trans_fragment_title_incomes">Todas as Receitas</string>
+    <string name="trans_fragment_title_expenses">"Todas as Despesas "</string>
 
     <string name="text_incomes_a1">  - TODAS OS RENDIMENTOS HOJE </string>
     <string name="text_incomes_b1">  % - COMP. DE ONTEM </string>
@@ -144,4 +144,33 @@
     <string name="dialog_category_confirmation_msg2">) nesta categoria</string>
     <string name="dialog_category_confirmation_msg1">Isso excluirá todas as transações (</string>
     <string name="dialog_cat_confirmation_title">Você tem certeza?</string>
+    <string name="dialog_settings_currencySymbolChangeNotice">NOTA: Isto irá alterar o símbolo da moeda no próximo início da aplicação</string>
+    <string name="dialog_onboarding_skipBtn">PULAR</string>
+    <string name="fragment_step_two_nextBtn"><![CDATA[SEGUINTE >]]></string>
+    <string name="fragment_step_one_welcome">Welcome to xBudget!</string>
+    <string name="fragment_step_one_pointOne">Para sua conveniência, foram criadas algumas categorias de demonstração</string>
+    <string name="fragment_step_one_pointTwo">Pode então editá-los ou eliminá-los, e também adicionar mais.</string>
+    <string name="fragment_step_three_pointOne">As suas transacções de Despesas serão listadas aqui</string>
+    <string name="fragment_step_three_pointTwo">Prima o lápis junto a cada categoria para apagar, alterar o nome ou ajustar o montante esperado para a categoria de rendimentos/despesas seleccionada</string>
+    <string name="fragment_step_two_pointOne">Your Income transactions will be listed here</string>
+    <string name="fragment_step_two_pointTwo">Prima o lápis junto a cada categoria para apagar, alterar o nome ou ajustar o montante esperado para a categoria de rendimentos/despesas seleccionada</string>
+    <string name="fragment_step_four_pointOne">Total dos níveis Diário, Semanal, Mensal e Anual.</string>
+    <string name="fragment_step_four_pointTwo">Comparação com o dia/semana/mês/ano anterior</string>
+    <string name="fragment_step_four_pointThree">Comparação com a média diária/semanal/mensal/anual</string>
+    <string name="fragment_step_five_selectedCategory">Categoria seleccionada</string>
+    <string name="fragment_step_five_pointOne">Total dos níveis Diário, Semanal, Mensal e Anual.</string>
+    <string name="fragment_step_five_pointTwo">Comparação com Dia/Semana/Mês/Ano anterior</string>
+    <string name="fragment_step_five_pointThree">Comparação com a média diária/semanal/mensal/anual</string>
+    <string name="fragment_step_six_transByCat">Total de Transacções por Categoria</string>
+    <string name="fragment_step_six_pointOne">Monthly Transactions displayed by Category.</string>
+    <string name="fragment_step_six_pointTwo">Abaixo do gráfico, irá mostrar o montante total mensal.</string>
+    <string name="fragment_step_seven_savingByMonth">Poupanças por mês</string>
+    <string name="fragment_step_seven_pointOne">Poupanças anuais apresentadas por mês.</string>
+    <string name="fragment_step_seven_pointTwo">Abaixo do gráfico, irá mostrar o montante total anual.</string>
+    <string name="fragment_step_eight_newTransCat">Nova Transacção/Categoria</string>
+    <string name="fragment_step_eight_pointOne">Acrescentar uma transacção de rendimentos pressionando</string>
+    <string name="fragment_step_eight_pointTwo">Acrescentar uma transacção de despesas pressionando</string>
+    <string name="fragment_step_eight_pointThree">Select a category on the dropdown menu or select a New Category</string>
+    <string name="dialog_onboarding_finishBtn">FINALIZAR</string>
+    <string name="fragment_step_eight_newIncomeExpense">Adicionar uma nova transação de receita ou despesa</string>
 </resources>

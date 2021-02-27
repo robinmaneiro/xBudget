@@ -2,11 +2,9 @@ package com.robin.xBudget;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.LayoutRes;
@@ -24,9 +22,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     protected abstract void init();
+
     protected abstract Fragment createFragment();
+
     BottomNavigationView bottomNavigationView;
-    Toolbar toolbar;
+    Toolbar topToolbar;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,9 +50,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        JodaTimeAndroid.init(this);
+        JodaTimeAndroid.init(this); //Initialize Joda time
         init();
-        //Log.d(TAG, "onCreate was called");
 
         //With this method SingleFragmentActivity gets prepared to adapt the layout to a tablet in future implementations
         setContentView(getLayoutResId());
@@ -67,19 +66,18 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .commit();
         }
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar_top); //here toolbar is your id in xml
-        setSupportActionBar(toolbar);
+        topToolbar = (Toolbar) findViewById(R.id.toolbar_top);
+        setSupportActionBar(topToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLUE));
-        ((TextView)toolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
-        toolbar.getOverflowIcon().setTint(getResources().getColor(R.color.dark_blue));
+        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
+        topToolbar.getOverflowIcon().setTint(getResources().getColor(R.color.dark_blue));
         bottomBarSupport();
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {  // Item selection in the overflow menu
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.overflow_menu_about:
                 DialogAboutUs aboutUsFragment = new DialogAboutUs();
                 aboutUsFragment.show(getSupportFragmentManager(), "Dialog AboutUs");
@@ -89,6 +87,11 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                 DialogSettings dialogSettings = new DialogSettings();
                 dialogSettings.show(getSupportFragmentManager(), "Dialog Settings");
                 break;
+
+            case R.id.overflow_menu_exitapp:
+                finishAndRemoveTask();
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -98,28 +101,25 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {   //Change fragments in the bottom bar
                 switch (item.getItemId()) {
 
                     case R.id.transactions:
                         TransFragment transFragment = TransFragment.newInstance();
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, transFragment).commit();
-                        ((TextView)toolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
-                        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+                        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
                         break;
 
                     case R.id.statistics:
-                        ((TextView)toolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_statistics);
+                        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_statistics);
                         StatisticsFragment statisticsFragment = StatisticsFragment.newInstance();
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, statisticsFragment).commit();
-                        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.YELLOW));
                         break;
 
                     case R.id.dataview:
                         DataViewFragment dataViewFragment = DataViewFragment.newInstance();
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dataViewFragment).commit();
-                        ((TextView)toolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_dataview);
-                        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.MAGENTA));
+                        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_dataview);
                         break;
                 }
                 return true;

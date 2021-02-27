@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="Total Transactions by Category" />
+        android:text="@string/fragment_step_six_transByCat" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,10 +48,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/dot_column_0"
-            android:text="Total of Daily, Weekly, Monthly and Yearly level."
+            android:text="@string/fragment_step_six_pointOne"
             android:textSize="13dp"
             />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/dot_column_1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/default_dot" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot_column_1"
+            android:text="@string/fragment_step_six_pointTwo"
+            android:textSize="13dp"
+            />
+    </RelativeLayout>
+
 
 
     <ImageView

@@ -5,22 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/black"
-        android:src="@drawable/statistics_ic"
-        />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="60dp"
         android:background="@color/black"
         android:gravity="center"
-        android:text="@string/bottom_bar_statistics"
+        android:text="@string/fragment_step_eight_newTransCat"
         android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:layout_margin="5dp"
@@ -30,14 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:text="@string/fragment_step_five_selectedCategory" />
-
+        android:text="@string/fragment_step_eight_newIncomeExpense" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/dot_column_0"
             android:layout_width="20dp"
@@ -46,18 +36,29 @@
             android:src="@drawable/default_dot" />
 
         <TextView
+            android:id="@+id/add_new_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_toRightOf="@id/dot_column_0"
-            android:text="@string/fragment_step_five_pointOne"
-            android:textSize="13dp"
+            android:text="@string/fragment_step_eight_pointOne"
+            android:textSize="13dp" />
+
+        <ImageView
+            android:id="@+id/pen_category_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/add_new_income"
+            android:src="@drawable/ic_add_income"
             />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/dot_column_1"
@@ -67,18 +68,27 @@
             android:src="@drawable/default_dot" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/add_new_expense"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/dot_column_1"
-            android:text="@string/fragment_step_five_pointTwo"
-            android:textSize="13dp"  />
+            android:text="@string/fragment_step_eight_pointTwo"
+            android:textSize="13dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/add_new_expense"
+            android:src="@drawable/ic_add_expense"
+            />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/dot_column_2"
@@ -88,18 +98,18 @@
             android:src="@drawable/default_dot" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/dot_column_2"
-            android:text="@string/fragment_step_five_pointThree"
+            android:text="@string/fragment_step_eight_pointThree"
             android:textSize="13dp" />
+
     </RelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="5dp"
-        android:src="@drawable/onboarding_stats_cat_expense" />
-
+        android:src="@drawable/onboarding_transaction_expense" />
 
 </LinearLayout>

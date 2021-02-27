@@ -50,7 +50,7 @@
         android:layout_marginVertical="10dp"
         android:textSize="10dp"
         android:textAlignment="center"
-        android:text="@string/note_this_will_change_currency_symbol_in_the_next_start_of_the_app"
+        android:text="@string/dialog_settings_currencySymbolChangeNotice"
         />
 
 </LinearLayout>
