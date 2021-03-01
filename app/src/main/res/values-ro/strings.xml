@@ -7,7 +7,7 @@
     <string name="demo_expense_cat_4">Transport</string>
     <string name="bottom_bar_transactions">Tranzacții</string>
     <string name="dialog_trans_hint_trans_name">Tranzacții Nume</string>
-    <string name="fragment_trans_txt_totalSpent">Total cheltuit / Bugetat total:</string>
+    <string name="fragment_trans_txt_totalSpent">Total Cheltuit / Bugetat Total:</string>
     <string name="dataview_total_period">Perioada totală:</string>
     <string name="dialog_trans_toast_categoryExists">Această categorie există deja</string>
     <string name="demo_income_cat_1">Înapoierea Taxei</string>
@@ -147,4 +147,5 @@
     <string name="fragment_step_eight_pointThree">Selectați o categorie din meniul derulant sau selectați o categorie nouă</string>
     <string name="dialog_onboarding_finishBtn">FINALIZAREA</string>
     <string name="fragment_step_eight_newIncomeExpense">Adăugați o nouă tranzacție de venituri sau cheltuieli</string>
+    <string name="fragment_trans_txt_totalEarned">Total câștigat / Total așteptat:</string>
 </resources>

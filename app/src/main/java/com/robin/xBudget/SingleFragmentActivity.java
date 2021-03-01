@@ -21,7 +21,7 @@ import net.danlew.android.joda.JodaTimeAndroid;
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
-    protected abstract void init();
+    protected abstract void initDatabase();
 
     protected abstract Fragment createFragment();
 
@@ -51,7 +51,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         JodaTimeAndroid.init(this); //Initialize Joda time
-        init();
+        initDatabase();
 
         //With this method SingleFragmentActivity gets prepared to adapt the layout to a tablet in future implementations
         setContentView(getLayoutResId());

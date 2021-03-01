@@ -7,7 +7,7 @@
     <string name="demo_expense_cat_4">Trasporto</string>
     <string name="bottom_bar_transactions">Transazioni</string>
     <string name="dialog_trans_hint_trans_name">Nome Transazione</string>
-    <string name="fragment_trans_txt_totalSpent">Totale speso / Totale preventivato:</string>
+    <string name="fragment_trans_txt_totalSpent">Totale Speso / Totale Preventivato:</string>
     <string name="dataview_total_period">Periodo totale:</string>
     <string name="dialog_trans_toast_categoryExists">Questa categoria esiste già</string>
     <string name="demo_income_cat_1">Dichiarazione fiscale</string>
@@ -148,4 +148,5 @@
     <string name="fragment_step_eight_pointThree">Seleziona una categoria nel menu a discesa o seleziona una Nuova categoria</string>
     <string name="dialog_onboarding_finishBtn">समाप्त</string>
     <string name="fragment_step_eight_newIncomeExpense">Aggiungi una nuova transazione di entrate o uscite</string>
+    <string name="fragment_trans_txt_totalEarned">Totale guadagnato / Totale previsto:</string>
 </resources>

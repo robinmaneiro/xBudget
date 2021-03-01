@@ -172,4 +172,5 @@
     <string name="fragment_step_eight_pointThree">Selecciona unha categoría no menú despregable ou selecciona unha nova categoría</string>
     <string name="dialog_onboarding_finishBtn">SALIR</string>
     <string name="fragment_step_eight_newIncomeExpense">Engadir unha nova transacción de Ingresos ou Gastos</string>
+    <string name="fragment_trans_txt_totalEarned">Total gañado / Total esperado:</string>
 </resources>

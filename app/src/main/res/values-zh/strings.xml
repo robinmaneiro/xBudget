@@ -161,4 +161,5 @@
     <string name="fragment_step_eight_pointThree">在下拉菜单中选择一个类别或选择一个新类别</string>
     <string name="dialog_onboarding_finishBtn">结束</string>
     <string name="fragment_step_eight_newIncomeExpense">添加新的收入或费用交易</string>
+    <string name="fragment_trans_txt_totalEarned">获利总额/预期总金额：</string>
 </resources>

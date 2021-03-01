@@ -148,4 +148,5 @@
     <string name="fragment_step_eight_pointThree">ड्रॉपडाउन मेनू पर एक श्रेणी का चयन करें या एक नई श्रेणी चुनें</string>
     <string name="dialog_onboarding_finishBtn">समाप्त</string>
     <string name="fragment_step_eight_newIncomeExpense">एक नई आय या व्यय लेनदेन जोड़ें</string>
+    <string name="fragment_trans_txt_totalEarned">कुल अर्जित / कुल अपेक्षा:</string>
 </resources>

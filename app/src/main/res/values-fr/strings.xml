@@ -166,4 +166,5 @@
     <string name="fragment_step_eight_pointThree">Sélectionnez une catégorie dans le menu déroulant ou sélectionnez une nouvelle catégorie</string>
     <string name="dialog_onboarding_finishBtn">TERMINER</string>
     <string name="fragment_step_eight_newIncomeExpense">Ajouter une nouvelle transaction de revenus ou de dépenses</string>
+    <string name="fragment_trans_txt_totalEarned">Total Gagné / Total Attendu:</string>
 </resources>

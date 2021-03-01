@@ -77,7 +77,7 @@
     <string name="demo_income_cat_0">Gehalt</string>
     <string name="dataview_expenses_no_data">Keine Aufwandstransaktionen in diesem Monat</string>
     <string name="statistics_transactions_title">Alle Transaktionen</string>
-    <string name="fragment_trans_txt_totalSpent">"Gesamt ausgegeben / Gesamtbudget "</string>
+    <string name="fragment_trans_txt_totalSpent">Gesamt Ausgegeben / Gesamtbudget:</string>
     <string name="dataview_total_period">Gesamtdauer:</string>
     <string name="bottom_bar_transactions">Transaktionen</string>
     <string name="demo_expense_cat_4">Transport</string>
@@ -148,4 +148,5 @@
     <string name="fragment_step_eight_pointThree">Wählen Sie eine Kategorie im Dropdown-Menü oder eine neue Kategorie</string>
     <string name="dialog_onboarding_finishBtn">FERTIG</string>
     <string name="fragment_step_eight_newIncomeExpense">Fügen Sie eine neue Einnahmen- oder Ausgaben-Transaktion hinzu</string>
+    <string name="fragment_trans_txt_totalEarned">Insgesamt verdient / insgesamt erwartet:</string>
 </resources>

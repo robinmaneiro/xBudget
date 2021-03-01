@@ -147,4 +147,5 @@
     <string name="fragment_step_eight_pointThree">Выберите категорию в выпадающем меню или выберите Новую категорию.</string>
     <string name="dialog_onboarding_finishBtn">КОНЕЦ</string>
     <string name="fragment_step_eight_newIncomeExpense">Добавить новую транзакцию доходов или расходов</string>
+    <string name="fragment_trans_txt_totalEarned">Всего заработано / Всего ожидается:</string>
 </resources>

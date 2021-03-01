@@ -138,7 +138,7 @@
     <string name="dialog_category_neutral_delete">Delete</string>
 
     <string name="fragment_trans_txt_totalSpent">Total Spent / Total Budgeted:</string>
-    <string name="fragment_trans_txt_totalEarned" translatable="false">Total Earned / Total Expected:</string>
+    <string name="fragment_trans_txt_totalEarned">Total Earned / Total Expected:</string>
 
     <string name="stats_fragment_insertCategory">Insert a category</string>
     <string name="dataview_total_period">Total period:</string>

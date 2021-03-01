@@ -167,4 +167,5 @@
     <string name="fragment_step_eight_pointThree">حدد فئة من القائمة المنسدلة أو حدد فئة جديدة</string>
     <string name="dialog_onboarding_finishBtn">ينهي</string>
     <string name="fragment_step_eight_newIncomeExpense">أضف معاملة دخل أو نفقات جديدة</string>
+    <string name="fragment_trans_txt_totalEarned">الإجمالي المكتسب / الإجمالي المتوقع:</string>
 </resources>

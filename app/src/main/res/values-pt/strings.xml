@@ -173,4 +173,5 @@
     <string name="fragment_step_eight_pointThree">Select a category on the dropdown menu or select a New Category</string>
     <string name="dialog_onboarding_finishBtn">FINALIZAR</string>
     <string name="fragment_step_eight_newIncomeExpense">Adicionar uma nova transação de receita ou despesa</string>
+    <string name="fragment_trans_txt_totalEarned">Total ganho / Total esperado:</string>
 </resources>

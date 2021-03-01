@@ -71,7 +71,7 @@ public class MainActivity extends SingleFragmentActivity implements
     }
 
 
-    public void init() {
+    public void initDatabase() {
         //Starting the databases
         mContext = getApplicationContext();
         mDatabase = new DatabaseHelper(mContext).getWritableDatabase();
