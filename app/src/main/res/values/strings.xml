@@ -145,7 +145,7 @@
     <string name="text_dialog_about_paragraph1">"Thank you for downloading my application! I am a self-taught Android developer originally from Spain. This project was created to help people to improve their financial health. My aim on the designing of this application was to manage financial data in a simple, intuitive and graphical way, offering also options for those who need to have more details.  "</string>
     <string name="text_dialog_about_paragraph2">I would really appreciate if you take your time to submit any bug or improvement idea you may have :)</string>
     <string name="text_dialog_about_email_text">Email:</string>
-    <string name="text_dialog_about_email_link" translatable="false">robin.maneiro@gmail.com</string>
+    <string name="text_dialog_about_email_link" translatable="false">xbudgetapp@gmail.com</string>
     <string name="text_dialog_about_linkedin_text">LinkedIn:</string>
 
     <string name="text_dialog_about_linkedin_link" translatable="false"><a href="https://www.linkedin.com/in/robinmaneiro/">Robin Maneiro</a></string>

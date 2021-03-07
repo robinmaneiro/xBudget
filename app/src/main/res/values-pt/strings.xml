@@ -138,7 +138,7 @@
     <string name="text_dialog_about_email_text">Email:</string>
     <string name="text_dialog_about_paragraph1">Obrigado por descarregar a minha aplicação! Sou um desenvolvedor autodidacta de Java e Android originário de Espanha. Este projecto foi criado para ajudar as pessoas a melhorar a sua saúde financeira. O meu objectivo na concepção deste aplicativo foi gerir os dados financeiros de uma forma simples, intuitiva e gráfica, oferecendo ao mesmo tempo opções para aqueles que necessitam de mais detalhes.</string>
     <string name="text_dialog_about_paragraph2">Eu realmente apreciaria se você pudesse enviar qualquer bug ou ideia de melhoria que você possa ter :)</string>
-    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - All Rights Reserved</string>
+    <string name="dialog_aboutus_bottom_txt">xBudget® 2021 - Todos os Dereitos Reservados</string>
     <string name="dialog_aboutus_header_txt">Desenvolvido por Robin Maneiro</string>
     <string name="dialog_okbutton">OK</string>
     <string name="dialog_category_confirmation_msg2">) nesta categoria</string>
@@ -152,7 +152,7 @@
     <string name="fragment_step_one_pointTwo">Pode então editá-los ou eliminá-los, e também adicionar mais.</string>
     <string name="fragment_step_three_pointOne">As suas transacções de Despesas serão listadas aqui</string>
     <string name="fragment_step_three_pointTwo">Prima o lápis junto a cada categoria para apagar, alterar o nome ou ajustar o montante esperado para a categoria de rendimentos/despesas seleccionada</string>
-    <string name="fragment_step_two_pointOne">Your Income transactions will be listed here</string>
+    <string name="fragment_step_two_pointOne">As suas transacções de rendimentos serão listadas aqui</string>
     <string name="fragment_step_two_pointTwo">Prima o lápis junto a cada categoria para apagar, alterar o nome ou ajustar o montante esperado para a categoria de rendimentos/despesas seleccionada</string>
     <string name="fragment_step_four_pointOne">Total dos níveis Diário, Semanal, Mensal e Anual.</string>
     <string name="fragment_step_four_pointTwo">Comparação com o dia/semana/mês/ano anterior</string>
@@ -170,7 +170,7 @@
     <string name="fragment_step_eight_newTransCat">Nova Transacção/Categoria</string>
     <string name="fragment_step_eight_pointOne">Acrescentar uma transacção de rendimentos pressionando</string>
     <string name="fragment_step_eight_pointTwo">Acrescentar uma transacção de despesas pressionando</string>
-    <string name="fragment_step_eight_pointThree">Select a category on the dropdown menu or select a New Category</string>
+    <string name="fragment_step_eight_pointThree">Seleccione uma categoria existente no menu suspenso ou seleccione uma Nova Categoria</string>
     <string name="dialog_onboarding_finishBtn">FINALIZAR</string>
     <string name="fragment_step_eight_newIncomeExpense">Adicionar uma nova transação de receita ou despesa</string>
     <string name="fragment_trans_txt_totalEarned">Total ganho / Total esperado:</string>
