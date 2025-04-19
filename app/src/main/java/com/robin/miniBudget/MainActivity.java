@@ -1,4 +1,4 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,9 +16,9 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.mynameismidori.currencypicker.ExtendedCurrency;
-import com.robin.xBudget.database.DatabaseHelper;
-import com.robin.xBudget.database.DatabaseSchema;
-import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
+import com.robin.miniBudget.database.DatabaseHelper;
+import com.robin.miniBudget.database.DatabaseSchema;
+import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;

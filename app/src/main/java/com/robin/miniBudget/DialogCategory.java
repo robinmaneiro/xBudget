@@ -1,4 +1,4 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -21,7 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.robin.xBudget.database.DatabaseSchema;
+import com.robin.miniBudget.database.DatabaseSchema;
 
 import java.util.List;
 import java.util.UUID;

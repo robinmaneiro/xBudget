@@ -1,9 +1,9 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
+import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
