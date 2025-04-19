@@ -3,13 +3,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "30.0.2"
+    compileSdk 35
+    buildToolsVersion("34.0.0")
+    namespace = "com.robin.miniBudget"
 
     defaultConfig {
         applicationId "com.robin.miniBudget"
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 35
         versionCode 1
         versionName "1.0"
 
@@ -23,33 +24,32 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 repositories {
+    google()
+    mavenCentral()
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.diegodobelo.expandingview:expanding-view:0.9.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.7'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    implementation 'com.github.diegodobelo:AndroidExpandingViewLibrary:master'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:1.1.0"
     implementation 'com.google.android.material:material:<version>'
     implementation 'net.danlew:android.joda:2.10.7.2'
-    implementation 'com.github.florent37:shapeofview:1.3.2'
+    implementation 'com.github.florent37:ShapeOfView:v1.0.7'
     implementation 'com.github.midorikocak:currency-picker-android:1.2.1'
-
-
 }

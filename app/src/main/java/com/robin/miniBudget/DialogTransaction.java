@@ -1,4 +1,4 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -27,7 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.robin.xBudget.database.DatabaseSchema;
+import com.robin.miniBudget.database.DatabaseSchema;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -59,7 +59,7 @@ public class DialogTransaction extends DialogFragment {
     private ArrayAdapter spinnerAdapter;
     private Integer mType;
     LinearLayout newCatLayout;
-    private String positiveButton, mTitle;
+    private String mTitle;
     private Listener mListener;
 
 
@@ -72,6 +72,7 @@ public class DialogTransaction extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_transaction, null);
 
 
+        assert getArguments() != null;
         if (getArguments().get(TRANSACTION_ID) != null) {
             mId = (UUID) getArguments().get(TRANSACTION_ID);
         }
@@ -96,7 +97,7 @@ public class DialogTransaction extends DialogFragment {
          * Initialize the elements
          */
         //frag = (SummaryFragment) getTargetFragment();
-        mEditTextName = (EditText) view.findViewById(R.id.name_transaction);
+        mEditTextName = view.findViewById(R.id.name_transaction);
         mTextViewCurrency0 = (TextView) view.findViewById(R.id.text_currency0);
         mTextViewCurrency1 = (TextView) view.findViewById(R.id.text_currency1);
         mTextViewCurrency2 = (TextView) view.findViewById(R.id.text_currency2);
@@ -132,9 +133,10 @@ public class DialogTransaction extends DialogFragment {
         mCategoryNewAllowance.setHint(mType == Category.Group.INCOMES ? getString(R.string.dialog_trans_hint_cat_expected) : getString(R.string.dialog_trans_hint_cat_budget));
 
         //Either creating a new Transaction object or looking for an existing one by its 'mId'
+        String positiveButton1;
         if (mId == null) {
             mTransaction = new Transaction();
-            positiveButton = getString(R.string.dialog_transaction_positive_add);
+            positiveButton1 = getString(R.string.dialog_transaction_positive_add);
         } else {
             //Log.d(TAG, "id is: " + mId);
 
@@ -156,7 +158,7 @@ public class DialogTransaction extends DialogFragment {
                     new String[]{mTransaction.getCategoryId().toString()});
             mSpinner.setSelection(mFilteredCategories.indexOf(category.getName()));
 
-            positiveButton = getString(R.string.dialog_positive_update);
+            positiveButton1 = getString(R.string.dialog_positive_update);
         }
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -235,7 +237,7 @@ public class DialogTransaction extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
                 })
-                .setPositiveButton(positiveButton, new DialogInterface.OnClickListener() {
+                .setPositiveButton(positiveButton1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }

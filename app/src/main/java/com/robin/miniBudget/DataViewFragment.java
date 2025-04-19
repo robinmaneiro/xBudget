@@ -1,4 +1,4 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -33,7 +33,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.robin.xBudget.database.DatabaseSchema;
+import com.robin.miniBudget.database.DatabaseSchema;
 
 import org.joda.time.DateTime;
 
@@ -42,7 +42,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.robin.xBudget.R.*;
+import static com.robin.miniBudget.R.*;
 
 public class DataViewFragment extends Fragment {
     private final String TAG = this.getClass().getSimpleName();

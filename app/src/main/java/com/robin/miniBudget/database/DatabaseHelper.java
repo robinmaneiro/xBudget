@@ -1,14 +1,14 @@
-package com.robin.xBudget.database;
+package com.robin.miniBudget.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.robin.xBudget.Category;
-import com.robin.xBudget.MainActivity;
-import com.robin.xBudget.R;
-import com.robin.xBudget.database.DatabaseSchema.TransactionTable;
+import com.robin.miniBudget.Category;
+import com.robin.miniBudget.MainActivity;
+import com.robin.miniBudget.R;
+import com.robin.miniBudget.database.DatabaseSchema.TransactionTable;
 
 import java.util.Currency;
 import java.util.Locale;

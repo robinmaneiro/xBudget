@@ -1,4 +1,4 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

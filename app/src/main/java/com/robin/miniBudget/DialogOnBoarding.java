@@ -1,4 +1,4 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 
 import androidx.annotation.NonNull;

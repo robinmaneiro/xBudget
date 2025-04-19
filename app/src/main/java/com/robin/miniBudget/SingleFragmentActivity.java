@@ -1,11 +1,10 @@
-package com.robin.xBudget;
+package com.robin.miniBudget;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -17,6 +16,8 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import net.danlew.android.joda.JodaTimeAndroid;
+
+import java.util.Objects;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
@@ -68,62 +69,49 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
 
         topToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(topToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
-        topToolbar.getOverflowIcon().setTint(getResources().getColor(R.color.dark_blue));
+        Objects.requireNonNull(topToolbar.getOverflowIcon()).setTint(getResources().getColor(R.color.dark_blue));
         bottomBarSupport();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {  // Item selection in the overflow menu
+        int itemId = item.getItemId();
 
-        switch (item.getItemId()) {
-            case R.id.overflow_menu_about:
-                DialogAboutUs aboutUsFragment = new DialogAboutUs();
-                aboutUsFragment.show(getSupportFragmentManager(), "Dialog AboutUs");
-                break;
-
-            case R.id.overflow_menu_settings:
-                DialogSettings dialogSettings = new DialogSettings();
-                dialogSettings.show(getSupportFragmentManager(), "Dialog Settings");
-                break;
-
-            case R.id.overflow_menu_exitapp:
-                finishAndRemoveTask();
-                break;
-
+        if (itemId == R.id.overflow_menu_about) {
+            DialogAboutUs aboutUsFragment = new com.robin.miniBudget.DialogAboutUs();
+            aboutUsFragment.show(getSupportFragmentManager(), "Dialog AboutUs");
+        } else if (itemId == R.id.overflow_menu_settings) {
+            DialogSettings dialogSettings = new DialogSettings();
+            dialogSettings.show(getSupportFragmentManager(), "Dialog Settings");
+        } else if (itemId == R.id.overflow_menu_exitapp) {
+            finishAndRemoveTask();
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     public void bottomBarSupport() {
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {   //Change fragments in the bottom bar
+            int itemId = item.getItemId();
+            if (itemId == R.id.transactions) {
+                TransFragment transFragment = TransFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, transFragment).commit();
+                ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
+            } else if (itemId == R.id.statistics) {
+                ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_statistics);
+                StatisticsFragment statisticsFragment = StatisticsFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, statisticsFragment).commit();
 
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {   //Change fragments in the bottom bar
-                switch (item.getItemId()) {
+            } else if (itemId == R.id.dataview) {
+                DataViewFragment dataViewFragment = DataViewFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dataViewFragment).commit();
+                ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_dataview);
 
-                    case R.id.transactions:
-                        TransFragment transFragment = TransFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, transFragment).commit();
-                        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
-                        break;
-
-                    case R.id.statistics:
-                        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_statistics);
-                        StatisticsFragment statisticsFragment = StatisticsFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, statisticsFragment).commit();
-                        break;
-
-                    case R.id.dataview:
-                        DataViewFragment dataViewFragment = DataViewFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dataViewFragment).commit();
-                        ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_dataview);
-                        break;
-                }
-                return true;
             }
+            return true;
         });
     }
 }

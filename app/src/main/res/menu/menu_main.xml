@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.robin.xbudget.MainActivity">
+    tools:context="com.robin.miniBudget.MainActivity">
 
     <item
         android:id="@+id/overflow_menu_settings"
@@ -19,7 +19,4 @@
         android:orderInCategory="2"
         android:title="Exit App"
         app:showAsAction="never" />
-
-
 </menu>
-
