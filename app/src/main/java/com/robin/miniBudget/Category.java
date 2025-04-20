@@ -1,5 +1,7 @@
 package com.robin.miniBudget;
 
+import androidx.annotation.NonNull;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -89,6 +91,7 @@ public class Category {
         return Objects.hash(mGroupId, mDateAssigned, mName);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return this.getName();

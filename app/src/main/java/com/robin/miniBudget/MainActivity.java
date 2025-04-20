@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -30,9 +28,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -40,14 +36,14 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class MainActivity extends SingleFragmentActivity implements
-        TransFragment.DemoObjectFragment.Listener
-        , TransFragment.OuterListener
+        TransactionFragment.DemoObjectFragment.Listener
+        , TransactionFragment.OuterListener
         , StatisticsFragment.OuterListener
         , StatisticsFragment.DemoObjectFragment.InnerListener
         , DataViewFragment.DemoObjectFragment.Listener
         , DataViewFragment.OuterListener
         , DialogTransaction.Listener
-        , DialogCategory.Listener
+        , CategoryDialogFragment.Listener
         , DialogSettings.Listener {
     private final String TAG = this.getClass().getSimpleName();
     private SQLiteDatabase mDatabase;
@@ -67,7 +63,7 @@ public class MainActivity extends SingleFragmentActivity implements
         getParsedMonthDates(TransactionTable.mCategories, null, null);
 
         CURRENCY_SYMBOL = ExtendedCurrency.getCurrencyByISO(getConstantValue(CURRENCY_KEY)).getSymbol(); //get currency from db and set symbol
-        return TransFragment.newInstance();
+        return TransactionFragment.newInstance();
     }
 
 
@@ -80,11 +76,11 @@ public class MainActivity extends SingleFragmentActivity implements
 
     @Override
     public String getConstantValue(String key) {
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM constants" + " WHERE " + TransactionTable.ConstantCols.NAME + " = '" + key + "'", null);
+        Cursor cursor = mDatabase.rawQuery("SELECT * FROM constants" + " WHERE " + TransactionTable.ConstantColumns.NAME + " = '" + key + "'", null);
 
         if (cursor.moveToFirst()) {
             do {
-                return cursor.getString(cursor.getColumnIndex(TransactionTable.ConstantCols.VALUE));
+                return cursor.getString(cursor.getColumnIndex(TransactionTable.ConstantColumns.VALUE));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -94,8 +90,8 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void setConstantValue(String key, String value) {
         String query = "UPDATE " + TransactionTable.mConstants
-                + " SET " + TransactionTable.ConstantCols.VALUE + " = '" + value
-                + "' WHERE " + TransactionTable.ConstantCols.NAME + " = '" + key + "'";
+                + " SET " + TransactionTable.ConstantColumns.VALUE + " = '" + value
+                + "' WHERE " + TransactionTable.ConstantColumns.NAME + " = '" + key + "'";
 
         mDatabase.execSQL(query);
 
@@ -104,13 +100,13 @@ public class MainActivity extends SingleFragmentActivity implements
     private ContentValues getContentValuesTransaction(Transaction transaction) {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm");
         ContentValues values = new ContentValues();
-        values.put(TransactionTable.TransCols.ID, transaction.getId().toString());
-        values.put(TransactionTable.TransCols.CATEGORY_ID, transaction.getCategoryId().toString());
-        values.put(TransactionTable.TransCols.GROUP_ID, transaction.getGroupId());
-        values.put(TransactionTable.TransCols.NAME, transaction.getName());
-        values.put(TransactionTable.TransCols.AMOUNT, transaction.getAmount());
-        values.put(TransactionTable.TransCols.DESCRIPTION, transaction.getDescription());
-        values.put(TransactionTable.TransCols.DATE, String.valueOf(fmt.print(transaction.getDateTime())));
+        values.put(TransactionTable.TransactionColumns.ID, transaction.getId().toString());
+        values.put(TransactionTable.TransactionColumns.CATEGORY_ID, transaction.getCategoryId().toString());
+        values.put(TransactionTable.TransactionColumns.GROUP_ID, transaction.getGroupId());
+        values.put(TransactionTable.TransactionColumns.NAME, transaction.getName());
+        values.put(TransactionTable.TransactionColumns.AMOUNT, transaction.getAmount());
+        values.put(TransactionTable.TransactionColumns.DESCRIPTION, transaction.getDescription());
+        values.put(TransactionTable.TransactionColumns.DATE, String.valueOf(fmt.print(transaction.getDateTime())));
 
         return values;
     }
@@ -119,11 +115,11 @@ public class MainActivity extends SingleFragmentActivity implements
     private ContentValues getContentValuesCategory(Category category) {
 
         ContentValues values = new ContentValues();
-        values.put(TransactionTable.CatCols.ID, category.getId().toString());
-        values.put(TransactionTable.CatCols.GROUP_ID, category.getGroupId());
-        values.put(TransactionTable.CatCols.NAME, category.getName());
-        values.put(TransactionTable.CatCols.AMOUNT, category.getAmount());
-        values.put(TransactionTable.CatCols.DATE, category.getDateAssigned());
+        values.put(TransactionTable.CategoryColumns.ID, category.getId().toString());
+        values.put(TransactionTable.CategoryColumns.GROUP_ID, category.getGroupId());
+        values.put(TransactionTable.CategoryColumns.NAME, category.getName());
+        values.put(TransactionTable.CategoryColumns.AMOUNT, category.getAmount());
+        values.put(TransactionTable.CategoryColumns.DATE, category.getDateAssigned());
 
         return values;
     }
@@ -136,14 +132,14 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void deleteCategory(Category category) {
         ContentValues values = getContentValuesCategory(category);
-        mDatabase.delete(TransactionTable.mCategories, TransactionTable.CatCols.ID + " = ? ", new String[]{category.getId().toString()});
-        mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransCols.CATEGORY_ID + " = ?", new String[]{category.getId().toString()});
+        mDatabase.delete(TransactionTable.mCategories, TransactionTable.CategoryColumns.ID + " = ? ", new String[]{category.getId().toString()});
+        mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransactionColumns.CATEGORY_ID + " = ?", new String[]{category.getId().toString()});
     }
 
     @Override
     public void updateCategory(Category category) {
         ContentValues values = getContentValuesCategory(category);
-        mDatabase.update(TransactionTable.mCategories, values, TransactionTable.CatCols.ID + " = ? ", new String[]{category.getId().toString()});
+        mDatabase.update(TransactionTable.mCategories, values, TransactionTable.CategoryColumns.ID + " = ? ", new String[]{category.getId().toString()});
     }
 
 
@@ -159,7 +155,7 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void updateTransaction(Transaction transaction) {
         ContentValues values = getContentValuesTransaction(transaction);
-        mDatabase.update(TransactionTable.mTransactions, values, TransactionTable.TransCols.ID + " = ? ", new String[]{transaction.getId().toString()});
+        mDatabase.update(TransactionTable.mTransactions, values, TransactionTable.TransactionColumns.ID + " = ? ", new String[]{transaction.getId().toString()});
 
         //Change month to show to the just added
         //calendarSpinner.setTime(transaction.getDate());
@@ -168,7 +164,7 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public void deleteTransaction(Transaction transaction) {
         ContentValues values = getContentValuesTransaction(transaction);
-        mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransCols.ID + " = ?", new String[]{transaction.getId().toString()});
+        mDatabase.delete(TransactionTable.mTransactions, TransactionTable.TransactionColumns.ID + " = ?", new String[]{transaction.getId().toString()});
 
         //Change month to show to the just added
         //calendarSpinner.setTime(transaction.getDate());
@@ -268,7 +264,7 @@ public class MainActivity extends SingleFragmentActivity implements
         List<String> dateTimeList = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormat.forPattern("MMM YYYY");
 
-        Cursor cursor = mDatabase.rawQuery("SELECT DISTINCT " + TransactionTable.CatCols.DATE + " FROM " + table, null);
+        Cursor cursor = mDatabase.rawQuery("SELECT DISTINCT " + TransactionTable.CategoryColumns.DATE + " FROM " + table, null);
         GeneralCursorWrapper gcw = new GeneralCursorWrapper(cursor);
 
         if (cursor.moveToFirst()) {
@@ -289,7 +285,7 @@ public class MainActivity extends SingleFragmentActivity implements
         Set<String> dateTime = new TreeSet<>();
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy");
 
-        Cursor cursor = mDatabase.rawQuery("SELECT DISTINCT " + TransactionTable.CatCols.DATE + " FROM " + table, null);
+        Cursor cursor = mDatabase.rawQuery("SELECT DISTINCT " + TransactionTable.CategoryColumns.DATE + " FROM " + table, null);
         GeneralCursorWrapper gcw = new GeneralCursorWrapper(cursor);
 
 
@@ -329,7 +325,7 @@ public class MainActivity extends SingleFragmentActivity implements
     @Override
     public boolean checkIfCategoryExists(String TableName,
                                          String categoryName, int categoryDate) {
-        String Query = "SELECT * FROM " + TableName + " WHERE " + TransactionTable.CatCols.NAME + " = '" + categoryName + "' AND " + TransactionTable.CatCols.DATE + " = " + categoryDate;
+        String Query = "SELECT * FROM " + TableName + " WHERE " + TransactionTable.CategoryColumns.NAME + " = '" + categoryName + "' AND " + TransactionTable.CategoryColumns.DATE + " = " + categoryDate;
         Cursor cursor = mDatabase.rawQuery(Query, null);
         if (cursor.getCount() <= 0) {
             cursor.close();

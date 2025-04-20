@@ -22,11 +22,11 @@ import androidx.fragment.app.DialogFragment;
 
 import com.robin.miniBudget.database.DatabaseSchema;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class DialogAboutUs extends DialogFragment {
 
-    public final String TAG = this.getClass().getSimpleName();
     public TextView mTextViewLinkLinkedIn;
 
     @NonNull
@@ -63,7 +63,7 @@ public class DialogAboutUs extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        getDialog().getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog);
+        Objects.requireNonNull(Objects.requireNonNull(getDialog()).getWindow()).setBackgroundDrawableResource(R.drawable.rounded_dialog);
         WindowManager.LayoutParams lp = getDialog().getWindow().getAttributes();
         lp.alpha = 0.90f;
         getDialog().getWindow().setAttributes(lp);

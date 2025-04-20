@@ -45,7 +45,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class TransFragment extends Fragment {
+public class TransactionFragment extends Fragment {
     private final String TAG = this.getClass().getSimpleName();
 
     OuterListener mOuterListener;
@@ -57,8 +57,8 @@ public class TransFragment extends Fragment {
     SharedPreferences sharedPreferences;
     Boolean firstTime;
 
-    public static TransFragment newInstance() {
-        return new TransFragment();
+    public static TransactionFragment newInstance() {
+        return new TransactionFragment();
     }
 
     @Override
@@ -128,7 +128,7 @@ public class TransFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 int currentItem = viewPager.getCurrentItem();
                 dateSelected = mOuterListener.spinnerToJodaTime(mOuterListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null).get(i));
-                TransFragment.DemoObjectFragment fragment = (TransFragment.DemoObjectFragment) getChildFragmentManager()
+                TransactionFragment.DemoObjectFragment fragment = (TransactionFragment.DemoObjectFragment) getChildFragmentManager()
                         .findFragmentByTag("f" + currentItem);
                 fragment.update(++currentItem, dateSelected);
                 mOuterListener.getMonthArrayAdapter().notifyDataSetInvalidated();
@@ -146,7 +146,7 @@ public class TransFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 int currentItem = viewPager.getCurrentItem();
                 dateSelected = mOuterListener.spinnerToJodaTime(mOuterListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null).get(mSpinner.getSelectedItemPosition()));
-                TransFragment.DemoObjectFragment fragment = (TransFragment.DemoObjectFragment) getChildFragmentManager()
+                TransactionFragment.DemoObjectFragment fragment = (TransactionFragment.DemoObjectFragment) getChildFragmentManager()
                         .findFragmentByTag("f" + currentItem);
                 fragment.update(++currentItem, dateSelected);
                 mOuterListener.getMonthArrayAdapter().notifyDataSetInvalidated();
@@ -331,13 +331,13 @@ public class TransFragment extends Fragment {
                     parent.findViewById(R.id.edit_item).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            DialogCategory dialogCategory = new DialogCategory();
+                            CategoryDialogFragment categoryDialogFragment = new CategoryDialogFragment();
                             Bundle bundle = new Bundle();
-                            bundle.putInt(DialogCategory.GROUP_ID, group_id);
-                            bundle.putSerializable(DialogCategory.CATEGORY_ID, c.getId());
-                            dialogCategory.setTargetFragment(DemoObjectFragment.this, tabPosition);
-                            dialogCategory.setArguments(bundle);
-                            dialogCategory.show(getFragmentManager(), "Category Expense");
+                            bundle.putInt(CategoryDialogFragment.GROUP_ID, group_id);
+                            bundle.putSerializable(CategoryDialogFragment.CATEGORY_ID, c.getId());
+                            categoryDialogFragment.setTargetFragment(DemoObjectFragment.this, tabPosition);
+                            categoryDialogFragment.setArguments(bundle);
+                            categoryDialogFragment.show(getFragmentManager(), "Category Expense");
                         }
                     });
 

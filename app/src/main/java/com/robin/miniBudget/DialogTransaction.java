@@ -154,7 +154,7 @@ public class DialogTransaction extends DialogFragment {
             mTimePicker.setMinute(dt.getMinuteOfHour());
 
             Category category = mListener.getSingleCategory(DatabaseSchema.TransactionTable.mCategories,
-                    DatabaseSchema.TransactionTable.CatCols.ID + " = ?",
+                    DatabaseSchema.TransactionTable.CategoryColumns.ID + " = ?",
                     new String[]{mTransaction.getCategoryId().toString()});
             mSpinner.setSelection(mFilteredCategories.indexOf(category.getName()));
 
@@ -248,7 +248,7 @@ public class DialogTransaction extends DialogFragment {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mListener.deleteTransaction(mTransaction);
-                    ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mListener.datePickerToJodaTime(mDatePicker.getYear() + " " + (mDatePicker.getMonth() + 1)));
+                    ((TransactionFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mListener.datePickerToJodaTime(mDatePicker.getYear() + " " + (mDatePicker.getMonth() + 1)));
                 }
             });
         }
@@ -330,7 +330,7 @@ public class DialogTransaction extends DialogFragment {
 
                 } else {
                     mCategory = mListener.getSingleCategory(DatabaseSchema.TransactionTable.mCategories,
-                            DatabaseSchema.TransactionTable.CatCols.NAME + " = ? AND CAST(" + DatabaseSchema.TransactionTable.CatCols.DATE + " as TEXT) = ?",
+                            DatabaseSchema.TransactionTable.CategoryColumns.NAME + " = ? AND CAST(" + DatabaseSchema.TransactionTable.CategoryColumns.DATE + " as TEXT) = ?",
                             new String[]{mCategoryStringSelected, String.valueOf(categoryDate)});
 
                 }
@@ -357,11 +357,11 @@ public class DialogTransaction extends DialogFragment {
                 } else {
                     mListener.updateTransaction(mTransaction);
                 }
-                ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mListener.datePickerToJodaTime(mDatePicker.getYear() + " " + (mDatePicker.getMonth() + 1)));
+                ((TransactionFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mListener.datePickerToJodaTime(mDatePicker.getYear() + " " + (mDatePicker.getMonth() + 1)));
 
-                TransFragment.spinnerAdapter.clear();
-                TransFragment.spinnerAdapter.addAll(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null));
-                TransFragment.mSpinner
+                TransactionFragment.spinnerAdapter.clear();
+                TransactionFragment.spinnerAdapter.addAll(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null));
+                TransactionFragment.mSpinner
                         .setSelection(mListener.getParsedMonthDates(DatabaseSchema.TransactionTable.mCategories, null, null)
                                 .indexOf(DateTimeFormat.forPattern("MMM yyyy").print(mTransaction.getDateTime())));
                 dialog.dismiss();
