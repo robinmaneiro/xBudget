@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private final String TAG = this.getClass().getSimpleName();
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "budgetbase.db";
     private final Context context;
@@ -36,34 +35,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void createTables(SQLiteDatabase db) {
         db.execSQL("create table " + TransactionTable.mTransactions +
                 "(" +
-                TransactionTable.TransCols.ID + " PRIMARY KEY" + ", " +
-                TransactionTable.TransCols.CATEGORY_ID + ", " +
-                TransactionTable.TransCols.GROUP_ID + ", " +
-                TransactionTable.TransCols.NAME + ", " +
-                TransactionTable.TransCols.AMOUNT + ", " +
-                TransactionTable.TransCols.DESCRIPTION + ", " +
-                TransactionTable.TransCols.DATE +
+                TransactionTable.TransactionColumns.ID + " PRIMARY KEY" + ", " +
+                TransactionTable.TransactionColumns.CATEGORY_ID + ", " +
+                TransactionTable.TransactionColumns.GROUP_ID + ", " +
+                TransactionTable.TransactionColumns.NAME + ", " +
+                TransactionTable.TransactionColumns.AMOUNT + ", " +
+                TransactionTable.TransactionColumns.DESCRIPTION + ", " +
+                TransactionTable.TransactionColumns.DATE +
                 ")");
 
         db.execSQL("create table " + TransactionTable.mCategories +
                 "(" +
-                TransactionTable.CatCols.ID + " PRIMARY KEY" + ", " +
-                TransactionTable.CatCols.GROUP_ID + ", " +
-                TransactionTable.CatCols.NAME + ", " +
-                TransactionTable.CatCols.AMOUNT + ", " +
-                TransactionTable.CatCols.DATE +
+                TransactionTable.CategoryColumns.ID + " PRIMARY KEY" + ", " +
+                TransactionTable.CategoryColumns.GROUP_ID + ", " +
+                TransactionTable.CategoryColumns.NAME + ", " +
+                TransactionTable.CategoryColumns.AMOUNT + ", " +
+                TransactionTable.CategoryColumns.DATE +
                 ")");
 
         db.execSQL("create table " + TransactionTable.mGroups +
                 "(" +
-                TransactionTable.GroupCols.ID + " PRIMARY KEY " + ", " +
-                TransactionTable.GroupCols.NAME +
+                TransactionTable.GroupColumns.ID + " PRIMARY KEY " + ", " +
+                TransactionTable.GroupColumns.NAME +
                 ")");
 
         db.execSQL("create table " + TransactionTable.mConstants +
                 "(" +
-                TransactionTable.ConstantCols.NAME + " PRIMARY KEY " + ", " +
-                TransactionTable.ConstantCols.VALUE +
+                TransactionTable.ConstantColumns.NAME + " PRIMARY KEY " + ", " +
+                TransactionTable.ConstantColumns.VALUE +
                 ")");
 
     }
@@ -77,8 +76,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         for (int i = 0; i < demoGroups.length; i++) {
             db.execSQL("INSERT INTO " + TransactionTable.mGroups +
                     "(" +
-                    TransactionTable.GroupCols.ID + ", " +
-                    TransactionTable.GroupCols.NAME +
+                    TransactionTable.GroupColumns.ID + ", " +
+                    TransactionTable.GroupColumns.NAME +
                     ") VALUES (" + i + 1 + ", '" + demoGroups[i] + "')");
         }
     }
@@ -111,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Insert Categories demo for the first use of the application
     public static synchronized  void insertConstantValues(SQLiteDatabase db) {
-        String query = "INSERT INTO "+TransactionTable.mConstants+" ("+TransactionTable.ConstantCols.NAME+","+TransactionTable.ConstantCols.VALUE +") VALUES ('"+
+        String query = "INSERT INTO "+TransactionTable.mConstants+" ("+ TransactionTable.ConstantColumns.NAME+","+ TransactionTable.ConstantColumns.VALUE +") VALUES ('"+
 
         MainActivity.CURRENCY_KEY +"','"+ Currency.getInstance(Locale.getDefault()).getCurrencyCode()+"')";
 
@@ -122,11 +121,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         private ContentValues getContentValuesCategory(Category category) {
         ContentValues values = new ContentValues();
-        values.put(TransactionTable.CatCols.ID, category.getId().toString());
-        values.put(TransactionTable.CatCols.GROUP_ID, category.getGroupId());
-        values.put(TransactionTable.CatCols.NAME, category.getName());
-        values.put(TransactionTable.CatCols.AMOUNT, category.getAmount());
-        values.put(TransactionTable.CatCols.DATE, category.getDateAssigned());
+        values.put(TransactionTable.CategoryColumns.ID, category.getId().toString());
+        values.put(TransactionTable.CategoryColumns.GROUP_ID, category.getGroupId());
+        values.put(TransactionTable.CategoryColumns.NAME, category.getName());
+        values.put(TransactionTable.CategoryColumns.AMOUNT, category.getAmount());
+        values.put(TransactionTable.CategoryColumns.DATE, category.getDateAssigned());
 
         return values;
     }

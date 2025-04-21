@@ -19,13 +19,13 @@ public class GeneralCursorWrapper extends CursorWrapper {
     protected Transaction getTransaction() {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-MM-dd HH:mm");
 
-        String id = getString(getColumnIndex(TransactionTable.TransCols.ID));
-        Integer groupId = getInt(getColumnIndex(TransactionTable.TransCols.GROUP_ID));
-        String categoryId = getString(getColumnIndex(TransactionTable.TransCols.CATEGORY_ID));
-        String name = getString(getColumnIndex(TransactionTable.TransCols.NAME));
-        Double amount = getDouble(getColumnIndex(TransactionTable.TransCols.AMOUNT));
-        String description = getString(getColumnIndex(TransactionTable.TransCols.DESCRIPTION));
-        String date = getString(getColumnIndex(TransactionTable.TransCols.DATE));
+        String id = getString(getColumnIndex(TransactionTable.TransactionColumns.ID));
+        Integer groupId = getInt(getColumnIndex(TransactionTable.TransactionColumns.GROUP_ID));
+        String categoryId = getString(getColumnIndex(TransactionTable.TransactionColumns.CATEGORY_ID));
+        String name = getString(getColumnIndex(TransactionTable.TransactionColumns.NAME));
+        Double amount = getDouble(getColumnIndex(TransactionTable.TransactionColumns.AMOUNT));
+        String description = getString(getColumnIndex(TransactionTable.TransactionColumns.DESCRIPTION));
+        String date = getString(getColumnIndex(TransactionTable.TransactionColumns.DATE));
 
         Transaction transaction = new Transaction(UUID.fromString(id));
         transaction.setGroupId(groupId);
@@ -38,11 +38,11 @@ public class GeneralCursorWrapper extends CursorWrapper {
     }
     protected Category getCategory() {
 
-        String id = getString(getColumnIndex(TransactionTable.CatCols.ID));
-        Integer groupId = getInt(getColumnIndex(TransactionTable.CatCols.GROUP_ID));
-        String name = getString(getColumnIndex(TransactionTable.CatCols.NAME));
-        Double amount = getDouble(getColumnIndex(TransactionTable.CatCols.AMOUNT));
-        Integer date = getInt(getColumnIndex(TransactionTable.CatCols.DATE));
+        String id = getString(getColumnIndex(TransactionTable.CategoryColumns.ID));
+        Integer groupId = getInt(getColumnIndex(TransactionTable.CategoryColumns.GROUP_ID));
+        String name = getString(getColumnIndex(TransactionTable.CategoryColumns.NAME));
+        Double amount = getDouble(getColumnIndex(TransactionTable.CategoryColumns.AMOUNT));
+        Integer date = getInt(getColumnIndex(TransactionTable.CategoryColumns.DATE));
 
         Category category = new Category(UUID.fromString(id));
         category.setGroupId(groupId);
@@ -55,7 +55,7 @@ public class GeneralCursorWrapper extends CursorWrapper {
 
     protected DateTime getDistinctDate() {
         DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYYM");
-        String date = getString(getColumnIndex(TransactionTable.CatCols.DATE));
+        String date = getString(getColumnIndex(TransactionTable.CategoryColumns.DATE));
         DateTime dateTime = formatter.parseDateTime(date);
 
         return dateTime;

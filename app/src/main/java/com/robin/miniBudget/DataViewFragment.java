@@ -45,8 +45,6 @@ import java.util.List;
 import static com.robin.miniBudget.R.*;
 
 public class DataViewFragment extends Fragment {
-    private final String TAG = this.getClass().getSimpleName();
-
     public static DataViewFragment newInstance() {
         return new DataViewFragment();
     }
@@ -66,14 +64,13 @@ public class DataViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(layout.fragment_pager, container, false);
-        return view;
+        return inflater.inflate(layout.fragment_pager, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        demoCollectionAdapter = new DataViewFragment.DemoCollectionAdapter(this);
+        demoCollectionAdapter = new DemoCollectionAdapter(this);
         viewPager = view.findViewById(id.pager);
         viewPager.setAdapter(demoCollectionAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
@@ -144,7 +141,7 @@ public class DataViewFragment extends Fragment {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                // Nothing to do.
             }
         });
 
@@ -175,12 +172,12 @@ public class DataViewFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                // Nothing to do.
             }
         });
     }
 
-    public class DemoCollectionAdapter extends FragmentStateAdapter {
+    public static class DemoCollectionAdapter extends FragmentStateAdapter {
         public DemoCollectionAdapter(Fragment fragment) {
             super(fragment);
         }
@@ -231,16 +228,17 @@ public class DataViewFragment extends Fragment {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             Bundle args = getArguments();
+            assert args != null;
             int position = args.getInt(POSITION);
 
             mDecimalFormat = new DecimalFormat("#.##");
-            mTextGraph1 = (Button) view.findViewById(id.dataview_title);
-            mNoDataLayout = (LinearLayout) view.findViewById(id.no_data_layout);
-            mDataViewLayout = (LinearLayout) view.findViewById(id.dataview_layout);
-            mImageNoData = (ImageView) view.findViewById(id.img_no_data);
-            mTextNoData = (TextView) view.findViewById(id.txt_no_data);
-            mTextTotalPeriod = (TextView) view.findViewById(id.total_period_val);
-            mBarChart = (BarChart) view.findViewById(id.bar_chart);
+            mTextGraph1 = view.findViewById(id.dataview_title);
+            mNoDataLayout = view.findViewById(id.no_data_layout);
+            mDataViewLayout = view.findViewById(id.dataview_layout);
+            mImageNoData = view.findViewById(id.img_no_data);
+            mTextNoData = view.findViewById(id.txt_no_data);
+            mTextTotalPeriod = view.findViewById(id.total_period_val);
+            mBarChart = view.findViewById(id.bar_chart);
             mBarEntries = new ArrayList<>();
 
 
@@ -399,7 +397,7 @@ public class DataViewFragment extends Fragment {
 
         }
 
-        class myXAxisValueFormatter extends IndexAxisValueFormatter {
+        static class myXAxisValueFormatter extends IndexAxisValueFormatter {
 
             private String[] mValues;
 

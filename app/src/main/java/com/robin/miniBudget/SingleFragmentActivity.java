@@ -97,8 +97,8 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {   //Change fragments in the bottom bar
             int itemId = item.getItemId();
             if (itemId == R.id.transactions) {
-                TransFragment transFragment = TransFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, transFragment).commit();
+                TransactionFragment transactionFragment = TransactionFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, transactionFragment).commit();
                 ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_transactions);
             } else if (itemId == R.id.statistics) {
                 ((TextView) topToolbar.findViewById(R.id.toolbar_title)).setText(R.string.bottom_bar_statistics);

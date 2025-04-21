@@ -24,15 +24,15 @@ import androidx.fragment.app.DialogFragment;
 import com.robin.miniBudget.database.DatabaseSchema;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
-public class DialogCategory extends DialogFragment {
+public class CategoryDialogFragment extends DialogFragment {
 
-    public final String TAG = this.getClass().getSimpleName();
     public static final String GROUP_ID = "Group_Id";
     public static final String CATEGORY_ID = "TransactionID";
     public Listener mListener;
-    private Integer mType, mInitialSpinnerSize;
+    private Integer mInitialSpinnerSize;
     private UUID mId;
     public Category mCategory;
     public TextView mTitle, mTextViewCurrency;
@@ -43,14 +43,15 @@ public class DialogCategory extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_category, null);
 
-        mType = (Integer) getArguments().get(GROUP_ID);
+        assert getArguments() != null;
+        Integer mType = (Integer) getArguments().get(GROUP_ID);
         if (getArguments().get(GROUP_ID) != null) mType = getArguments().getInt(GROUP_ID);
         if (getArguments().get(GROUP_ID) != null) mId = (UUID) getArguments().get(CATEGORY_ID);
 
-        mCategory = mListener.getSingleCategory(DatabaseSchema.TransactionTable.mCategories, DatabaseSchema.TransactionTable.CatCols.ID + " = ?", new String[]{mId.toString()});
+        mCategory = mListener.getSingleCategory(DatabaseSchema.TransactionTable.mCategories, DatabaseSchema.TransactionTable.CategoryColumns.ID + " = ?", new String[]{mId.toString()});
 
         //Initialize the elements
         mInitialSpinnerSize = mListener.getMonthArrayAdapter().getCount();
@@ -68,7 +69,7 @@ public class DialogCategory extends DialogFragment {
         textView.setText(mCategory.getName());
         textView.setPadding(50, 30, 20, 30);
         textView.setTextSize(23F);
-        textView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.carter_one));
+        textView.setTypeface(ResourcesCompat.getFont(requireContext(), R.font.carter_one));
         textView.setBackgroundColor(ContextCompat.getColor(getContext(), mType == Category.Group.INCOMES ? R.color.incomes_cat : R.color.expenses_cat));
         textView.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
 
@@ -130,7 +131,7 @@ public class DialogCategory extends DialogFragment {
     void deleteCatUpdateSpinner() {
         mListener.deleteCategory(mCategory);
 
-        ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mCategory.getDateAssigned().toString());
+        ((TransactionFragment.DemoObjectFragment) Objects.requireNonNull(getTargetFragment())).update((Integer) getArguments().get(GROUP_ID), mCategory.getDateAssigned().toString());
 
 
         // If the category is the last in the selected list, the underlying data is going to be updated to prevent and ArrayIndexOutOfBoundsException
@@ -139,13 +140,11 @@ public class DialogCategory extends DialogFragment {
         int finalSpinnerSize = mListener.getMonthArrayAdapter().getCount();
         String currentDateParsed = mListener.getCurrentDateParsed();
         if (mInitialSpinnerSize != finalSpinnerSize) { // Checks if the category was the last in the selected month
-            //TransFragment.spinnerAdapter.notifyDataSetChanged();
-            //TransFragment.spinnerAdapter.notifyDataSetInvalidated();
-            TransFragment.mSpinner.setAdapter(mListener.getMonthArrayAdapter());
+            TransactionFragment.mSpinner.setAdapter(mListener.getMonthArrayAdapter());
             if (mListener.getMonthArrayAdapter().getPosition(currentDateParsed) != -1) { //Check if there is any category in the current month and set the position on it
-                TransFragment.mSpinner.setSelection(mListener.getMonthArrayAdapter().getPosition(mListener.getCurrentDateParsed()));
+                TransactionFragment.mSpinner.setSelection(mListener.getMonthArrayAdapter().getPosition(mListener.getCurrentDateParsed()));
             } else { //If no categories in the selected month the spinner will be set in the last month available
-                TransFragment.mSpinner.setSelection(finalSpinnerSize - 1);
+                TransactionFragment.mSpinner.setSelection(finalSpinnerSize - 1);
             }
         }
 
@@ -197,7 +196,7 @@ public class DialogCategory extends DialogFragment {
                 mCategory.setName(mEditTextName.getText().toString());
                 mCategory.setAmount(Double.parseDouble(mEditTextAllowance.getText().toString()));
                 mListener.updateCategory(mCategory);
-                ((TransFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mCategory.getDateAssigned().toString());
+                ((TransactionFragment.DemoObjectFragment) getTargetFragment()).update((Integer) getArguments().get(GROUP_ID), mCategory.getDateAssigned().toString());
                 dialog.dismiss();
             }
 
